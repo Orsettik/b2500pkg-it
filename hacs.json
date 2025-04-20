@@ -1,8 +1,0 @@
-{
-  "name": "B2500 Paket",
-  "content_in_root": false,
-  "filename": "dashboards/b2500_dashboard.yaml",
-  "domain": "b2500_package",
-  "type": "lovelace",
-  "render_readme": true
-}
