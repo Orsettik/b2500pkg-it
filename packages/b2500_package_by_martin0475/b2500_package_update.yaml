@@ -1,0 +1,23 @@
+input_button:
+  b2500_update_button:
+    name: B2500_Package aktualisieren
+    icon: mdi:cloud-download
+
+automation:
+  - alias: "B2500: Manuelles Update per Button"
+    id: b2500_manual_update
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: input_button.b2500_update_button
+    action:
+      - service: shell_command.b2500_download_files
+
+shell_command:
+  b2500_download_files: >
+    mkdir -p /config/packages/b2500 &&
+    wget -q -O /config/packages/b2500/automations.yaml https://raw.githubusercontent.com/Martin0475/b2500_package/main/packages/b2500_package_by_martin0475/automations/*.yaml &&
+    wget -q -O /config/packages/b2500/helpers.yaml https://raw.githubusercontent.com/DEIN-GITHUB-NAME/b2500_package/main/helpers/helpers.yaml &&
+    wget -q -O /config/packages/b2500/mqtt_sensors.yaml https://raw.githubusercontent.com/DEIN-GITHUB-NAME/b2500_package/main/mqtt_sensors/mqtt_sensors.yaml &&
+    mkdir -p /config/dashboards &&
+    wget -q -O /config/dashboards/b2500_dashboard.yaml https://raw.githubusercontent.com/DEIN-GITHUB-NAME/b2500_package/main/dashboards/b2500_dashboard.yaml
