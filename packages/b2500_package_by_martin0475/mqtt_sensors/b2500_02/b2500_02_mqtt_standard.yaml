@@ -1,0 +1,383 @@
+mqtt:
+
+  binary_sensor:
+  
+    - name: "B02 Hauptspeicher Entladen"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l0=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[7] }}"
+      unique_id: "sensor.b2500_02_l0_bit0"
+      object_id: "b2500_02_l0_bit0" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Hauptspeicher Laden"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l0=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[6] }}"
+      unique_id: "sensor.b2500_02_l0_bit1"
+      object_id: "b2500_02_l0_bit1" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Hauptspeicher DOD erreicht"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l0=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[5] }}"
+      unique_id: "sensor.b2500_02_l0_bit2"
+      object_id: "b2500_02_l0_bit2"
+      entity_category: diagnostic
+ 
+    - name: "B02 Hauptspeicher Unterspannung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l0=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[4] }}"
+      unique_id: "sensor.b2500_02_l0_bit3"
+      object_id: "b2500_02_l0_bit3"
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung 1 verbunden"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ value.split('b1=')[1].split(',')[0] }}"
+      unique_id: "binary_sensor.b2500_02_b1"
+      object_id: "b2500_02_b1"
+      entity_category: diagnostic
+
+    - name: "B02 Erweiterung 2 verbunden"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ value.split('b2=')[1].split(',')[0] }}"
+      unique_id: "binary_sensor.b2500_02_b2"
+      object_id: "b2500_02_b2"
+      entity_category: diagnostic
+
+    - name: "B02 Erweiterung2 Entladen"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[7] }}"
+      unique_id: "sensor.b2500_02_l1_bit0"
+      object_id: "b2500_02_l1_bit0" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung2 Laden"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[6] }}"
+      unique_id: "sensor.b2500_02_l1_bit1"
+      object_id: "b2500_02_l1_bit1" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung2 DOD erreicht"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[5] }}"
+      unique_id: "sensor.b2500_02_l1_bit2"
+      object_id: "b2500_02_l1_bit2"
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung2 Unterspannung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[4] }}"
+      unique_id: "sensor.b2500_02_l1_bit3"
+      object_id: "b2500_02_l1_bit3"
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung1 Entladen"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[3] }}"
+      unique_id: "sensor.b2500_02_l1_bit4"
+      object_id: "b2500_02_l1_bit4" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung1 Laden"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[2] }}"
+      unique_id: "sensor.b2500_02_l1_bit5"
+      object_id: "b2500_02_l1_bit5" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung1 DOD erreicht"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[1] }}"
+      unique_id: "sensor.b2500_02_l1_bit6"
+      object_id: "b2500_02_l1_bit6"
+      entity_category: diagnostic
+ 
+    - name: "B02 Erweiterung1 Unterspannung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      payload_on: "1"
+      payload_off: "0"
+      value_template: "{{ ('{:0=8b}'.format(value.split('l1=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[0] }}"
+      unique_id: "sensor.b2500_02_l1_bit7"
+      object_id: "b2500_02_l1_bit7"
+      entity_category: diagnostic
+ 
+  sensor:
+    - name: "B02 Solar1 Input Status"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('p1=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_p1"
+      object_id: "b2500_02_p1"
+      entity_category: diagnostic
+       
+    - name: "B02 Solar2 Input Status"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('p2=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_p2"
+      object_id: "b2500_02_p2"
+      entity_category: diagnostic
+
+    - name: "B02 PV1 Leistung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      state_class: measurement 
+      device_class: power
+      unit_of_measurement: "W"
+      value_template: "{{ value.split('w1=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_w1"
+      object_id: "b2500_02_w1"
+      entity_category: diagnostic
+
+    - name: "B02 PV2 Leistung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      state_class: measurement 
+      device_class: power
+      unit_of_measurement: "W"
+      value_template: "{{ value.split('w2=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_w2"
+      object_id: "b2500_02_w2"
+      entity_category: diagnostic
+ 
+    - name: "B02 Batterie SOC"
+      state_topic: "hame_energy/B2500_02/CD01"
+      state_class: measurement
+      device_class: battery
+      unit_of_measurement: "%"
+      value_template: "{{ value.split('pe=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_pe"
+      object_id: "b2500_02_pe"
+      entity_category: diagnostic
+
+    - name: "B02 Geräteversion"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('vv=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_vv"
+      object_id: "b2500_02_vv"
+      entity_category: diagnostic
+ 
+    - name: "B02 Gerätesubversion"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('sv=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_sv"
+      object_id: "b2500_02_sv"
+      entity_category: diagnostic
+ 
+    - name: "B02 Ladeeinstellung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('cs=')[1].split(',')[0].replace('0','Laden und Entladen gleichzeitig').replace('1','Laden vor dem Entladen') }}"
+      unique_id: "sensor.b2500_02_cs"
+      object_id: "b2500_02_cs"
+      entity_category: diagnostic
+
+    - name: "B02 Entladeeinstellung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: >-
+        {% set parts = value.split('cd=') %}
+        {% if parts | length > 1 %}
+          {% set cd = parts[1].split(',')[0] %}
+          {% if cd == '0' %}
+            Ausgang PV1 und PV2 off
+          {% elif cd == '1' %}
+            Ausgang PV1 on, PV2 off
+          {% elif cd == '2' %}
+            Ausgang PV1 off, PV2 on
+         {% elif cd == '3' %}
+            Ausgang PV1 und PV2 on
+          {% else %}
+            unbekannt
+          {% endif %}
+        {% else %}
+          unbekannt
+        {% endif %}
+      unique_id: "sensor.b2500_02_cd"
+      object_id: "b2500_02_cd"
+      entity_category: diagnostic
+ 
+    - name: "B02 AM"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('am=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_am"
+      object_id: "b2500_02_am"
+      entity_category: diagnostic
+ 
+    - name: "B02 Output Status 1"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('o1=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_o1"
+      object_id: "b2500_02_o1"
+      entity_category: diagnostic
+       
+    - name: "B02 Output Status 2"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('o2=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_o2"
+      object_id: "b2500_02_o2"
+      entity_category: diagnostic
+ 
+    - name: "B02 DOD Entnehmbare Kapazität in %"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('do=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_do"
+      object_id: "b2500_02_do" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Entladeschwelle"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('lv=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_lv"
+      object_id: "b2500_02_lv" 
+      entity_category: diagnostic
+ 
+    - name: "B02 CJ Scene"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('cj=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_cj"
+      object_id: "b2500_02_cj" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Gesamtkapazität"
+      state_topic: "hame_energy/B2500_02/CD01"
+      device_class: energy_storage
+      state_class: measurement
+      unit_of_measurement: "Wh"
+      value_template: "{{ value.split('kn=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_kn"
+      object_id: "b2500_02_kn" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Output1 Leistung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      state_class: measurement 
+      device_class: power
+      unit_of_measurement: "W"
+      value_template: "{{ value.split('g1=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_g1"
+      object_id: "b2500_02_g1"      
+      entity_category: diagnostic
+ 
+    - name: "B02 Output2 Leistung"
+      state_topic: "hame_energy/B2500_02/CD01"
+      state_class: measurement 
+      device_class: power
+      unit_of_measurement: "W"
+      value_template: "{{ value.split('g2=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_g2"
+      object_id: "b2500_02_g2"      
+      entity_category: diagnostic
+ 
+    - name: "B02 Temperatur low"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('tl=')[1].split(',')[0] }}"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      unique_id: "sensor.b2500_02_tl"
+      object_id: "b2500_02_tl" 
+      entity_category: diagnostic
+       
+    - name: "B02 Temperatur high"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('th=')[1].split(',')[0] }}"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      unique_id: "sensor.b2500_02_th"
+      object_id: "b2500_02_th"
+      entity_category: diagnostic
+ 
+    - name: "B02 Temperaturalarm (Laden)"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('tc=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_tc"
+      object_id: "b2500_02_tc" 
+      entity_category: diagnostic
+     
+    - name: "B02 Temperaturalarm (Entladen)"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('tf=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_tf"
+      object_id: "b2500_02_tf" 
+      entity_category: diagnostic
+
+    - name: "B02 Chip Version"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('fc=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_fc"
+      object_id: "b2500_02_fc" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Geräte ID"
+      state_topic: "hame_energy/B2500_02/CD01"
+      value_template: "{{ value.split('id=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_id"
+      object_id: "b2500_02_id" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Ladezustand Hauptspeicher"
+      state_topic: "hame_energy/B2500_02/CD01"
+      unit_of_measurement: "%"
+      value_template: "{{ value.split('a0=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_a0"
+      object_id: "b2500_02_a0" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Ladezustand Erweiterung1"
+      state_topic: "hame_energy/B2500_02/CD01"
+      unit_of_measurement: "%"
+      value_template: "{{ value.split('a1=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_a1"
+      object_id: "b2500_02_a1" 
+      entity_category: diagnostic
+ 
+    - name: "B02 Ladezustand Erweiterung2"
+      state_topic: "hame_energy/B2500_02/CD01"
+      unit_of_measurement: "%"
+      value_template: "{{ value.split('a2=')[1].split(',')[0] }}"
+      unique_id: "sensor.b2500_02_a2"
+      object_id: "b2500_02_a2" 
+      entity_category: diagnostic
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
