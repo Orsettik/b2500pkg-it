@@ -22,7 +22,6 @@ lovelace:
       title: B2500
       icon: mdi:view-dashboard
       show_in_sidebar: true
-
       filename: dashboards/b2500_dashboard.yaml
 ```
 
