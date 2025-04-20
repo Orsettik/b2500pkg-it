@@ -1,0 +1,62 @@
+input_select:
+  outputs:
+    name: V1 Ausgänge setzen
+    options: 
+      - "Ausgang PV1 und PV2 off"
+      - "Ausgang PV1 und PV2 on"
+      - "Ausgang PV1 on, PV2 off"
+      - "Ausgang PV1 off, PV2 on"
+      
+input_button:
+  b2500_outputs_setzen:
+    name: Ausgänge setzen     
+
+automation:
+  alias: Package by Martin0475 B2500_Ausgänge setzen
+  description: |+  
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_button.b2500_outputs_setzen
+  conditions: []
+  actions:
+    - variables:
+        b2500_mac: >-
+          {{ states('input_text.b2500_01_mac') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_text.b2500_02_mac') if
+          states('input_select.speicherauswahl') == 'b2500_02' else
+          states('input_text.b2500_03_mac') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_text.b2500_04_mac') if
+          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
+        b2500_typ: >-
+          {{ states('input_select.b2500_01_typ') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_select.b2500_02_typ') if
+          states('input_select.speicherauswahl') == 'b2500_02' else
+          states('input_select.b2500_03_typ') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_select.b2500_04_typ') if
+          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        evaluate_payload: false
+        qos: 0
+        retain: false
+        topic: hame_energy/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
+        payload: cd=04,md={{ states('input_select.outputs').replace("Ausgang PV1 und PV2 off","0").replace("Ausgang PV1 on, PV2 off","1").replace("Ausgang PV1 off, PV2 on","2").replace("Ausgang PV1 und PV2 on","3") }}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        evaluate_payload: false
+        qos: 0
+        retain: false
+        topic: hame_energy/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
+        payload: cd=01
+  mode: single

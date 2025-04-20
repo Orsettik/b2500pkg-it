@@ -1,0 +1,43 @@
+automation:
+  alias: Package by Martin0475 B2500_ MQTT_Konfiguration_setzen
+  description: |+
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_button.mqtt_neu_laden
+  conditions: []
+  actions:
+    - sequence:
+        - if:
+            - condition: state
+              entity_id: input_boolean.b2500_01_e1_support
+              state: "off"
+          then:
+            - action: shell_command.b2500_01_e1_mqtt_spannungen_off
+              metadata: {}
+              data: {}
+          else:
+            - action: shell_command.b2500_01_e1_mqtt_spannungen_on
+              metadata: {}
+              data: {}
+        - if:
+            - condition: state
+              entity_id: input_boolean.b2500_01_e2_support
+              state: "off"
+          then:
+            - action: shell_command.b2500_01_e2_mqtt_spannungen_off
+              metadata: {}
+              data: {}
+          else:
+            - action: shell_command.b2500_01_e2_mqtt_spannungen_on
+              metadata: {}
+              data: {}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0
+    - action: mqtt.reload
+      metadata: {}
+      data: {}
+  mode: single

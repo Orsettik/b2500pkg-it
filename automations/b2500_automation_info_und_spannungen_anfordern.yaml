@@ -1,0 +1,96 @@
+automation:
+  alias: Package by Martin0475 B2500_ Infos und Zellenspannung anfordern
+  description: |+
+
+
+
+  triggers:
+    - trigger: time_pattern
+      minutes: /3
+  conditions: []
+  actions:
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_01_typ') }}/App/{{ states('input_text.b2500_01_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_02_typ') }}/App/{{ states('input_text.b2500_02_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_03_typ') }}/App/{{ states('input_text.b2500_03_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_04_typ') }}/App/{{ states('input_text.b2500_04_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_01_typ') }}/App/{{ states('input_text.b2500_01_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_02_typ') }}/App/{{ states('input_text.b2500_02_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_03_typ') }}/App/{{ states('input_text.b2500_03_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: hame_energy/{{ states('input_select.b2500_04_typ') }}/App/{{ states('input_text.b2500_04_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+  mode: single
