@@ -7,7 +7,7 @@ for datei in \
 "eintrag3" \
 "eintrag4" \
 "eintrag5"; do
-    mkdir -p "$local_dir/$datei"
-    rm -f "$datei"
+    mkdir -p "$(dirname "$local_dir/$datei")"
+    rm -f "$local_dir/$datei"
     wget "$github_repo/$datei" -O "$local_dir/$datei"
 done
