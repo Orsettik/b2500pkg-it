@@ -8,6 +8,6 @@ for datei in \
 "eintrag4" \
 "eintrag5"; do
     mkdir -p "$local_dir/$datei"
-    rm -f "$local_dir/$datei"
+    rm -f "$datei"
     wget "$github_repo/$datei" -O "$local_dir/$datei"
 done
