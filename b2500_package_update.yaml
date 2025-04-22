@@ -1,0 +1,67 @@
+input_button:
+  B2500_Package_Update:
+    name: Package Update starten
+    icon: mdi:cloud-download
+
+shell_command:
+  run_custom_command: '/bin/bash -c "{{ command }}"'
+
+script:
+  run_custom_shell_command:
+    alias: "Custom Shell Command ausführen (mit Timestamp im /tmp)"
+    fields:
+      shell_cmd:
+        description: "Der auszuführende Shell-Befehl"
+        example: "echo 'Hallo Welt'"
+        required: true
+    sequence:
+      - variables:
+          ts: "{{ now().strftime('%Y%m%d%H%M%S') }}"
+          flag_file: "/tmp/befehl_{{ ts }}.done"
+          full_command: "rm -f {{ flag_file }} && {{ shell_cmd }} && touch {{ flag_file }}"
+      - service: shell_command.run_custom_command
+        data:
+          command: "{{ full_command }}"
+      - wait_for_trigger:
+          - platform: file
+            file_path: "{{ flag_file }}"
+            event: created
+        timeout: "00:05:00"
+        continue_on_timeout: false
+      - service: notify.persistent_notification
+        data:
+          message: "Shell-Befehl abgeschlossen: {{ shell_cmd }}"
+          title: "Info"
+      - service: shell_command.run_custom_command
+        data:
+          command: "rm -f {{ flag_file }}"
+
+  - alias: "Package_by_Martin0475_B2500 - Package Update über Button"
+    description: "Lädt Installer-Automation und führt sie aus"
+    trigger:
+      platform: state
+      entity_id: input_button.B2500_Package_Update
+    action:
+      - service: script.run_custom_shell_command
+        data:
+          shell_cmd: "rm -f /config/packages/b2500_package_by_martin0475/b2500_package_install.yaml"
+
+      - service: script.run_custom_shell_command
+        data:
+          shell_cmd: "wget -q -O /config/packages/b2500_package_by_martin0475/b2500_package_install.yaml https://raw.githubusercontent.com/Martin0475/b2500_package/main/b2500_package_install.yaml"
+
+      - service: homeassistant.reload_automations
+
+      - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+      - action: automation.trigger
+        metadata: {}
+        data:
+          skip_condition: true
+        target:
+          entity_id: b2500_package_by_martin0475_installer
+
+
+
