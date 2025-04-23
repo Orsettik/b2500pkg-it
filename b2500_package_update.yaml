@@ -7,7 +7,7 @@ shell_command:
   run_custom_command: '/bin/bash -c "{{ command }}"'
 
 automation:
-    - alias: "b2500_package__Update über Button"
+    - alias: "b2500_package_Update über Button"
       description: "Lädt Installer-Automation und führt sie aus"
       
       triggers:
@@ -31,7 +31,7 @@ automation:
         - delay:
             hours: 0
             minutes: 0
-            seconds: 15
+            seconds: 30
 
         - action: automation.trigger
           metadata: {}
