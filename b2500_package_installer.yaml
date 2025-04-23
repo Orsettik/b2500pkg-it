@@ -1,10 +1,11 @@
 automation:
-  - alias: "b2500_package_installer"
-    id: b2500_package_installer
-    mode: single
-  
-    action:
-     - service: notify.persistent_notification
-        data:
-          message: "Installer heruntergeladen!"
-          title: "Info"
+  alias: b2500_package_installer
+  description: ""
+  triggers: []
+  conditions: []
+  actions:
+    - data:
+        message: Installer heruntergeladen!
+        title: b2500_package
+      action: notify.persistent_notification
+  mode: single
