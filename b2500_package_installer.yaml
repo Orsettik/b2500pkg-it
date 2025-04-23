@@ -7,6 +7,6 @@ automation:
       - service: shell_command.b2500_download_files
 
       - service: notify.persistent_notification
-              data:
-                message: "Installer heruntergeladen!"
-                title: "Info"
+        data:
+          message: "Installer heruntergeladen!"
+          title: "Info"
