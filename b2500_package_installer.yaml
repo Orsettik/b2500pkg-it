@@ -5,7 +5,7 @@ automation:
   conditions: []
   actions:
     - data:
-        message: Installer heruntergeladen!2
+        message: Installer wird ausgeführt!
         title: b2500_package
       action: notify.persistent_notification
   mode: single
