@@ -22,7 +22,7 @@ automation:
 
         - service: shell_command.run_custom_command
           data:
-            command: "wget -q -O /config/packages/b2500_package_installer.yaml https://raw.githubusercontent.com/Martin0475/b2500_package/b2500_package_installer.yaml"
+            command: "wget -q -O /config/packages/b2500_package_installer.yaml https://raw.githubusercontent.com/Martin0475/b2500_package/main/b2500_package_installer.yaml"
 
         - action: automation.reload
           metadata: {}
