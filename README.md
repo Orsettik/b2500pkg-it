@@ -7,22 +7,18 @@ Dieses Paket enthält:
 - YAML-Dashboard zur einfachen Übersicht
 
 ## 🔧 Manuelle Installation
-1. Lade das Repository herunter oder klone es.
-2. Kopiere die Inhalte aus `automations/`, `helpers/`, `mqtt_sensors/` und `dashboards/` nach `/config/` in deinen Home Assistant.
+1. Erstelle einen Ordner `packages` im selben Verzeichniss wo sich die `configuration.yaml` befindet.
+2. Lade die Datei `b2500_package_update.yaml` herunter und kopiere sie in den soeben erstellten Ordner `packages`.
 3. Ergänze in deiner `configuration.yaml`:
 
 ```yaml
 
 homeassistant:
   packages: !include_dir_named packages
-lovelace:
-  dashboards:
-    b2500-dashboard:
-      mode: yaml
-      title: B2500
-      icon: mdi:view-dashboard
-      show_in_sidebar: true
-      filename: dashboards/b2500_dashboard.yaml
+
 ```
 
 4. Starte Home Assistant neu.
+5. Nach dem Neustart sollte ein Button namens `B2500 Package Update starten` verfügbar sein.
+   Hiermit kann die aktuelle Version heruntergeladen werden.
+6.
