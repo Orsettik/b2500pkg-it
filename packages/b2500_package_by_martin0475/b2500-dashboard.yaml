@@ -1,9 +1,0 @@
-lovelace:
-  dashboards:
-    b2500-dashboard:
-      mode: yaml
-      title: B2500-Dashboard
-      icon: mdi:view-dashboard
-      show_in_sidebar: true
-      filename: dashboards/b2500_dashboard.yaml
-
