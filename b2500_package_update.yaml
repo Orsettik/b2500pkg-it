@@ -15,6 +15,12 @@ automation:
           entity_id:
             - input_button.b2500_package_update
 
+      action: notify.persistent_notification
+      metadata: {}
+      data:
+        title: B2500_package
+        message: Update gestartet
+
       action:
         - service: shell_command.run_custom_command
           data:
@@ -27,18 +33,32 @@ automation:
         - action: automation.reload
           metadata: {}
           data: {}
-  
-        - delay:
-            hours: 0
-            minutes: 0
-            seconds: 30
 
-        - action: automation.trigger
-          metadata: {}
-          data:
-            skip_condition: true
-          target:
-            entity_id: automation.b2500_package_installer
+      action: notify.persistent_notification
+      metadata: {}
+      data:
+        title: B2500_package
+        message: Lade Automationen neu
+
+  
+      delay:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+      action: notify.persistent_notification
+      metadata: {}
+      data:
+        title: B2500_package
+        message: Starte Installer Automation
+
+
+      action: automation.trigger
+      metadata: {}
+      data:
+        skip_condition: true
+      target:
+        entity_id: automation.b2500_package_installer
 
 
 
