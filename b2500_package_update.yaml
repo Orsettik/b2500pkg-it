@@ -7,58 +7,44 @@ shell_command:
   run_custom_command: '/bin/bash -c "{{ command }}"'
 
 automation:
-    - alias: "b2500_package_Update über Button"
-      description: "Lädt Installer-Automation und führt sie aus"
-      
-      triggers:
-        - trigger: state
-          entity_id:
-            - input_button.b2500_package_update
-
-      action: notify.persistent_notification
+  alias: b2500_package_update
+  description: Lädt Installer-Automation und führt sie aus
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_button.b2500_package_update
+  conditions: []
+  actions:
+    - action: notify.persistent_notification
       metadata: {}
       data:
-        title: B2500_package
         message: Update gestartet
-
-      action:
-        - service: shell_command.run_custom_command
-          data:
-            command: "rm -f /config/packages/b2500_package_installer.yaml"
-
-        - service: shell_command.run_custom_command
-          data:
-            command: "wget -q -O /config/packages/b2500_package_installer.yaml https://raw.githubusercontent.com/Martin0475/b2500_package/main/b2500_package_installer.yaml"
-
-        - action: automation.reload
-          metadata: {}
-          data: {}
-
-      action: notify.persistent_notification
+        title: b2500_package
+    - data:
+        command: rm -f /config/packages/b2500_package_installer.yaml
+      action: shell_command.run_custom_command
+    - data:
+        command: >-
+          wget -q -O /config/packages/b2500_package_installer.yaml
+          https://raw.githubusercontent.com/Martin0475/b2500_package/main/b2500_package_installer.yaml
+      action: shell_command.run_custom_command
+    - action: automation.reload
+      metadata: {}
+      data: {}
+    - action: notify.persistent_notification
       metadata: {}
       data:
-        title: B2500_package
-        message: Lade Automationen neu
-
-  
-      delay:
+        title: b2500_package
+        message: Automationen neu laden
+    - delay:
         hours: 0
         minutes: 0
         seconds: 30
-
-      action: notify.persistent_notification
-      metadata: {}
-      data:
-        title: B2500_package
-        message: Starte Installer Automation
-
-
-      action: automation.trigger
+        milliseconds: 0
+    - action: automation.trigger
       metadata: {}
       data:
         skip_condition: true
       target:
         entity_id: automation.b2500_package_installer
-
-
-
+  mode: single
