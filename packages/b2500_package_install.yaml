@@ -1,6 +1,6 @@
 automation:
-  - alias: "Package_by_Martin0475_B2500_Installer"
-    id: b2500_package_by_martin0475_installer
+  - alias: "b2500_package_installer"
+    id: b2500_package_installer.yaml
     mode: single
   
     action:
