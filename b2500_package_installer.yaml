@@ -1,5 +1,5 @@
 automation:
-  alias: b2500_package_installer
+  alias: b2500_package__Installer
   description: ""
   triggers: []
   conditions: []
