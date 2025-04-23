@@ -4,9 +4,7 @@ automation:
     mode: single
   
     action:
-      - service: shell_command.b2500_download_files
-
-      - service: notify.persistent_notification
+     - service: notify.persistent_notification
         data:
           message: "Installer heruntergeladen!"
           title: "Info"
