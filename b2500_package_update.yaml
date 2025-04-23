@@ -21,7 +21,7 @@ automation:
         message: Update gestartet
         title: b2500_package
     - data:
-        command: rm -f /config/packages/b2500_package_installer.yaml
+        command: rm -f /config/packages/b2500_package_installer.yaml && sleep 20
       action: shell_command.run_custom_command
     - data:
         command: >-
@@ -39,7 +39,7 @@ automation:
     - delay:
         hours: 0
         minutes: 0
-        seconds: 30
+        seconds: 20
         milliseconds: 0
     - action: automation.trigger
       metadata: {}
