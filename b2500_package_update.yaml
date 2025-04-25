@@ -6,6 +6,16 @@ input_button:
 shell_command:
   run_custom_command: '/bin/bash -c "{{ command }}"'
 
+lovelace:
+   dashboards:
+     b2500-dashboard:
+       mode: yaml
+       title: B2500-Package
+       icon: mdi:view-dashboard
+       show_in_sidebar: true
+       filename: dashboards/b2500_dashboard.yaml
+ 
+ 
 automation:
   alias: b2500_package_update
   description: Lädt Installer-Automation und führt sie aus
@@ -15,36 +25,34 @@ automation:
         - input_button.b2500_package_update
   conditions: []
   actions:
+    - data:
+        command: mkdir /config/packages/b2500_package && sleep 3
+      action: shell_command.run_custom_command
+    - data:
+        command: rm -f /config/packages/b2500_package/basicsystem.sh && sleep 5
+      action: shell_command.run_custom_command
     - action: notify.persistent_notification
       metadata: {}
       data:
         message: Update gestartet
         title: b2500_package
     - data:
-        command: rm -f /config/packages/b2500_package_installer.yaml && sleep 20
-      action: shell_command.run_custom_command
-    - data:
         command: >-
-          wget -q -O /config/packages/b2500_package_installer.yaml
-          https://raw.githubusercontent.com/Martin0475/b2500_package/main/b2500_package_installer.yaml
+          wget -q -O /config/packages/b2500_package/basicsystem.sh
+          https://raw.githubusercontent.com/Martin0475/b2500_package/main/install_scripts/basicsystem.sh &&
+          sh /config/packages/b2500_package/basicsystem.sh
       action: shell_command.run_custom_command
-    - action: automation.reload
-      metadata: {}
-      data: {}
     - action: notify.persistent_notification
       metadata: {}
       data:
         title: b2500_package
-        message: Automationen neu laden
+        message: yaml-Dateien neu laden
     - delay:
         hours: 0
         minutes: 0
-        seconds: 20
+        seconds: 10
         milliseconds: 0
-    - action: automation.trigger
+    - action: homeassistant.reload_all
       metadata: {}
-      data:
-        skip_condition: true
-      target:
-        entity_id: automation.b2500_package_installer
-  mode: single
+      data: {}
+  mode: single   

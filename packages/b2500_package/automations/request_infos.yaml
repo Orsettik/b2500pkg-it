@@ -1,0 +1,103 @@
+automation:
+
+  description: |+
+  alias: b2500_package_Infos und Zellenspannung anfordern
+  mode: single
+  triggers:
+    - trigger: time_pattern
+      minutes: /3
+  conditions: []
+  actions:
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b01_typ') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b02_typ') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b03_typ') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b04_typ') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
+        payload: cd=01
+        qos: "0"
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b01_typ') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b02_typ') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b03_typ') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        topic: >-
+          {{ states('input_text.b04_typ') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
+        payload: cd=13
+        qos: "0"
+      enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
