@@ -3,35 +3,34 @@ views:
     sections:
       - type: grid
         cards:
-          - type: heading
-            heading_style: title
-            heading: B2500_ Grundeinstellungen
-          - type: tile
-            entity: input_text.b2500_01_mac
-          - type: tile
-            entity: input_select.b2500_01_typ
-          - type: tile
-            entity: input_text.b2500_02_mac
-          - type: tile
-            entity: input_select.b2500_02_typ
-          - type: tile
-            entity: input_text.b2500_03_mac
-          - type: tile
-            entity: input_select.b2500_03_typ
-          - type: tile
-            entity: input_text.b2500_04_mac
-          - type: tile
-            entity: input_select.b2500_04_typ
-      - type: grid
-        cards:
-          - type: heading
-            heading_style: title
-            heading: Sichtbarkeit Spannungen
           - type: entities
             entities:
-              - entity: input_boolean.b2500_01_e1_support
-              - entity: input_boolean.b2500_01_e2_support
+              - entity: input_text.b01_topic
+              - entity: input_text.b01_typ
+              - entity: input_text.b01_mac
             show_header_toggle: false
+            title: B01 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b02_topic
+              - entity: input_text.b02_typ
+              - entity: input_text.b02_mac
+            show_header_toggle: false
+            title: B02 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b03_topic
+              - entity: input_text.b03_typ
+              - entity: input_text.b03_mac
+            show_header_toggle: false
+            title: B03 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b04_topic
+              - entity: input_text.b04_typ
+              - entity: input_text.b04_mac
+            show_header_toggle: false
+            title: B04 Einstellungen
       - type: grid
         cards:
           - type: heading
@@ -50,6 +49,11 @@ views:
             heading_style: title
             badges: []
             heading: Sichbarkeit
+          - type: entities
+            entities:
+              - entity: input_boolean.b2500_01_e1_support
+              - entity: input_boolean.b2500_01_e2_support
+            show_header_toggle: false
           - type: entities
             entities:
               - entity: input_boolean.b2500_02_e1_support
@@ -611,6 +615,8 @@ views:
           - type: heading
             heading: Infos
             heading_style: title
+            tap_action:
+              action: none
           - show_name: true
             show_icon: true
             show_state: true
@@ -640,7 +646,8 @@ views:
             columns: 2
             state_color: true
           - type: entities
-            entities: []
+            entities:
+              - entity: input_button.aktualisieren
           - show_name: true
             show_icon: true
             show_state: true
