@@ -16,10 +16,10 @@ automation:
   actions:
     - variables:
         speicher_nummer: >-
-          {{ 'B2500_01' if trigger.topic == states('input_text.b01_topic') + '/' + states('input_text.b01_typ') + '/device/' + states('input_text.b01_mac') + '/ctrl'
-           else 'B2500_02' if trigger.topic == states('input_text.b02_topic') + '/' + states('input_text.b02_typ') + '/device/' + states('input_text.b02_mac') + '/ctrl'
-           else 'B2500_03' if trigger.topic == states('input_text.b03_topic') + '/' + states('input_text.b03_typ') + '/device/' + states('input_text.b03_mac') + '/ctrl'
-           else 'B2500_04' if trigger.topic == states('input_text.b04_topic') + '/' + states('input_text.b04_typ') + '/device/' + states('input_text.b04_mac') + '/ctrl'
+          {{ 'b2500_01' if trigger.topic == states('input_text.b01_topic') + '/' + states('input_text.b01_typ') + '/device/' + states('input_text.b01_mac') + '/ctrl'
+           else 'b2500_02' if trigger.topic == states('input_text.b02_topic') + '/' + states('input_text.b02_typ') + '/device/' + states('input_text.b02_mac') + '/ctrl'
+           else 'b2500_03' if trigger.topic == states('input_text.b03_topic') + '/' + states('input_text.b03_typ') + '/device/' + states('input_text.b03_mac') + '/ctrl'
+           else 'b2500_04' if trigger.topic == states('input_text.b04_topic') + '/' + states('input_text.b04_typ') + '/device/' + states('input_text.b04_mac') + '/ctrl'
            else '0'}}
     - choose:
         - conditions:
