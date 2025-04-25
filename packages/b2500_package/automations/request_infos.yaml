@@ -12,7 +12,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b01_typ') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
+          {{ states('input_text.b01_topic') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
         payload: cd=01
         qos: "0"
     - delay:
@@ -23,7 +23,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b02_typ') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
+          {{ states('input_text.b02_topic') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
         payload: cd=01
         qos: "0"
     - delay:
@@ -34,7 +34,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b03_typ') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
+          {{ states('input_text.b03_topic') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
         payload: cd=01
         qos: "0"
     - delay:
@@ -45,7 +45,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b04_typ') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
+          {{ states('input_text.b04_topic') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
         payload: cd=01
         qos: "0"
     - delay:
@@ -56,7 +56,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b01_typ') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
+          {{ states('input_text.b01_topic') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
         payload: cd=13
         qos: "0"
       enabled: true
@@ -68,7 +68,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b02_typ') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
+          {{ states('input_text.b02_topic') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
         payload: cd=13
         qos: "0"
       enabled: true
@@ -80,7 +80,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b03_typ') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
+          {{ states('input_text.b03_topic') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
         payload: cd=13
         qos: "0"
       enabled: true
@@ -92,7 +92,7 @@ automation:
       metadata: {}
       data:
         topic: >-
-          {{ states('input_text.b04_typ') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
+          {{ states('input_text.b04_topic') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
         payload: cd=13
         qos: "0"
       enabled: true
