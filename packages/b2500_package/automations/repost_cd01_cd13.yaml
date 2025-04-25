@@ -1,0 +1,51 @@
+automation:
+  alias: b2500_package_Repost_CD01_und_CD13
+  description: ""
+  triggers:
+    - trigger: mqtt
+      topic: +/+/device/+/ctrl
+      payload: p1=
+      value_template: "{{ value[0:3] }}"
+      id: b2500_cd01
+    - trigger: mqtt
+      topic: +/+/device/+/ctrl
+      payload: a0=
+      value_template: "{{ value[0:3] }}"
+      id: b2500_cd13
+  conditions: []
+  actions:
+    - variables:
+        speicher_nummer: >-
+          {{ 'B2500_01' if trigger.topic == states('input_text.b01_topic') + '/' + states('input_text.b01_typ') + '/device/' + states('input_text.b01_mac') + '/ctrl'
+           else 'B2500_02' if trigger.topic == states('input_text.b02_topic') + '/' + states('input_text.b02_typ') + '/device/' + states('input_text.b02_mac') + '/ctrl'
+           else 'B2500_03' if trigger.topic == states('input_text.b03_topic') + '/' + states('input_text.b03_typ') + '/device/' + states('input_text.b03_mac') + '/ctrl'
+           else 'B2500_04' if trigger.topic == states('input_text.b04_topic') + '/' + states('input_text.b04_typ') + '/device/' + states('input_text.b04_mac') + '/ctrl'
+           else '0'}}
+    - choose:
+        - conditions:
+            - condition: trigger
+              id:
+                - b2500_cd01
+          sequence:
+            - action: mqtt.publish
+              metadata: {}
+              data:
+                evaluate_payload: false
+                qos: 0
+                retain: true
+                topic: b2500_package/{{ speicher_nummer }}/CD01
+                payload: "{{ trigger.payload }},end01"
+        - conditions:
+            - condition: trigger
+              id:
+                - b2500_cd13
+          sequence:
+            - action: mqtt.publish
+              metadata: {}
+              data:
+                evaluate_payload: false
+                qos: 0
+                retain: true
+                topic: b2500_package/{{ speicher_nummer }}/CD13
+                payload: "{{ trigger.payload }},end13"
+  mode: single
