@@ -1,4 +1,4 @@
-# B2500 Package for Home Assistant
+# B2500PKG for Home Assistant
 
 Dieses Paket enthält:
 - MQTT-Sensoren für bis zu 4 B2500-Geräte
@@ -7,8 +7,8 @@ Dieses Paket enthält:
 - YAML-Dashboard zur einfachen Übersicht
 
 ## 🔧 Manuelle Installation
-1. Erstelle einen Ordner `packages` im selben Verzeichniss wo sich die `configuration.yaml` befindet.
-2. Lade die Datei `b2500_package_update.yaml` herunter und kopiere sie in den soeben erstellten Ordner `packages`.
+1. Erstelle einen Ordner `packages` im selben Verzeichniss in dem sich die `configuration.yaml` befindet.
+2. Lade die Datei `b2500pkg_update.yaml` herunter und kopiere sie in den soeben erstellten Ordner `packages`.
 3. Ergänze in deiner `configuration.yaml`:
 
 ```yaml
@@ -19,6 +19,6 @@ homeassistant:
 ```
 
 4. Starte Home Assistant neu.
-5. Nach dem Neustart sollte ein Button namens `B2500 Package Update starten` verfügbar sein.
+5. Nach dem Neustart sollte ein Button namens `B2500PKG Update starten` verfügbar sein.
    Hiermit kann die aktuelle Version heruntergeladen werden.
 6.
