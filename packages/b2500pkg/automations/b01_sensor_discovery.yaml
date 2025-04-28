@@ -1,5 +1,5 @@
 automation:
-  alias: B2500PKG_B01_Sensorerkennung
+  alias: B2500PKG_B01_Sensor_Discovery
   description: ""
   triggers:
     - topic: B2500PKG/B2500_01/CD01
@@ -1418,4 +1418,4 @@ automation:
       data:
         stop_actions: true
       target:
-        entity_id: automation.b2500pkg_b01_sensorerkennung
+        entity_id: automation.b2500pkg_b01_sensor_discovery
