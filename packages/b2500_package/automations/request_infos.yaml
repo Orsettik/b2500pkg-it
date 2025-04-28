@@ -1,7 +1,7 @@
 automation:
 
   description: |+
-  alias: b2500_package_Infos und Zellenspannung anfordern
+  alias: B2500PKG_Infos und Zellenspannung anfordern
   mode: single
   triggers:
     - trigger: time_pattern
