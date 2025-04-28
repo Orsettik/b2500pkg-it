@@ -17,7 +17,7 @@ lovelace:
  
  
 automation:
-  alias: b2500pkg__update
+  alias: B2500PKG_update
   description: Lädt Installer-Automation und führt sie aus
   triggers:
     - trigger: state
