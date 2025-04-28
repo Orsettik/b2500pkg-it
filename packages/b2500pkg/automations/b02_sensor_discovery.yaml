@@ -1,8 +1,8 @@
 automation:
-  alias: B2500PKG_B01_Sensor_Discovery
+  alias: B2500PKG_B02_Sensor_Discovery
   description: ""
   triggers:
-    - topic: B2500PKG/B2500_01/CD01
+    - topic: B2500PKG/B2500_02/CD01
       trigger: mqtt
   conditions: []
   actions:
@@ -18,18 +18,18 @@ automation:
           value_template: "{{ 'pe=' in payload }}"
       then:
         - data:
-            topic: homeassistant/sensor/b2500_01/pe/config
+            topic: homeassistant/sensor/b2500_02/pe/config
             retain: true
             payload: |
               {% raw %} {
-                "name": "B01 Batterie SOC",
-                "state_topic": "B2500PKG/B2500_01/CD01",
+                "name": "B02 Batterie SOC",
+                "state_topic": "B2500PKG/B2500_02/CD01",
                 "state_class": "measurement",
                 "device_class": "battery",
                 "unit_of_measurement": "%",
                 "value_template": "{{ value.split('pe=')[1].split(',')[0] }}",
-                "unique_id": "sensor.b2500_01_pe",
-                "object_id": "b2500_01_pe",
+                "unique_id": "sensor.b2500_02_pe",
+                "object_id": "b2500_02_pe",
                 "entity_category": "diagnostic"
               } {% endraw %}
           action: mqtt.publish
@@ -42,6 +42,6 @@ automation:
       data:
         stop_actions: true
       target:
-        entity_id: automation.b2500pkg_b01_sensor_discovery
+        entity_id: automation.b2500pkg_b02_sensor_discovery
       enabled: true
   mode: single
