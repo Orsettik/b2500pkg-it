@@ -1,6 +1,6 @@
 input_button:
-  b2500_package_update:
-    name: B2500 Package Update starten
+  b2500pkg_update:
+    name: B2500PKG Update starten
     icon: mdi:cloud-download
 
 shell_command:
@@ -8,44 +8,44 @@ shell_command:
 
 lovelace:
    dashboards:
-     b2500-dashboard:
+     b2500pkg-dashboard:
        mode: yaml
-       title: B2500-Package
+       title: B2500PKG
        icon: mdi:view-dashboard
        show_in_sidebar: true
-       filename: dashboards/b2500_dashboard.yaml
+       filename: dashboards/b2500pkg_dashboard.yaml
  
  
 automation:
-  alias: b2500_package_update
+  alias: b2500pkg__update
   description: Lädt Installer-Automation und führt sie aus
   triggers:
     - trigger: state
       entity_id:
-        - input_button.b2500_package_update
+        - input_button.b2500pkg_update
   conditions: []
   actions:
     - data:
-        command: mkdir /config/packages/b2500_package && sleep 3
+        command: mkdir /config/packages/b2500pkg && sleep 3
       action: shell_command.run_custom_command
     - data:
-        command: rm -f /config/packages/b2500_package/basicsystem.sh && sleep 5
+        command: rm -f /config/packages/b2500pkg/basicsystem.sh && sleep 5
       action: shell_command.run_custom_command
     - action: notify.persistent_notification
       metadata: {}
       data:
         message: Update gestartet
-        title: b2500_package
+        title: B2500PKG
     - data:
         command: >-
-          wget -q -O /config/packages/b2500_package/basicsystem.sh
-          https://raw.githubusercontent.com/Martin0475/b2500_package/main/install_scripts/basicsystem.sh &&
-          sh /config/packages/b2500_package/basicsystem.sh
+          wget -q -O /config/packages/b2500pkg/basicsystem.sh
+          https://raw.githubusercontent.com/Martin0475/b2500pkg/main/install_scripts/basicsystem.sh &&
+          sh /config/packages/b2500pkg/basicsystem.sh
       action: shell_command.run_custom_command
     - action: notify.persistent_notification
       metadata: {}
       data:
-        title: b2500_package
+        title: B2500PKG
         message: yaml-Dateien neu laden
     - delay:
         hours: 0
