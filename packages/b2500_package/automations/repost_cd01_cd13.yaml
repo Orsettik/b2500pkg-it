@@ -1,5 +1,5 @@
 automation:
-  alias: b2500_package_Repost_CD01_und_CD13
+  alias: B2500PKG_Repost_CD01_und_CD13
   description: ""
   triggers:
     - trigger: mqtt
@@ -33,7 +33,7 @@ automation:
                 evaluate_payload: false
                 qos: 0
                 retain: true
-                topic: b2500_package/{{ speicher_nummer }}/CD01
+                topic: B2500PKG/{{ speicher_nummer }}/CD01
                 payload: "{{ trigger.payload }},end01"
         - conditions:
             - condition: trigger
@@ -46,6 +46,6 @@ automation:
                 evaluate_payload: false
                 qos: 0
                 retain: true
-                topic: b2500_package/{{ speicher_nummer }}/CD13
+                topic: B2500PKG/{{ speicher_nummer }}/CD13
                 payload: "{{ trigger.payload }},end13"
   mode: single
