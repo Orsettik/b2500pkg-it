@@ -108,9 +108,6 @@ views:
               - entity: sensor.b2500_01_f5
             title: B2500_01 Timer 1 bis 5
             columns: 4
-            visibility:
-              - condition: state
-                state: 'on'
           - show_name: false
             show_icon: true
             show_state: true
@@ -138,9 +135,6 @@ views:
               - entity: sensor.b2500_02_f5
             title: B2500_02 Timer 1 bis 5
             columns: 4
-            visibility:
-              - condition: state
-                state: 'on'
           - show_name: false
             show_icon: true
             show_state: true
@@ -168,9 +162,6 @@ views:
               - entity: sensor.b2500_03_f5
             title: B2500_03 Timer 1 bis 5
             columns: 4
-            visibility:
-              - condition: state
-                state: 'on'
           - show_name: false
             show_icon: true
             show_state: true
@@ -198,9 +189,6 @@ views:
               - entity: sensor.b2500_04_f5
             title: B2500_04 Timer 1 bis 5
             columns: 4
-            visibility:
-              - condition: state
-                state: 'on'
           - show_name: true
             show_icon: false
             show_state: true
@@ -211,9 +199,6 @@ views:
               - entity: sensor.b2500_03_md
               - entity: sensor.b2500_04_md
             title: B2500_Entlademodus
-            visibility:
-              - condition: state
-                state: 'on'
             columns: 1
             state_color: false
         column_span: 2
