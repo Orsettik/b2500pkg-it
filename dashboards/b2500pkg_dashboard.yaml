@@ -35,18 +35,6 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: Zugehörige MQTT Einträge de-/aktivieren
-          - type: tile
-            entity: input_button.mqtt_neu_laden
-            features_position: bottom
-            vertical: false
-            grid_options:
-              columns: 12
-              rows: 1
-      - type: grid
-        cards:
-          - type: heading
-            heading_style: title
             badges: []
             heading: Sichbarkeit
           - type: entities
@@ -62,22 +50,6 @@ views:
               - entity: input_boolean.b2500_03_e2_support
               - entity: input_boolean.b2500_04_e1_support
               - entity: input_boolean.b2500_04_e2_support
-              - entity: input_boolean.b2500_01_timer_support
-              - entity: input_boolean.b2500_02_timer_support
-              - entity: input_boolean.b2500_03_timer_support
-              - entity: input_boolean.b2500_04_timer_support
-              - entity: input_boolean.b2500_01_spannungen_support
-              - entity: input_boolean.b2500_02_spannungen_support
-              - entity: input_boolean.b2500_03_spannungen_support
-              - entity: input_boolean.b2500_04_spannungen_support
-              - entity: input_boolean.b2500_01_restliche_sensoren_support
-              - entity: input_boolean.b2500_02_restliche_sensoren_support
-              - entity: input_boolean.b2500_03_restliche_sensoren_support
-              - entity: input_boolean.b2500_04_restliche_sensoren_support
-              - entity: input_boolean.b2500_01_standard_support
-              - entity: input_boolean.b2500_02_standard_support
-              - entity: input_boolean.b2500_03_standard_support
-              - entity: input_boolean.b2500_04_standard_support
             show_header_toggle: false
     type: sections
     max_columns: 4
