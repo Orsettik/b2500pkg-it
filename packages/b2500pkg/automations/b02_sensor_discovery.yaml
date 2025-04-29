@@ -1,5 +1,5 @@
 automation:
-  alias: B2500PKG_B02_Sensorerkennung
+  alias: B2500PKG_B02_Sensor_Discovery
   description: ""
   triggers:
     - topic: B2500PKG/B2500_02/CD01
@@ -1413,3 +1413,9 @@ automation:
                 "entity_category": "diagnostic"
               } {% endraw %}
           action: mqtt.publish
+  - action: automation.turn_off
+    metadata: {}
+    data:
+      stop_actions: true
+    target:
+      entity_id: automation.b2500pkg_b02_sensor_discovery
