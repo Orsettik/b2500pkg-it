@@ -3,6 +3,14 @@ views:
     sections:
       - type: grid
         cards:
+          - type: heading
+            heading_style: title
+            heading: B2500 Package
+          - type: picture
+            image: >-
+              https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+      - type: grid
+        cards:
           - type: entities
             entities:
               - entity: input_text.b01_topic
@@ -236,19 +244,19 @@ views:
     cards: []
   - type: sections
     max_columns: 4
-    title: Lademodus
-    path: Lademodus-einstellen
+    title: Entlademodus
+    path: entlademodus-einstellen
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Lademodus einstellen
+            heading: Entlademodus einstellen
             heading_style: title
           - type: entities
             entities:
               - entity: input_select.speicherauswahl
-              - entity: input_select.lademodus
-              - entity: input_button.b2500_lademodus_setzen
+              - entity: input_select.entlademodus
+              - entity: input_button.b2500_entlademodus_setzen
               - entity: sensor.b2500_01_cs
               - entity: sensor.b2500_02_cs
               - entity: sensor.b2500_03_cs
