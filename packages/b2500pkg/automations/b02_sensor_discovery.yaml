@@ -1,5 +1,5 @@
 automation:
-  alias: B2500PKG_B02_Sensorerkennung
+  alias: B2500PKG_B02_Sensor_Discovery
   description: ""
   triggers:
     - topic: B2500PKG/B2500_02/CD01
