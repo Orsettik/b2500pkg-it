@@ -8,6 +8,7 @@ rm -f /config/packages/b2500pkg/automations/b01_sensor_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b02_sensor_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b03_sensor_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b04_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/set_timer.yaml
 
 rm -f /config/packages/b2500pkg/b2500pkg_input.yaml
 
@@ -23,6 +24,8 @@ wget -q -O /config/packages/b2500pkg/automations/b01_sensor_discovery.yaml https
 wget -q -O /config/packages/b2500pkg/automations/b02_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b02_sensor_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b03_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b03_sensor_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b04_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b04_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/set_timer.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_timer.yaml
+
 
 wget -q -O /config/packages/b2500pkg/b2500pkg_input.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/b2500pkg_input.yaml
 
