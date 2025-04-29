@@ -25,7 +25,7 @@ input_boolean:
     name: B01E1 Spannungen
 
   b2500_01_e2_support:
-    name: B0E1 Spannungen
+    name: B01E2 Spannungen
 
   b2500_02_e1_support:
     name: B02E1 Spannungen
