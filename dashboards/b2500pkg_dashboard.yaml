@@ -236,19 +236,19 @@ views:
     cards: []
   - type: sections
     max_columns: 4
-    title: Entlademodus
-    path: entlademodus-einstellen
+    title: Lademodus
+    path: Lademodus-einstellen
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Entlademodus einstellen
+            heading: Lademodus einstellen
             heading_style: title
           - type: entities
             entities:
               - entity: input_select.speicherauswahl
-              - entity: input_select.entlademodus
-              - entity: input_button.b2500_entlademodus_setzen
+              - entity: input_select.lademodus
+              - entity: input_button.b2500_lademodus_setzen
               - entity: sensor.b2500_01_cs
               - entity: sensor.b2500_02_cs
               - entity: sensor.b2500_03_cs
