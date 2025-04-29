@@ -1,0 +1,79 @@
+input_select:
+  entlademodus:
+    name: Lademodus auswählen
+    options: 
+      - "Laden vor dem Entladen"
+      - "Laden und Entladen gleichzeitig"
+
+input_button:
+  b2500_entlademodus_setzen:
+    name: Entlademodus setzen     
+
+automation:
+  alias: B2500PKG Set Charging Mode
+  description: |+
+
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_button.b2500_entlademodus_setzen
+
+  conditions: []
+
+  actions:
+    - variables:
+        b2500_mac: >-
+          {{ states('input_text.b01_mac') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_text.b02_mac') if
+          states('input_select.speicherauswahl') == 'b2500_02' else
+          states('input_text.b03_mac') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_text.b04_mac') if
+          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
+        b2500_typ: >-
+          {{ states('input_text.b01_typ') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_text.b02_typ') if
+          states('input_select.speicherauswahl') == 'b2500_02' else
+          states('input_text.b03_typ') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_text.b04_typ') if
+          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
+        b2500_topic: >-
+          {{ states('input_text.b01_topic') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_text.b02_topic') if
+          states('input_select.speicherauswahl') == 'b2500_02' else
+          states('input_text.b03_topic') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_text.b04_topic') if
+          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
+
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        evaluate_payload: false
+        qos: 0
+        retain: false
+        topic: >-
+          {{ b2500_topic }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
+        payload: cd=17,md={{ states('input_select.entlademodus').replace("Laden vor dem Entladen","1").replace("Laden und Entladen gleichzeitig","0") }}
+
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 3
+
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        evaluate_payload: false
+        qos: 0
+        retain: false
+        topic: >-
+          {{ b2500_topic }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
+        payload: cd=01
+
+  mode: queued
+  max: 10

@@ -2,6 +2,7 @@ automation:
   alias: B2500PKG Set Timer
   description: |+
   
+
   triggers:
     - trigger: state
       entity_id:
@@ -19,7 +20,9 @@ automation:
       entity_id:
         - input_button.b2500_selbstanpassung
       id: selbstanpassung_setzen
+
   conditions: []
+
   actions:
     - variables:
         a1: >-
@@ -203,7 +206,7 @@ automation:
               data:
                 evaluate_payload: false
                 qos: 0
-                retain: true
+                retain: false
                 topic: >-
                   {{ b2500_typ }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
                 payload: cd=20,md=1
