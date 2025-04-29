@@ -1413,9 +1413,9 @@ automation:
                 "entity_category": "diagnostic"
               } {% endraw %}
           action: mqtt.publish
-  - action: automation.turn_off
-    metadata: {}
-    data:
-      stop_actions: true
-    target:
-      entity_id: automation.b2500pkg_b02_sensor_discovery
+    - action: automation.turn_off
+      metadata: {}
+      data:
+        stop_actions: true
+      target:
+        entity_id: automation.b2500pkg_b02_sensor_discovery
