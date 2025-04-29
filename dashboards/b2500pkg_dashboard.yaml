@@ -110,7 +110,6 @@ views:
             columns: 4
             visibility:
               - condition: state
-                entity: input_boolean.b2500_01_timer_support
                 state: 'on'
           - show_name: false
             show_icon: true
@@ -141,7 +140,6 @@ views:
             columns: 4
             visibility:
               - condition: state
-                entity: input_boolean.b2500_02_timer_support
                 state: 'on'
           - show_name: false
             show_icon: true
@@ -172,7 +170,6 @@ views:
             columns: 4
             visibility:
               - condition: state
-                entity: input_boolean.b2500_03_timer_support
                 state: 'on'
           - show_name: false
             show_icon: true
@@ -203,7 +200,6 @@ views:
             columns: 4
             visibility:
               - condition: state
-                entity: input_boolean.b2500_04_timer_support
                 state: 'on'
           - show_name: true
             show_icon: false
@@ -217,7 +213,6 @@ views:
             title: B2500_Entlademodus
             visibility:
               - condition: state
-                entity: input_boolean.b2500_01_timer_support
                 state: 'on'
             columns: 1
             state_color: false
