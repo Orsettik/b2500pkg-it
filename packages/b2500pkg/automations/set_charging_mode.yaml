@@ -1,13 +1,13 @@
 input_select:
-  entlademodus:
+  lademodus:
     name: Lademodus auswählen
     options: 
       - "Laden vor dem Entladen"
       - "Laden und Entladen gleichzeitig"
 
 input_button:
-  b2500_entlademodus_setzen:
-    name: Entlademodus setzen     
+  b2500_lademodus_setzen:
+    name: Lademodus setzen     
 
 automation:
   alias: B2500PKG Set Charging Mode
@@ -16,7 +16,7 @@ automation:
   triggers:
     - trigger: state
       entity_id:
-        - input_button.b2500_entlademodus_setzen
+        - input_button.b2500_lademodus_setzen
 
   conditions: []
 
@@ -58,7 +58,7 @@ automation:
         retain: false
         topic: >-
           {{ b2500_topic }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
-        payload: cd=17,md={{ states('input_select.entlademodus').replace("Laden vor dem Entladen","1").replace("Laden und Entladen gleichzeitig","0") }}
+        payload: cd=17,md={{ states('input_select.lademodus').replace("Laden vor dem Entladen","1").replace("Laden und Entladen gleichzeitig","0") }}
 
     - delay:
         hours: 0
