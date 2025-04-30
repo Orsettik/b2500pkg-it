@@ -6,9 +6,20 @@ views:
           - type: heading
             heading_style: title
             heading: B2500 Package
+            grid_options:
+              columns: 12
+              rows: 1
           - type: picture
             image: >-
               https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+          - type: tile
+            entity: input_button.b2500pkg_update
+            features_position: bottom
+            vertical: false
+            grid_options:
+              columns: 9
+              rows: 1
+        column_span: 1
       - type: grid
         cards:
           - type: entities
@@ -244,7 +255,7 @@ views:
     cards: []
   - type: sections
     max_columns: 4
-    title: Entlademodus
+    title: Lademodus
     path: entlademodus-einstellen
     sections:
       - type: grid
