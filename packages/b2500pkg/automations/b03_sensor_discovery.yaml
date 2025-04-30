@@ -4,6 +4,8 @@ automation:
   triggers:
     - topic: B2500PKG/B2500_03/CD01
       trigger: mqtt
+    - trigger: homeassistant
+      event: start
   conditions: []
   actions:
     - variables:
