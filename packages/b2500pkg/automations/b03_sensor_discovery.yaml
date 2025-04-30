@@ -17,7 +17,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Entladen",
+                "name": "B03 Entladen",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -36,7 +36,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Laden",
+                "name": "B03 Laden",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -55,7 +55,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 DOD erreicht",
+                "name": "B03 DOD erreicht",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -74,7 +74,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Unterspannung",
+                "name": "B03 Unterspannung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -93,7 +93,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E2 Entladen",
+                "name": "B03E2 Entladen",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -112,7 +112,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E2 Laden",
+                "name": "B03E2 Laden",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -131,7 +131,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E2 DOD erreicht",
+                "name": "B03E2 DOD erreicht",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -150,7 +150,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E2 Unterspannung",
+                "name": "B03E2 Unterspannung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -169,7 +169,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E1 Entladen",
+                "name": "B03E1 Entladen",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -188,7 +188,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E1 Laden",
+                "name": "B03E1 Laden",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -207,7 +207,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E1 DOD erreicht",
+                "name": "B03E1 DOD erreicht",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -226,7 +226,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04E1 Unterspannung",
+                "name": "B03E1 Unterspannung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -245,7 +245,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 E1 verbunden",
+                "name": "B03 E1 verbunden",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -264,7 +264,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 E2 verbunden",
+                "name": "B03 E2 verbunden",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -283,7 +283,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Solar1 Input Status",
+                "name": "B03 Solar1 Input Status",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('p1=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_p1",
@@ -300,7 +300,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Solar2 Input Status",
+                "name": "B03 Solar2 Input Status",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('p2=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_p2",
@@ -317,7 +317,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 PV1 Leistung",
+                "name": "B03 PV1 Leistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "measurement",
                 "device_class": "power",
@@ -337,7 +337,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 PV2 Leistung",
+                "name": "B03 PV2 Leistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "measurement",
                 "device_class": "power",
@@ -357,7 +357,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Batterie SOC",
+                "name": "B03 Batterie SOC",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "measurement",
                 "device_class": "battery",
@@ -377,7 +377,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {              
-                "name": "B04 Geräteversion",
+                "name": "B03 Geräteversion",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('vv=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_vv",
@@ -394,7 +394,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Gerätesubversion",
+                "name": "B03 Gerätesubversion",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('sv=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_sv",
@@ -411,7 +411,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Ladeeinstellung",
+                "name": "B03 Ladeeinstellung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('cs=')[1].split(',')[0].replace('0','Laden und Entladen gleichzeitig').replace('1','Laden vor dem Entladen') }}",
                 "unique_id": "sensor.b2500_03_cs",
@@ -428,7 +428,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Entladeeinstellung",
+                "name": "B03 Entladeeinstellung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{% set parts = value.split('cd=') %}{% if parts | length > 1 %}{% set cd = parts[1].split(',')[0] %}{% if cd == '0' %}Ausgang PV1 und PV2 off{% elif cd == '1' %}Ausgang PV1 on, PV2 off{% elif cd == '2' %}Ausgang PV1 off, PV2 on{% elif cd == '3' %}Ausgang PV1 und PV2 on{% else %}unbekannt{% endif %}{% else %}unbekannt{% endif %}",
                 "unique_id": "sensor.b2500_03_cd",
@@ -445,7 +445,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 AM",
+                "name": "B03 AM",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('am=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_am",
@@ -462,7 +462,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Output Status 1",
+                "name": "B03 Output Status 1",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('o1=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_o1",
@@ -479,7 +479,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Output Status 2",
+                "name": "B03 Output Status 2",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('o2=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_o2",
@@ -496,7 +496,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 DOD Entnehmbare Kapazität in %",
+                "name": "B03 DOD Entnehmbare Kapazität in %",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('do=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_do",
@@ -513,7 +513,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Entladeschwelle",
+                "name": "B03 Entladeschwelle",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('lv=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_lv",
@@ -530,7 +530,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 CJ Scene",
+                "name": "B03 CJ Scene",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('cj=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_cj",
@@ -547,7 +547,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Gesamtkapazität",
+                "name": "B03 Gesamtkapazität",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "device_class": "energy_storage",
                 "state_class": "measurement",
@@ -567,7 +567,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Output1 Leistung",
+                "name": "B03 Output1 Leistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "measurement",
                 "device_class": "power",
@@ -587,7 +587,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Output2 Leistung",
+                "name": "B03 Output2 Leistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "measurement",
                 "device_class": "power",
@@ -607,7 +607,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Temperatur low",
+                "name": "B03 Temperatur low",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('tl=')[1].split(',')[0] }}",
                 "device_class": "temperature",
@@ -626,7 +626,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Temperatur high",
+                "name": "B03 Temperatur high",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('th=')[1].split(',')[0] }}",
                 "device_class": "temperature",
@@ -645,7 +645,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Temperaturalarm (Laden)",
+                "name": "B03 Temperaturalarm (Laden)",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('tc=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_tc",
@@ -662,7 +662,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Temperaturalarm (Entladen)",
+                "name": "B03 Temperaturalarm (Entladen)",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('tf=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_tf",
@@ -679,7 +679,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Chip Version",
+                "name": "B03 Chip Version",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('fc=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_fc",
@@ -696,7 +696,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Geräte ID",
+                "name": "B03 Geräte ID",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('id=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_id",
@@ -713,7 +713,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Ladezustand Hauptspeicher",
+                "name": "B03 Ladezustand Hauptspeicher",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "%",
                 "value_template": "{{ value.split('a0=')[1].split(',')[0] }}",
@@ -731,7 +731,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Ladezustand Erweiterung1",
+                "name": "B03 Ladezustand Erweiterung1",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "%",
                 "value_template": "{{ value.split('a1=')[1].split(',')[0] }}",
@@ -749,7 +749,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Ladezustand Erweiterung2",
+                "name": "B03 Ladezustand Erweiterung2",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "%",
                 "value_template": "{{ value.split('a2=')[1].split(',')[0] }}",
@@ -767,7 +767,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer1 Beginn",
+                "name": "B03 Timer1 Beginn",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('e1=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_e1",
@@ -784,7 +784,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer1 Ende",
+                "name": "B03 Timer1 Ende",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('f1=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_f1",
@@ -801,7 +801,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer1 Ausgabeleistung",
+                "name": "B03 Timer1 Ausgabeleistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "W",
                 "value_template": "{{ value.split('h1=')[1].split(',')[0] }}",
@@ -819,7 +819,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer2 Beginn",
+                "name": "B03 Timer2 Beginn",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('e2=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_e2",
@@ -836,7 +836,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer2 Ende",
+                "name": "B03 Timer2 Ende",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('f2=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_f2",
@@ -853,7 +853,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer2 Ausgabeleistung",
+                "name": "B03 Timer2 Ausgabeleistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "W",
                 "value_template": "{{ value.split('h2=')[1].split(',')[0] }}",
@@ -871,7 +871,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer3 Beginn",
+                "name": "B03 Timer3 Beginn",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('e3=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_e3",
@@ -888,7 +888,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-              "name": "B04 Timer3 Ende",
+              "name": "B03 Timer3 Ende",
               "state_topic": "B2500PKG/B2500_03/CD01",
               "value_template": "{{ value.split('f3=')[1].split(',')[0] }}",
               "unique_id": "sensor.b2500_03_f3",
@@ -905,7 +905,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer3 Ausgabeleistung",
+                "name": "B03 Timer3 Ausgabeleistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "W",
                 "value_template": "{{ value.split('h3=')[1].split(',')[0] }}",
@@ -923,7 +923,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer4 Beginn",
+                "name": "B03 Timer4 Beginn",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('e4=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_e4",
@@ -940,7 +940,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer4 Ende",
+                "name": "B03 Timer4 Ende",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('f4=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_f4",
@@ -957,7 +957,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer4 Ausgabeleistung",
+                "name": "B03 Timer4 Ausgabeleistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "W",
                 "value_template": "{{ value.split('h4=')[1].split(',')[0] }}",
@@ -975,7 +975,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer5 Beginn",
+                "name": "B03 Timer5 Beginn",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('e5=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_e5",
@@ -992,7 +992,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer5 Ende",
+                "name": "B03 Timer5 Ende",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('f5=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_f5",
@@ -1009,7 +1009,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer5 Ausgabeleistung",
+                "name": "B03 Timer5 Ausgabeleistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "W",
                 "value_template": "{{ value.split('h5=')[1].split(',')[0] }}",
@@ -1027,7 +1027,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer1 aktiv",
+                "name": "B03 Timer1 aktiv",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -1046,7 +1046,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer2 aktiv",
+                "name": "B03 Timer2 aktiv",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -1065,7 +1065,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer3 aktiv",
+                "name": "B03 Timer3 aktiv",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -1084,7 +1084,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer4 aktiv",
+                "name": "B03 Timer4 aktiv",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -1103,7 +1103,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Timer5 aktiv",
+                "name": "B03 Timer5 aktiv",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -1122,7 +1122,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Tägliche Battterieladung",
+                "name": "B03 Tägliche Battterieladung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "total_increasing",
                 "device_class": "energy",
@@ -1142,7 +1142,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Tägliche Batterieentladung",
+                "name": "B03 Tägliche Batterieentladung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "total_increasing",
                 "device_class": "energy",
@@ -1162,7 +1162,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Tägliche PV Erzeugung",
+                "name": "B03 Tägliche PV Erzeugung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "state_class": "total_increasing",
                 "device_class": "energy",
@@ -1182,7 +1182,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Entlademodus Timer/Selbstanpassung",
+                "name": "B03 Entlademodus Timer/Selbstanpassung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('md=')[1].split(',')[0].replace('0','Timer').replace('1','Selbstanpassung') }}",
                 "unique_id": "sensor.b2500_03_md",
@@ -1199,7 +1199,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 CT Sensor verbunden",
+                "name": "B03 CT Sensor verbunden",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('sg=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_sg",
@@ -1216,7 +1216,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 SP",
+                "name": "B03 SP",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('sp=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_sp",
@@ -1233,7 +1233,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 ST",
+                "name": "B03 ST",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('st=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_st",
@@ -1250,7 +1250,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 CTCH Kanal",
+                "name": "B03 CTCH Kanal",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('c0=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_c0",
@@ -1267,7 +1267,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Status CT",
+                "name": "B03 Status CT",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('c1=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_c1",
@@ -1284,7 +1284,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 IT Tägliche abgegebene Leistung",
+                "name": "B03 IT Tägliche abgegebene Leistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('it=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_it",
@@ -1301,7 +1301,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Leistungsmessung Phase1",
+                "name": "B03 Leistungsmessung Phase1",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('m0=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_m0",
@@ -1318,7 +1318,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Leistungsmessung Phase2",
+                "name": "B03 Leistungsmessung Phase2",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('m1=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_m1",
@@ -1335,7 +1335,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 Leistungsmessung Phase3",
+                "name": "B03 Leistungsmessung Phase3",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('m2=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_m2",
@@ -1352,7 +1352,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 M3",
+                "name": "B03 M3",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('m3=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_m3",
@@ -1369,7 +1369,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 LMO Nennausgangsleistung",
+                "name": "B03 LMO Nennausgangsleistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "W",
                 "value_template": "{{ value.split('lmo=')[1].split(',')[0] }}",
@@ -1387,7 +1387,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 LMI Nennaufnahmeleistung",
+                "name": "B03 LMI Nennaufnahmeleistung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "unit_of_measurement": "W",
                 "value_template": "{{ value.split('lmi=')[1].split(',')[0] }}",
@@ -1405,7 +1405,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B04 LMF Gerätebeschränkung",
+                "name": "B03 LMF Gerätebeschränkung",
                 "state_topic": "B2500PKG/B2500_03/CD01",
                 "value_template": "{{ value.split('lmf=')[1].split(',')[0] }}",
                 "unique_id": "sensor.b2500_03_lmf",
