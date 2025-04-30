@@ -17,8 +17,10 @@ views:
             features_position: bottom
             vertical: false
             grid_options:
-              columns: 9
+              columns: full
               rows: 1
+            tap_action:
+              action: toggle
         column_span: 1
       - type: grid
         cards:
