@@ -12,6 +12,7 @@ rm -f /config/packages/b2500pkg/automations/set_timer.yaml
 rm -f /config/packages/b2500pkg/automations/set_outputs.yaml
 rm -f /config/packages/b2500pkg/automations/set_dod.yaml
 rm -f /config/packages/b2500pkg/automations/set_charging_mode.yaml
+rm -f /config/packages/b2500pkg/automations/set_smartmeter.yaml
 
 rm -f /config/packages/b2500pkg/b2500pkg_input.yaml
 
@@ -31,7 +32,7 @@ wget -q -O /config/packages/b2500pkg/automations/set_timer.yaml https://raw.gith
 wget -q -O /config/packages/b2500pkg/automations/set_outputs.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_outputs.yaml
 wget -q -O /config/packages/b2500pkg/automations/set_dod.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_dod.yaml
 wget -q -O /config/packages/b2500pkg/automations/set_charging_mode.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_charging_mode.yaml
-
+wget -q -O /config/packages/b2500pkg/automations/set_smartmeter.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_smartmeter.yaml
 
 wget -q -O /config/packages/b2500pkg/b2500pkg_input.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/b2500pkg_input.yaml
 
