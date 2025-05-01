@@ -1,0 +1,78 @@
+input_button:
+  test_config:
+    name: Konfiguration testen
+
+automation:
+  alias: B2500PKG_Test_Config
+  description: ""
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_button.test_config
+      to: null
+  conditions: []
+  actions:
+    - variables:
+        b2500_mac: >-
+          {{ states('input_text.b01_mac') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_text.b02_mac') if states('input_select.speicherauswahl')
+          == 'b2500_02' else states('input_text.b03_mac') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_text.b04_mac') if states('input_select.speicherauswahl')
+          == 'b2500_04' else 0 }}
+        b2500_typ: >-
+          {{ states('input_text.b01_typ') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_text.b02_typ') if states('input_select.speicherauswahl')
+          == 'b2500_02' else states('input_text.b03_typ') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_text.b04_typ') if states('input_select.speicherauswahl')
+          == 'b2500_04' else 0 }}
+        b2500_topic: >-
+          {{ states('input_text.b01_topic') if
+          states('input_select.speicherauswahl') == 'b2500_01' else
+          states('input_text.b02_topic') if states('input_select.speicherauswahl')
+          == 'b2500_02' else states('input_text.b03_topic') if
+          states('input_select.speicherauswahl') == 'b2500_03' else
+          states('input_text.b04_topic') if states('input_select.speicherauswahl')
+          == 'b2500_04' else 0 }}
+            
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        evaluate_payload: false
+        qos: 0
+        retain: false
+        topic: "{{ b2500_topic }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl"
+        payload: cd=01
+    - action: notify.persistent_notification
+      metadata: {}
+      data:
+        message: >-
+          Teste ob Speicher {{ states('input_select.speicherauswahl') }} auf {{
+          b2500_topic }}, {{ b2500_typ }} und {{ b2500_mac }} antwortet.
+        title: B2500PKG_test_config
+    - wait_for_trigger:
+        - trigger: mqtt
+          topic: "{{ b2500_topic }}/{{ b2500_typ }}/device/{{ b2500_mac }}/ctrl"
+      timeout:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ wait.trigger is not none }}"
+          sequence:
+            - data:
+                title: B2500PKG_test_config
+                message: "Empfangen: {{ wait.trigger.payload }}"
+              action: notify.persistent_notification
+      default:
+        - data:
+            title: B2500PKG_test_config
+            message: Keine Antwort empfangen.
+          action: notify.persistent_notification
+  mode: single
