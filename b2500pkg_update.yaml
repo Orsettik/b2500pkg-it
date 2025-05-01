@@ -46,7 +46,7 @@ automation:
       metadata: {}
       data:
         title: B2500PKG
-        message: yaml-Dateien neu laden
+        message: "Info: yaml-Dateien werden neu geladen"
     - delay:
         hours: 0
         minutes: 0
