@@ -1,0 +1,319 @@
+automation:
+  alias: B04E2_Voltage_Discovery
+  triggers:
+    - topic: hame_energy/B2500_04/CD13
+      trigger: mqtt
+  conditions: []
+  actions:
+    - variables:
+        payload: "{{ trigger.payload }}"
+    - if:
+        - condition: template
+          value_template: "{{ 'c0=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c0/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle01",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c0=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle01",
+                "object_id": "b2500_04_extern2_zelle01",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c1=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c1/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle02",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c1=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle02",
+                "object_id": "b2500_04_extern2_zelle02",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c2=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c2/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle03",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c2=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle03",
+                "object_id": "b2500_04_extern2_zelle03",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c3=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c3/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle04",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c3=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle04",
+                "object_id": "b2500_04_extern2_zelle04",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c4=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c4/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle05",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c4=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle05",
+                "object_id": "b2500_04_extern2_zelle05",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c5=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c5/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle06",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c5=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle06",
+                "object_id": "b2500_04_extern2_zelle06",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c6=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c6/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle07",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c6=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle07",
+                "object_id": "b2500_04_extern2_zelle07",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c7=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c7/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle08",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c7=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle08",
+                "object_id": "b2500_04_extern2_zelle08",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c8=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c8/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle09",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c8=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle09",
+                "object_id": "b2500_04_extern2_zelle09",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'c9=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_c9/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle10",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('c9=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle10",
+                "object_id": "b2500_04_extern2_zelle10",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'ca=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_ca/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle11",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('ca=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle11",
+                "object_id": "b2500_04_extern2_zelle11",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'cb=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_cb/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle12",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('cb=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle12",
+                "object_id": "b2500_04_extern2_zelle12",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'cc=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_cc/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle13",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('cc=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle13",
+                "object_id": "b2500_04_extern2_zelle13",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'cd=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_cd/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle14",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('cd=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle14",
+                "object_id": "b2500_04_extern2_zelle14",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'ce=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_ce/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle15",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('ce=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle15",
+                "object_id": "b2500_04_extern2_zelle15",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'cf=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_04/voltage_cf/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B04E2 Zelle16",
+                "state_topic": "hame_energy/B2500_04/CD13",
+                "device_class": "voltage",
+                "unit_of_measurement": "mV",
+                "value_template": "{{ value.split('cf=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_04_extern2_zelle16",
+                "object_id": "b2500_04_extern2_zelle16",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - action: automation.turn_off
+      metadata: {}
+      data:
+        stop_actions: false
+      target:
+        entity_id: automation.b04e2_voltage_discovery
