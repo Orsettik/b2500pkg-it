@@ -1070,3 +1070,27 @@ views:
             entity: input_boolean.b2500_04_e2_support
             state: 'on'
     cards: []
+  - type: sections
+    max_columns: 4
+    title: Smartmeter
+    path: smartmeter
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Smartmeter auswählen
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_select.smartmeter
+              - entity: input_button.b2500_smartmeter_setzen
+            title: Smartmeter
+            show_header_toggle: false
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities: []
+            columns: 2
+            title: Smartmeter infos (Entitäten fehlen noch !)
