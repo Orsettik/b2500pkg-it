@@ -72,6 +72,24 @@ views:
               - entity: input_boolean.b2500_04_e1_support
               - entity: input_boolean.b2500_04_e2_support
             show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b01_sensor_discovery
+              - entity: automation.b2500pkg_b02_sensor_discovery
+              - entity: automation.b2500pkg_b03_sensor_discovery
+              - entity: automation.b2500pkg_b04_sensor_discovery
+              - entity: automation.b2500pkg_b01_voltage_discovery
+              - entity: automation.b2500pkg_b02_voltage_discovery
+              - entity: automation.b2500pkg_b03_voltage_discovery
+              - entity: automation.b2500pkg_b04_voltage_discovery
+              - entity: automation.b2500pkg_b01e1_voltage_discovery
+              - entity: automation.b2500pkg_b02e2_voltage_discovery
+              - entity: automation.b2500pkg_b01e2_voltage_discovery
+              - entity: automation.b2500pkg_b02e1_voltage_discovery
+              - entity: automation.b2500pkg_b03e1_voltage_discovery
+              - entity: automation.b2500pkg_b03e2_voltage_discovery
+              - entity: automation.b2500pkg_b04e1_voltage_discovery
+              - entity: automation.b2500pkg_b04e2_voltage_discovery
     type: sections
     max_columns: 4
     cards: []
