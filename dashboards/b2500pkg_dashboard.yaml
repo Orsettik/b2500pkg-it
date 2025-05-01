@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-05-01
+            heading: B2500 Package 2025-05-02
             grid_options:
               columns: 12
               rows: 1
@@ -24,6 +24,11 @@ views:
         column_span: 1
       - type: grid
         cards:
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_button.test_config
+            title: Konfiguration testen
           - type: entities
             entities:
               - entity: input_text.b01_topic
