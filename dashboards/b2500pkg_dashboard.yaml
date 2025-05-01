@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package
+            heading: B2500 Package 2025-05-01
             grid_options:
               columns: 12
               rows: 1
