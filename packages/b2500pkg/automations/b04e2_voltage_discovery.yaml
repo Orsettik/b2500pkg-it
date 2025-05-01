@@ -1,5 +1,5 @@
 automation:
-  alias: B04E2_Voltage_Discovery
+  alias: B2500PKG_B04E2_Voltage_Discovery
   triggers:
     - topic: hame_energy/B2500_04/CD13
       trigger: mqtt
@@ -316,4 +316,4 @@ automation:
       data:
         stop_actions: false
       target:
-        entity_id: automation.b04e2_voltage_discovery
+        entity_id: automation.b2500pkg_b04e2_voltage_discovery
