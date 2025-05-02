@@ -208,7 +208,7 @@ automation:
                 qos: 0
                 retain: false
                 topic: >-
-                  {{ b2500_typ }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
+                  {{ b2500_topic }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl
                 payload: cd=20,md=1
     - delay:
         hours: 0
