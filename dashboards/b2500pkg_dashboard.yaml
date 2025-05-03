@@ -259,7 +259,7 @@ views:
                 card:
                   type: entities
                   entities:
-                    - entity: sensor.b2500_01_cs
+                    - entity: sensor.b2500_01_md
                   show_header_toggle: false
               - type: conditional
                 conditions:
@@ -269,7 +269,7 @@ views:
                 card:
                   type: entities
                   entities:
-                    - entity: sensor.b2500_02_cs
+                    - entity: sensor.b2500_02_md
                   show_header_toggle: false
               - type: conditional
                 conditions:
@@ -279,7 +279,7 @@ views:
                 card:
                   type: entities
                   entities:
-                    - entity: sensor.b2500_03_cs
+                    - entity: sensor.b2500_03_md
                   show_header_toggle: false
               - type: conditional
                 conditions:
@@ -289,7 +289,7 @@ views:
                 card:
                   type: entities
                   entities:
-                    - entity: sensor.b2500_04_cs
+                    - entity: sensor.b2500_04_md
                   show_header_toggle: false
         column_span: 2
     max_columns: 2
