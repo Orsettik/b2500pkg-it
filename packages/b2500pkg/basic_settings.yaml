@@ -12,6 +12,21 @@ input_text:
   b04_topic:
     name: B04 Topic
     initial: hame_energy
+  b05_topic:
+    name: B05 Topic
+    initial: hame_energy
+  b06_topic:
+    name: B06 Topic
+    initial: hame_energy
+  b07_topic:
+    name: B07 Topic
+    initial: hame_energy
+  b08_topic:
+    name: B08 Topic
+    initial: hame_energy
+  b09_topic:
+    name: B09 Topic
+    initial: hame_energy
 
   b01_typ:
     name: B01 Typ
@@ -25,18 +40,49 @@ input_text:
   b04_typ:
     name: B04 Typ
     initial: HMA-1
+  b05_typ:
+    name: B05 Typ
+    initial: HMA-1
+  b06_typ:
+    name: B06 Typ
+    initial: HMA-1
+  b07_typ:
+    name: B07 Typ
+    initial: HMA-1
+  b08_typ:
+    name: B08 Typ
+    initial: HMA-1
+  b09_typ:
+    name: B09 Typ
+    initial: HMA-1
    
   b01_mac:
-    name: B01 MAC Adresse
-    initial: 0000
+    name: B01 MAC/ID
+    initial: 0
   b02_mac:
-    name: B02 MAC Adresse
-    initial: 0000
+    name: B02 MAC/ID
+    initial: 0
   b03_mac:
-    name: B03 MAC Adresse
-    initial: 0000
+    name: B03 MAC/ID
+    initial: 0
   b04_mac:
-    name: B04 MAC Adresse
-    initial: 0000
+    name: B04 MAC/ID
+    initial: 0
+  b05_mac:
+    name: B05 MAC/ID
+    initial: 0
+  b06_mac:
+    name: B06 MAC/ID
+    initial: 0
+  b07_mac:
+    name: B07 MAC/ID
+    initial: 0
+  b08_mac:
+    name: B08 MAC/ID
+    initial: 0
+  b09_mac:
+    name: B09 MAC/ID
+    initial: 0
+
 
       

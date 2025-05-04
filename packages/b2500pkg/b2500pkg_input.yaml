@@ -8,6 +8,11 @@ input_select:
       - b2500_02
       - b2500_03
       - b2500_04
+      - b2500_05
+      - b2500_06
+      - b2500_07
+      - b2500_08
+      - b2500_09
   timerslot:
     name: Timer auswählen
     options:
@@ -20,31 +25,22 @@ input_select:
 input_boolean:
   timer_aktiv:
     name: Timer aktiv
-
   b2500_01_e1_support:
     name: B01E1 Spannungen
-
   b2500_01_e2_support:
     name: B01E2 Spannungen
-
   b2500_02_e1_support:
     name: B02E1 Spannungen
-
   b2500_02_e2_support:
     name: B02E2 Spannungen
-
   b2500_03_e1_support:
     name: B03E1 Spannungen
-
   b2500_03_e2_support:
     name: B03E2 Spannungen
-
   b2500_04_e1_support:
     name: B04E1 Spannungen
-
   b2500_04_e2_support:
     name: B04E2 Spannungen
-
 
 
 
