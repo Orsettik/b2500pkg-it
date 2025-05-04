@@ -4,23 +4,46 @@ mkdir /config/packages/b2500pkg/automations
 
 rm -f /config/packages/b2500pkg/automations/request_infos.yaml
 rm -f /config/packages/b2500pkg/automations/repost_cd01_cd13.yaml
+
 rm -f /config/packages/b2500pkg/automations/b01_sensor_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b02_sensor_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b03_sensor_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b04_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b05_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b06_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b07_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b08_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b09_sensor_discovery.yaml
 
 rm -f /config/packages/b2500pkg/automations/b01_voltage_discovery.yaml
-rm -f /config/packages/b2500pkg/automations/b01e1_voltage_discovery.yaml
-rm -f /config/packages/b2500pkg/automations/b01e2_voltage_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b02_voltage_discovery.yaml
-rm -f /config/packages/b2500pkg/automations/b02e1_voltage_discovery.yaml
-rm -f /config/packages/b2500pkg/automations/b02e2_voltage_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b03_voltage_discovery.yaml
-rm -f /config/packages/b2500pkg/automations/b03e1_voltage_discovery.yaml
-rm -f /config/packages/b2500pkg/automations/b03e2_voltage_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b04_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b05_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b06_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b07_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b08_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b09_voltage_discovery.yaml
+
+rm -f /config/packages/b2500pkg/automations/b01e1_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b02e1_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b03e1_voltage_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b04e1_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b05e1_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b06e1_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b07e1_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b08e1_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b09e1_voltage_discovery.yaml
+
+rm -f /config/packages/b2500pkg/automations/b01e2_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b02e2_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b03e2_voltage_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b04e2_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b05e2_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b06e2_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b07e2_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b08e2_voltage_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b09e2_voltage_discovery.yaml
 
 rm -f /config/packages/b2500pkg/automations/set_timer.yaml
 rm -f /config/packages/b2500pkg/automations/set_outputs.yaml
@@ -39,23 +62,46 @@ sleep 5
 test ! -f "/config/packages/b2500pkg/basic_settings.yaml" && wget -q -O /config/packages/b2500pkg/basic_settings.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/basic_settings.yaml
 wget -q -O /config/packages/b2500pkg/automations/request_infos.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/request_infos.yaml
 wget -q -O /config/packages/b2500pkg/automations/repost_cd01_cd13.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/repost_cd01_cd13.yaml
+
 wget -q -O /config/packages/b2500pkg/automations/b01_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b01_sensor_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b02_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b02_sensor_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b03_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b03_sensor_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b04_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b04_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b05_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b05_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b06_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b06_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b07_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b07_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b08_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b08_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b09_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b09_sensor_discovery.yaml
 
 wget -q -O /config/packages/b2500pkg/automations/b01_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b01_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b02_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b02_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b03_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b03_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b04_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b04_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b05_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b05_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b06_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b06_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b07_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b07_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b08_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b08_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b09_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b09_voltage_discovery.yaml
+
 wget -q -O /config/packages/b2500pkg/automations/b01e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b01e1_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b02e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b02e1_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b03e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b03e1_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b04e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b04e1_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b05e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b05e1_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b06e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b06e1_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b07e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b07e1_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b08e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b08e1_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b09e1_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b09e1_voltage_discovery.yaml
+
 wget -q -O /config/packages/b2500pkg/automations/b01e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b01e2_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b02e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b02e2_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b03e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b03e2_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b04e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b04e2_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b05e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b05e2_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b06e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b06e2_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b07e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b07e2_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b08e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b08e2_voltage_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b09e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b09e2_voltage_discovery.yaml
 
 
 
