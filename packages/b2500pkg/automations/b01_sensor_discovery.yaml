@@ -18,7 +18,7 @@ automation:
             payload: |
               {% raw %} {
                 "name": "B01 Entladen",
-                "state_topic": "b2500_package/B2500_01/CD01",
+                "state_topic": "B2500PKG/B2500_01/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
                 "value_template": "{{ ('{:0=8b}'.format(payload.split('l0=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[7] }}",
