@@ -1,4 +1,4 @@
-input_button:
+fiinput_button:
   b2500pkg_update:
     name: B2500PKG Update starten
     icon: mdi:cloud-download
@@ -46,7 +46,7 @@ automation:
       metadata: {}
       data:
         title: B2500PKG
-        message: "Info: yaml-Dateien werden neu geladen"
+        message: "Update fertig: yaml-Dateien werden neu geladen"
     - delay:
         hours: 0
         minutes: 0
