@@ -23,33 +23,41 @@ automation:
   actions:
     - variables:
         b2500_mac: >-
-          {{ states('input_text.b01_mac') if
-          states('input_select.speicherauswahl') == 'b2500_01' else
-          states('input_text.b02_mac') if
-          states('input_select.speicherauswahl') == 'b2500_02' else
-          states('input_text.b03_mac') if
-          states('input_select.speicherauswahl') == 'b2500_03' else
-          states('input_text.b04_mac') if
-          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
+          {{ states('input_text.b01_mac') if states('input_select.speicherauswahl') == 'b2500_01' else
+             states('input_text.b02_mac') if states('input_select.speicherauswahl') == 'b2500_02' else
+             states('input_text.b03_mac') if states('input_select.speicherauswahl') == 'b2500_03' else
+             states('input_text.b04_mac') if states('input_select.speicherauswahl') == 'b2500_04' else
+             states('input_text.b05_mac') if states('input_select.speicherauswahl') == 'b2500_05' else
+             states('input_text.b06_mac') if states('input_select.speicherauswahl') == 'b2500_06' else
+             states('input_text.b07_mac') if states('input_select.speicherauswahl') == 'b2500_07' else
+             states('input_text.b08_mac') if states('input_select.speicherauswahl') == 'b2500_08' else
+             states('input_text.b09_mac') if states('input_select.speicherauswahl') == 'b2500_09' else
+             'unknown'
+          }}
         b2500_typ: >-
-          {{ states('input_text.b01_typ') if
-          states('input_select.speicherauswahl') == 'b2500_01' else
-          states('input_text.b02_typ') if
-          states('input_select.speicherauswahl') == 'b2500_02' else
-          states('input_text.b03_typ') if
-          states('input_select.speicherauswahl') == 'b2500_03' else
-          states('input_text.b04_typ') if
-          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
+          {{ states('input_text.b01_typ') if states('input_select.speicherauswahl') == 'b2500_01' else
+             states('input_text.b02_typ') if states('input_select.speicherauswahl') == 'b2500_02' else
+             states('input_text.b03_typ') if states('input_select.speicherauswahl') == 'b2500_03' else
+             states('input_text.b04_typ') if states('input_select.speicherauswahl') == 'b2500_04' else
+             states('input_text.b05_typ') if states('input_select.speicherauswahl') == 'b2500_05' else
+             states('input_text.b06_typ') if states('input_select.speicherauswahl') == 'b2500_06' else
+             states('input_text.b07_typ') if states('input_select.speicherauswahl') == 'b2500_07' else
+             states('input_text.b08_typ') if states('input_select.speicherauswahl') == 'b2500_08' else
+             states('input_text.b09_typ') if states('input_select.speicherauswahl') == 'b2500_09' else
+             'unknown'
+          }}
         b2500_topic: >-
-          {{ states('input_text.b01_topic') if
-          states('input_select.speicherauswahl') == 'b2500_01' else
-          states('input_text.b02_topic') if
-          states('input_select.speicherauswahl') == 'b2500_02' else
-          states('input_text.b03_topic') if
-          states('input_select.speicherauswahl') == 'b2500_03' else
-          states('input_text.b04_topic') if
-          states('input_select.speicherauswahl') == 'b2500_04' else 0 }}
-
+          {{ states('input_text.b01_topic') if states('input_select.speicherauswahl') == 'b2500_01' else
+             states('input_text.b02_topic') if states('input_select.speicherauswahl') == 'b2500_02' else
+             states('input_text.b03_topic') if states('input_select.speicherauswahl') == 'b2500_03' else
+             states('input_text.b04_topic') if states('input_select.speicherauswahl') == 'b2500_04' else
+             states('input_text.b05_topic') if states('input_select.speicherauswahl') == 'b2500_05' else
+             states('input_text.b06_topic') if states('input_select.speicherauswahl') == 'b2500_06' else
+             states('input_text.b07_topic') if states('input_select.speicherauswahl') == 'b2500_07' else
+             states('input_text.b08_topic') if states('input_select.speicherauswahl') == 'b2500_08' else
+             states('input_text.b09_topic') if states('input_select.speicherauswahl') == 'b2500_09' else
+             'unknown'
+          }}
     - action: mqtt.publish
       metadata: {}
       data:
