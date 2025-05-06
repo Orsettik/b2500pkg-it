@@ -141,7 +141,7 @@ automation:
                         - "07"
                         - "08"
                         - "09"
-          - delay: "{{ delay2_seconds }}"
+          - delay: "{{ delay_seconds }}"
         while:
           - condition: state
             entity_id: input_boolean.req_start
