@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-05-03
+            heading: B2500 Package 2025-05-06
             grid_options:
               columns: 12
               rows: 1
@@ -21,6 +21,14 @@ views:
               rows: 1
             tap_action:
               action: toggle
+          - type: entities
+            entities:
+              - entity: input_number.cd01_ratio
+              - entity: input_number.req_delay
+              - entity: input_number.req_delay2
+              - entity: input_boolean.req_start
+            show_header_toggle: false
+            title: Abfrageeinstellungen
         column_span: 1
       - type: grid
         cards:
@@ -57,6 +65,41 @@ views:
               - entity: input_text.b04_mac
             show_header_toggle: false
             title: B04 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b05_topic
+              - entity: input_text.b05_typ
+              - entity: input_text.b05_mac
+            show_header_toggle: false
+            title: B05 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b06_topic
+              - entity: input_text.b06_typ
+              - entity: input_text.b06_mac
+            show_header_toggle: false
+            title: B06 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b07_topic
+              - entity: input_text.b07_typ
+              - entity: input_text.b07_mac
+            show_header_toggle: false
+            title: B07 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b08_topic
+              - entity: input_text.b08_typ
+              - entity: input_text.b08_mac
+            show_header_toggle: false
+            title: B08 Einstellungen
+          - type: entities
+            entities:
+              - entity: input_text.b09_topic
+              - entity: input_text.b09_typ
+              - entity: input_text.b09_mac
+            show_header_toggle: false
+            title: B09 Einstellungen
       - type: grid
         cards:
           - type: heading
