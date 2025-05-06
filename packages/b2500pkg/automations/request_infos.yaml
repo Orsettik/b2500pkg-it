@@ -1,103 +1,150 @@
-automation:
+input_number:
+  cd01_ratio:
+    name: CD01 x-mal öfter abfragen
+    mode: box
+    min: 1
+    max: 10
+    step: 1
+    initial: 3
+  cd01_tracker:
+    name: CD01_tracker_Do_not_edit
+    min: 0
+    max: 10
+    step: 1
+    initial: 0
+  req_delay:
+    name: Pause nach Durchlauf
+    mode: box    
+    min: 1
+    max: 300
+    step: 1
+    initial: 60
+  req_delay2:
+    name: Pause zw. 2 Speichern
+    mode: box
+    min: 1
+    max: 60
+    step: 1
+    initial: 10
 
-  description: |+
+
+
+input_boolean:
+  req_start:
+    name: Speicherabfrage aus/ein
+    initial: on
+
+
+automation:
   alias: B2500PKG_Infos und Zellenspannung anfordern
-  mode: single
+  description: ""
   triggers:
-    - trigger: time_pattern
-      minutes: /3
+    - trigger: homeassistant
+      event: start
+    - trigger: event
+      event_type:
+        - automation_reloaded
+    - trigger: state
+      entity_id:
+        - input_boolean.req_start
+      to: "on"
+      from: null
   conditions: []
   actions:
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b01_topic') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
-        payload: cd=01
-        qos: "0"
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b02_topic') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
-        payload: cd=01
-        qos: "0"
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b03_topic') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
-        payload: cd=01
-        qos: "0"
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b04_topic') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
-        payload: cd=01
-        qos: "0"
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b01_topic') }}/{{ states('input_text.b01_typ') }}/App/{{ states('input_text.b01_mac') }}/ctrl
-        payload: cd=13
-        qos: "0"
-      enabled: true
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b02_topic') }}/{{ states('input_text.b02_typ') }}/App/{{ states('input_text.b02_mac') }}/ctrl
-        payload: cd=13
-        qos: "0"
-      enabled: true
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b03_topic') }}/{{ states('input_text.b03_typ') }}/App/{{ states('input_text.b03_mac') }}/ctrl
-        payload: cd=13
-        qos: "0"
-      enabled: true
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - action: mqtt.publish
-      metadata: {}
-      data:
-        topic: >-
-          {{ states('input_text.b04_topic') }}/{{ states('input_text.b04_typ') }}/App/{{ states('input_text.b04_mac') }}/ctrl
-        payload: cd=13
-        qos: "0"
-      enabled: true
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
+    - repeat:
+        sequence:
+          - variables:
+              current_count: "{{ states('input_number.cd01_tracker') | int }}"
+              limit: "{{ states('input_number.cd01_ratio') | int }}"
+              delay_seconds: "{{ states('input_number.req_delay') | int }}"
+              delay2_seconds: "{{ states('input_number.req_delay2') | int }}"
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: "{{ current_count < limit }}"
+                sequence:
+                  - target:
+                      entity_id: input_number.cd01_tracker
+                    data:
+                      value: "{{ current_count + 1 }}"
+                    action: input_number.set_value
+                  - repeat:
+                      sequence:
+                        - if:
+                            - condition: template
+                              value_template: >-
+                                {{ states('input_text.b' ~ repeat.item ~ '_mac')
+                                != '0' }}
+                          then:
+                            - action: mqtt.publish
+                              metadata: {}
+                              data:
+                                evaluate_payload: false
+                                qos: 0
+                                retain: false
+                                topic: >-
+                                  {{ states('input_text.b' ~ repeat.item ~
+                                  '_topic') }}/{{ states('input_text.b' ~
+                                  repeat.item ~ '_typ') }}/App/{{
+                                  states('input_text.b' ~ repeat.item ~ '_mac')
+                                  }}/ctrl
+                                payload: cd=01
+                            - delay: "{{ delay2_seconds }}"
+                      for_each:
+                        - "01"
+                        - "02"
+                        - "03"
+                        - "04"
+                        - "05"
+                        - "06"
+                        - "07"
+                        - "08"
+                        - "09"
+              - conditions:
+                  - condition: template
+                    value_template: "{{ current_count >= limit }}"
+                sequence:
+                  - repeat:
+                      sequence:
+                        - if:
+                            - condition: template
+                              value_template: >-
+                                {{ states('input_text.b' ~ repeat.item ~ '_mac')
+                                != '0' }}
+                          then:
+                            - action: mqtt.publish
+                              metadata: {}
+                              data:
+                                evaluate_payload: false
+                                qos: 0
+                                retain: false
+                                topic: >-
+                                  {{ states('input_text.b' ~ repeat.item ~
+                                  '_topic') }}/{{ states('input_text.b' ~
+                                  repeat.item ~ '_typ') }}/App/{{
+                                  states('input_text.b' ~ repeat.item ~ '_mac')
+                                  }}/ctrl
+                                payload: cd=13
+                            - delay: "{{ delay2_seconds }}"
+                        - target:
+                            entity_id: input_number.cd01_tracker
+                          data:
+                            value: 0
+                          action: input_number.set_value
+                      for_each:
+                        - "01"
+                        - "02"
+                        - "03"
+                        - "04"
+                        - "05"
+                        - "06"
+                        - "07"
+                        - "08"
+                        - "09"
+          - delay: "{{ delay2_seconds }}"
+        while:
+          - condition: state
+            entity_id: input_boolean.req_start
+            state: "on"
+  mode: restart
 
