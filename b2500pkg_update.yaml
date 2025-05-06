@@ -1,4 +1,4 @@
-fiinput_button:
+input_button:
   b2500pkg_update:
     name: B2500PKG Update starten
     icon: mdi:cloud-download
