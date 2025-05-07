@@ -21,7 +21,7 @@ automation:
                 "state_topic": "B2500PKG/B2500_01/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
-                "value_template": "{{ ('{:0=8b}'.format(payload.split('l0=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[7] }}",
+                "value_template": "{{ ('{:0=8b}'.format(value.split('l0=')[1].split(',')[0] | int(0) )|batch(1)|map('join')|join(' ')).split(' ')[7] }}",
                 "unique_id": "sensor.b2500_01_l0_bit0",
                 "object_id": "b2500_01_l0_bit0",
                 "entity_category": "diagnostic"
