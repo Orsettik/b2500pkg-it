@@ -16,7 +16,7 @@ automation:
   triggers:
     - trigger: state
       entity_id:
-        - input_button.b2500_surplus_set
+        - input_button.surplus_set
 
   conditions: []
   actions:
