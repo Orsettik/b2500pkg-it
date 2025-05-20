@@ -1,0 +1,61 @@
+automation:
+  alias: B2500PKG_MQTT_Publish
+  description: ""
+  triggers:
+    - trigger: time_pattern
+      minutes: /1
+  conditions: []
+  actions:
+    - repeat:
+        sequence:
+          - if:
+              - condition: template
+                value_template: "{{ states('input_text.b' ~ repeat.item ~ '_mac') != '0' }}"
+            then:
+              - variables:
+                  voltage: >-
+                    {{ float(states('sensor.b2500_' ~ repeat.item ~ '_zelle01')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle02')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle03')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle04')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle05')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle06')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle07')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle08')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle09')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle10')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle11')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle12')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle13')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle14')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle15')) +
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle16')) }}
+                  soc: "{{ states('sensor.b2500_' ~ repeat.item ~ '_pe') }}"
+                  capacity: "{{ states('sensor.b2500_' ~ repeat.item ~ '_kn') }}"
+                  topic: B2500PKG/B2500_{{ repeat.item }}
+              - action: mqtt.publish
+                metadata: {}
+                data:
+                  topic: "{{ topic }}/soc"
+                  payload: "{{ soc }}%"
+              - action: mqtt.publish
+                metadata: {}
+                data:
+                  payload: "{{'{:.3f}'.format(voltage | int / 1000 )}}V"
+                  topic: "{{ topic }}/voltage"
+              - action: mqtt.publish
+                metadata: {}
+                data:
+                  topic: "{{ topic }}/capacity"
+                  payload: "{{ capacity }}Wh"
+        for_each:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          - "06"
+          - "07"
+          - "08"
+          - "09"
+  mode: single
