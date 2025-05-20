@@ -50,6 +50,8 @@ rm -f /config/packages/b2500pkg/automations/set_outputs.yaml
 rm -f /config/packages/b2500pkg/automations/set_dod.yaml
 rm -f /config/packages/b2500pkg/automations/set_charging_mode.yaml
 rm -f /config/packages/b2500pkg/automations/set_smartmeter.yaml
+rm -f /config/packages/b2500pkg/automations/set_surplus.yaml
+rm -f /config/packages/b2500pkg/automations/mqtt_publish.yaml
 rm -f /config/packages/b2500pkg/automations/test_config.yaml
 
 rm -f /config/packages/b2500pkg/b2500pkg_input.yaml
@@ -103,22 +105,14 @@ wget -q -O /config/packages/b2500pkg/automations/b07e2_voltage_discovery.yaml ht
 wget -q -O /config/packages/b2500pkg/automations/b08e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b08e2_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b09e2_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b09e2_voltage_discovery.yaml
 
-
-
-
-
-
-
-
-
-
-
-
 wget -q -O /config/packages/b2500pkg/automations/set_timer.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_timer.yaml
 wget -q -O /config/packages/b2500pkg/automations/set_outputs.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_outputs.yaml
 wget -q -O /config/packages/b2500pkg/automations/set_dod.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_dod.yaml
 wget -q -O /config/packages/b2500pkg/automations/set_charging_mode.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_charging_mode.yaml
 wget -q -O /config/packages/b2500pkg/automations/set_smartmeter.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_smartmeter.yaml
+wget -q -O /config/packages/b2500pkg/automations/set_surplus.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/set_surplus.yaml
+wget -q -O /config/packages/b2500pkg/automations/mqtt_publish.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/mqtt_publish.yaml
+
 wget -q -O /config/packages/b2500pkg/automations/test_config.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/test_config.yaml
 
 wget -q -O /config/packages/b2500pkg/b2500pkg_input.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/b2500pkg_input.yaml
