@@ -1,0 +1,18 @@
+template:
+  - sensor:
+      - name: "B01 Output gesamt"
+        unique_id: b01_output_gesamt
+        unit_of_measurement: "W"  # oder eine passende Einheit
+        state: >
+          {% set g1 = states('sensor.b2500_01_g1') | float(0) %}
+          {% set g2 = states('sensor.b2500_01_g2') | float(0) %}
+          {{ (g1 + g2) | round(2) }}
+
+  - sensor:
+      - name: "B01 PV gesamt"
+        unique_id: b01_pv_gesamt
+        unit_of_measurement: "W"  # oder eine passende Einheit
+        state: >
+          {% set w1 = states('sensor.b2500_01_w1') | float(0) %}
+          {% set w2 = states('sensor.b2500_01_w2') | float(0) %}
+          {{ (w1 + w2) | round(2) }}
