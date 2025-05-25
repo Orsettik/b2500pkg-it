@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-05-20
+            heading: B2500 Package 2025-05-25
             grid_options:
               columns: 12
               rows: 1
@@ -26,6 +26,7 @@ views:
               - entity: input_number.cd01_ratio
               - entity: input_number.req_delay
               - entity: input_number.req_delay2
+              - entity: input_boolean.req_cd16
               - entity: input_boolean.req_start
             show_header_toggle: false
             title: Abfrageeinstellungen
@@ -112,6 +113,7 @@ views:
               - entity: automation.b2500pkg_b01_voltage_discovery
               - entity: automation.b2500pkg_b01e1_voltage_discovery
               - entity: automation.b2500pkg_b01e2_voltage_discovery
+              - entity: automation.b2500pkg_b01_cd16_sensor_discovery
             title: B01_Discovery
             show_header_toggle: false
             visibility:
@@ -1901,3 +1903,109 @@ views:
                   type: entities
                   entities: []
                   show_header_toggle: false
+  - grid:
+      columns: 5
+      rows: 5
+      gap: 4
+      items:
+        - id: entitaet_oben_links
+          content: Entität 1
+          col_start: 1
+          col_span: 2
+          row_start: 1
+          row_span: 1
+        - id: entitaet_oben_rechts
+          content: Entität 2
+          col_start: 4
+          col_span: 2
+          row_start: 1
+          row_span: 1
+        - id: bild_mitte
+          type: image
+          src: https://via.placeholder.com/300
+          col_start: 2
+          col_span: 3
+          row_start: 2
+          row_span: 3
+        - id: entitaet_unten_links
+          content: Entität 3
+          col_start: 1
+          col_span: 2
+          row_start: 5
+          row_span: 1
+        - id: entitaet_unten_rechts
+          content: Entität 4
+          col_start: 4
+          col_span: 2
+          row_start: 5
+          row_span: 1
+        - id: entitaet_rechts
+          content: Entität 5
+          col_start: 5
+          col_span: 1
+          row_start: 3
+          row_span: 1
+    cards:
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_cd1601_m1
+                        name: PV1
+                      - entity: sensor.b2500_01_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_01_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_cd1601_m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_01_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_01_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b01_pv_gesamt
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd16bv
+                  - entity: sensor.b2500_01_cd16bc
+                  - entity: sensor.b2500_01_cd16bb
+          - type: gauge
+            entity: sensor.b01_output_gesamt
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_01_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_01_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_01_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_01_g2
+                    name: OUT2
+        columns: 1
+    type: masonry
+    sections: []
+    title: Leistung B01
