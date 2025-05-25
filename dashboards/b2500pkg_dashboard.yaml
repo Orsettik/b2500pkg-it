@@ -1975,6 +1975,7 @@ views:
             cards:
               - type: gauge
                 entity: sensor.b01_pv_gesamt
+                max: 900
           - type: horizontal-stack
             cards:
               - type: picture
@@ -1987,6 +1988,7 @@ views:
                   - entity: sensor.b2500_01_cd16bb
           - type: gauge
             entity: sensor.b01_output_gesamt
+            max: 800
           - type: horizontal-stack
             cards:
               - type: entities
