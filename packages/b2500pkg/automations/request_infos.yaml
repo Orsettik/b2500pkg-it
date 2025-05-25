@@ -34,9 +34,12 @@ input_boolean:
     name: Speicherabfrage aus/ein
     initial: on
 
+  req_cd16:
+    name: Erweitere Infos von CD16 abfragen
+    initial: on
 
 automation:
-  alias: B2500PKG_Infos und Zellenspannung anfordern
+  alias: B2500PKG_Infos und Zellenspannung anfordern migrated
   description: ""
   triggers:
     - trigger: homeassistant
@@ -68,7 +71,8 @@ automation:
                     data:
                       value: "{{ current_count + 1 }}"
                     action: input_number.set_value
-                  - repeat:
+                  - alias: CD01 Abfrage
+                    repeat:
                       sequence:
                         - if:
                             - condition: template
@@ -79,9 +83,7 @@ automation:
                             - action: mqtt.publish
                               metadata: {}
                               data:
-                                evaluate_payload: false
                                 qos: 0
-                                retain: false
                                 topic: >-
                                   {{ states('input_text.b' ~ repeat.item ~
                                   '_topic') }}/{{ states('input_text.b' ~
@@ -100,6 +102,44 @@ automation:
                         - "07"
                         - "08"
                         - "09"
+                  - alias: CD16 Abfrage
+                    if:
+                      - condition: state
+                        entity_id: input_boolean.req_cd16
+                        state: "on"
+                    then:
+                      - alias: CD16 Abfrage
+                        repeat:
+                          sequence:
+                            - if:
+                                - condition: template
+                                  value_template: >-
+                                    {{ states('input_text.b' ~ repeat.item ~
+                                    '_mac') != '0' }}
+                              then:
+                                - action: mqtt.publish
+                                  metadata: {}
+                                  data:
+                                    qos: 0
+                                    topic: >-
+                                      {{ states('input_text.b' ~ repeat.item ~
+                                      '_topic') }}/{{ states('input_text.b' ~
+                                      repeat.item ~ '_typ') }}/App/{{
+                                      states('input_text.b' ~ repeat.item ~
+                                      '_mac') }}/ctrl
+                                    payload: cd=16
+                                - delay: "{{ delay2_seconds }}"
+                          for_each:
+                            - "01"
+                            - "02"
+                            - "03"
+                            - "04"
+                            - "05"
+                            - "06"
+                            - "07"
+                            - "08"
+                            - "09"
+                alias: Infos anfordern
               - conditions:
                   - condition: template
                     value_template: "{{ current_count >= limit }}"
@@ -115,9 +155,7 @@ automation:
                             - action: mqtt.publish
                               metadata: {}
                               data:
-                                evaluate_payload: false
                                 qos: 0
-                                retain: false
                                 topic: >-
                                   {{ states('input_text.b' ~ repeat.item ~
                                   '_topic') }}/{{ states('input_text.b' ~
@@ -141,10 +179,10 @@ automation:
                         - "07"
                         - "08"
                         - "09"
+                alias: Spannungen anfordern
           - delay: "{{ delay_seconds }}"
         while:
           - condition: state
             entity_id: input_boolean.req_start
             state: "on"
   mode: restart
-

@@ -1,17 +1,27 @@
 automation:
-  alias: B2500PKG_Repost_CD01_und_CD13
+  alias: B2500PKG_Repost_CD01_CD15_CD16_und_CD13
   description: ""
   triggers:
     - trigger: mqtt
       topic: +/+/device/+/ctrl
-      payload: p1=
-      value_template: "{{ value[0:3] }}"
+      payload: w1=
+      value_template: "{{ value.split(',')[2][0:3] }}"
       id: b2500_cd01
     - trigger: mqtt
       topic: +/+/device/+/ctrl
       payload: a0=
       value_template: "{{ value[0:3] }}"
       id: b2500_cd13
+    - trigger: mqtt
+      topic: +/+/device/+/ctrl
+      payload: pe=
+      value_template: "{{ value[0:3] }}"
+      id: b2500_cd15
+    - trigger: mqtt
+      topic: +/+/device/+/ctrl
+      payload: m1=
+      value_template: "{{ value.split(',')[2][0:3] }}"
+      id: b2500_cd16
   conditions: []
   actions:
     - variables:
@@ -41,7 +51,6 @@ automation:
                 - action: mqtt.publish
                   metadata: {}
                   data:
-                    evaluate_payload: false
                     qos: 0
                     retain: true
                     topic: B2500PKG/{{ speicher_nummer }}/CD01
@@ -54,10 +63,33 @@ automation:
                 - action: mqtt.publish
                   metadata: {}
                   data:
-                    evaluate_payload: false
                     qos: 0
                     retain: true
                     topic: B2500PKG/{{ speicher_nummer }}/CD13
                     payload: "{{ trigger.payload }},end13"
+            - conditions:
+                - condition: trigger
+                  id:
+                    - b2500_cd15
+              sequence:
+                - action: mqtt.publish
+                  metadata: {}
+                  data:
+                    qos: 0
+                    retain: true
+                    topic: B2500PKG/{{ speicher_nummer }}/CD15
+                    payload: "{{ trigger.payload }},end15"
+            - conditions:
+                - condition: trigger
+                  id:
+                    - b2500_cd16
+              sequence:
+                - action: mqtt.publish
+                  metadata: {}
+                  data:
+                    qos: 0
+                    retain: true
+                    topic: B2500PKG/{{ speicher_nummer }}/CD16
+                    payload: "{{ trigger.payload }},end16"
   mode: parallel
   max: 10
