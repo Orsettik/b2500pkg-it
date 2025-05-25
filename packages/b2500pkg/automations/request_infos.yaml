@@ -39,7 +39,7 @@ input_boolean:
     initial: on
 
 automation:
-  alias: B2500PKG_Infos und Zellenspannung anfordern migrated
+  alias: B2500PKG_Infos und Zellenspannung anfordern
   description: ""
   triggers:
     - trigger: homeassistant
