@@ -1,0 +1,227 @@
+automation:
+  alias: B2500PKG_B01_CD16_Sensor_Discovery
+  description: ""
+  triggers:
+    - topic: B2500PKG/B2500_01/CD16
+      trigger: mqtt
+  conditions: []
+  actions:
+    - variables:
+        payload: "{{ trigger.payload }}"
+    - alias: Discover CD16 m1
+      if:
+        - condition: template
+          value_template: "{{ 'm1=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16m1/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 PV1 Input Voltage",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "V",
+                "value_template": "{{ (value.split('m1=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16m1",
+                "object_id": "b2500_cd1601_m1",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+    - if:
+        - condition: template
+          value_template: "{{ 'm2=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16m2/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 PV2 Input Voltage",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "V",
+                "value_template": "{{ (value.split('m2=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16m2",
+                "object_id": "b2500_cd1601_m2",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 m2
+    - if:
+        - condition: template
+          value_template: "{{ 'i1=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16i1/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 Output1 Voltage",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "V",
+                "value_template": "{{ (value.split('i1=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16i1",
+                "object_id": "b2500_01_cd16i1",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 i1
+    - if:
+        - condition: template
+          value_template: "{{ 'i2=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16i2/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 Output2 Voltage",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "V",
+                "value_template": "{{ (value.split('i2=')[1].split(',')[0] | float) /1000 }}",
+                "unique_id": "sensor.b2500_01_cd16i2",
+                "object_id": "b2500_01_cd26i2",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 i2
+    - if:
+        - condition: template
+          value_template: "{{ 'c1=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16c1/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 PV1 Input Current",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "A",
+                "value_template": "{{ (value.split('c1=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16c1",
+                "object_id": "b2500_01_cd16c1",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 c1
+    - if:
+        - condition: template
+          value_template: "{{ 'c2=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16c2/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 PV2 Input Current",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "A",
+                "value_template": "{{ (value.split('c2=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16c2",
+                "object_id": "b2500_01_cd16c2",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 c2
+    - if:
+        - condition: template
+          value_template: "{{ 'c3=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16c3/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 Output1 Current",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "A",
+                "value_template": "{{ (value.split('c3=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16c3",
+                "object_id": "b2500_01_cd16c3",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 c3
+    - if:
+        - condition: template
+          value_template: "{{ 'c4=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16c4/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 Output2 Current",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "A",
+                "value_template": "{{ (value.split('c4=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16c4",
+                "object_id": "b2500_01_cd16c4",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 c4
+    - if:
+        - condition: template
+          value_template: "{{ 'bv=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16bv/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 Akku Voltage",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "V",
+                "value_template": "{{ (value.split('bv=')[1].split(',')[0] | float) / 1000 }}",
+                "unique_id": "sensor.b2500_01_cd16bv",
+                "object_id": "b2500_01_cd16bv",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 bv
+    - if:
+        - condition: template
+          value_template: "{{ 'bc=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16bc/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 Akku Current",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "A",
+                "value_template": "{{ value.split('bc=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_01_cd16bc",
+                "object_id": "b2500_01_cd16bc",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 bc
+    - if:
+        - condition: template
+          value_template: "{{ 'bb=' in payload }}"
+      then:
+        - data:
+            topic: homeassistant/sensor/b2500_01/cd16bb/config
+            retain: true
+            payload: |
+              {% raw %} {
+                "name": "B01 Akku Power",
+                "state_topic": "B2500PKG/B2500_01/CD16",
+                "unit_of_measurement": "W",
+                "value_template": "{{ value.split('bb=')[1].split(',')[0] }}",
+                "unique_id": "sensor.b2500_01_cd16bb",
+                "object_id": "b2500_01_cd16bb",
+                "entity_category": "diagnostic"
+              } {% endraw %}
+          action: mqtt.publish
+      alias: Discover CD16 bb
+    - action: automation.turn_off
+      metadata: {}
+      data:
+        stop_actions: true
+      target:
+        entity_id: automation.b2500pkg_b01_cd16_sensor_discovery
+      enabled: true
+  mode: single
