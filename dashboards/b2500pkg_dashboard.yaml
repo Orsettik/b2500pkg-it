@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-05-25
+            heading: B2500 Package 2025-05-28
             grid_options:
               columns: 12
               rows: 1
@@ -126,6 +126,7 @@ views:
               - entity: automation.b2500pkg_b02_voltage_discovery
               - entity: automation.b2500pkg_b02e1_voltage_discovery
               - entity: automation.b2500pkg_b02e2_voltage_discovery
+              - entity: automation.b2500pkg_b02_cd16_sensor_discovery
             title: B02_Discovery
             show_header_toggle: false
             visibility:
@@ -138,6 +139,7 @@ views:
               - entity: automation.b2500pkg_b03_voltage_discovery
               - entity: automation.b2500pkg_b03e1_voltage_discovery
               - entity: automation.b2500pkg_b03e2_voltage_discovery
+              - entity: automation.b2500pkg_b03_cd16_sensor_discovery
             title: B03_Discovery
             show_header_toggle: false
             visibility:
@@ -150,6 +152,7 @@ views:
               - entity: automation.b2500pkg_b04_voltage_discovery
               - entity: automation.b2500pkg_b04e1_voltage_discovery
               - entity: automation.b2500pkg_b04e2_voltage_discovery
+              - entity: automation.b2500pkg_b04_cd16_sensor_discovery
             title: B04_Discovery
             show_header_toggle: false
             visibility:
@@ -162,6 +165,7 @@ views:
               - entity: automation.b2500pkg_b05_voltage_discovery
               - entity: automation.b2500pkg_b05e1_voltage_discovery
               - entity: automation.b2500pkg_b05e2_voltage_discovery
+              - entity: automation.b2500pkg_b05_cd16_sensor_discovery
             title: B05_Discovery
             show_header_toggle: false
             visibility:
@@ -174,6 +178,7 @@ views:
               - entity: automation.b2500pkg_b06_voltage_discovery
               - entity: automation.b2500pkg_b06e1_voltage_discovery
               - entity: automation.b2500pkg_b06e2_voltage_discovery
+              - entity: automation.b2500pkg_b06_cd16_sensor_discovery
             title: B06_Discovery
             show_header_toggle: false
             visibility:
@@ -186,6 +191,7 @@ views:
               - entity: automation.b2500pkg_b07_voltage_discovery
               - entity: automation.b2500pkg_b07e1_voltage_discovery
               - entity: automation.b2500pkg_b07e2_voltage_discovery
+              - entity: automation.b2500pkg_b07_cd16_sensor_discovery
             title: B07_Discovery
             show_header_toggle: false
             visibility:
@@ -198,6 +204,7 @@ views:
               - entity: automation.b2500pkg_b08_voltage_discovery
               - entity: automation.b2500pkg_b08e1_voltage_discovery
               - entity: automation.b2500pkg_b08e2_voltage_discovery
+              - entity: automation.b2500pkg_b08_cd16_sensor_discovery
             title: B08_Discovery
             show_header_toggle: false
             visibility:
@@ -210,6 +217,7 @@ views:
               - entity: automation.b2500pkg_b09_voltage_discovery
               - entity: automation.b2500pkg_b09e1_voltage_discovery
               - entity: automation.b2500pkg_b09e2_voltage_discovery
+              - entity: automation.b2500pkg_b09_cd16_sensor_discovery
             title: B09_Discovery
             show_header_toggle: false
             visibility:
@@ -1099,196 +1107,524 @@ views:
         column_span: 2
   - type: sections
     max_columns: 4
-    title: Sensoren
+    title: Informationen
     path: sensoren
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Neuer Abschnitt
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_pt
-              - entity: sensor.b2500_02_pt
-              - entity: sensor.b2500_03_pt
-              - entity: sensor.b2500_04_pt
-              - entity: sensor.b2500_01_bc
-              - entity: sensor.b2500_02_bc
-              - entity: sensor.b2500_03_bc
-              - entity: sensor.b2500_04_bc
-              - entity: sensor.b2500_01_bs
-              - entity: sensor.b2500_02_bs
-              - entity: sensor.b2500_03_bs
-              - entity: sensor.b2500_04_bs
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_am
-              - entity: sensor.b2500_02_am
-              - entity: sensor.b2500_03_am
-              - entity: sensor.b2500_04_am
-              - entity: sensor.b2500_01_a0
-              - entity: sensor.b2500_02_a0
-              - entity: sensor.b2500_03_a0
-              - entity: sensor.b2500_04_a0
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_o1
-              - entity: sensor.b2500_02_o1
-              - entity: sensor.b2500_03_o1
-              - entity: sensor.b2500_04_o1
-              - entity: sensor.b2500_01_o2
-              - entity: sensor.b2500_02_o2
-              - entity: sensor.b2500_03_o2
-              - entity: sensor.b2500_04_o2
-              - entity: sensor.b2500_01_p1
-              - entity: sensor.b2500_02_p1
-              - entity: sensor.b2500_03_p1
-              - entity: sensor.b2500_04_p1
-              - entity: sensor.b2500_01_p2
-              - entity: sensor.b2500_02_p2
-              - entity: sensor.b2500_03_p2
-              - entity: sensor.b2500_04_p2
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_tl
-              - entity: sensor.b2500_02_tl
-              - entity: sensor.b2500_03_tl
-              - entity: sensor.b2500_04_tl
-              - entity: sensor.b2500_01_th
-              - entity: sensor.b2500_02_th
-              - entity: sensor.b2500_03_th
-              - entity: sensor.b2500_04_th
-              - entity: sensor.b2500_01_tc
-              - entity: sensor.b2500_02_tc
-              - entity: sensor.b2500_03_tc
-              - entity: sensor.b2500_04_tc
-              - entity: sensor.b2500_01_tf
-              - entity: sensor.b2500_02_tf
-              - entity: sensor.b2500_03_tf
-              - entity: sensor.b2500_04_tf
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_c0
-              - entity: sensor.b2500_02_c0
-              - entity: sensor.b2500_03_c0
-              - entity: sensor.b2500_04_c0
-              - entity: sensor.b2500_01_c1
-              - entity: sensor.b2500_02_c1
-              - entity: sensor.b2500_03_c1
-              - entity: sensor.b2500_04_c1
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_cd
-              - entity: sensor.b2500_02_cd
-              - entity: sensor.b2500_03_cd
-              - entity: sensor.b2500_04_cd
-              - entity: sensor.b2500_01_cj
-              - entity: sensor.b2500_02_cj
-              - entity: sensor.b2500_03_cj
-              - entity: sensor.b2500_04_cj
-              - entity: sensor.b2500_01_lv
-              - entity: sensor.b2500_02_lv
-              - entity: sensor.b2500_03_lv
-              - entity: sensor.b2500_04_lv
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_fc
-              - entity: sensor.b2500_02_fc
-              - entity: sensor.b2500_03_fc
-              - entity: sensor.b2500_04_fc
-              - entity: sensor.b2500_01_id
-              - entity: sensor.b2500_02_id
-              - entity: sensor.b2500_03_id
-              - entity: sensor.b2500_04_id
-              - entity: sensor.b2500_01_vv
-              - entity: sensor.b2500_02_vv
-              - entity: sensor.b2500_03_vv
-              - entity: sensor.b2500_04_vv
-              - entity: sensor.b2500_01_sv
-              - entity: sensor.b2500_02_sv
-              - entity: sensor.b2500_03_sv
-              - entity: sensor.b2500_04_sv
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_kn
-              - entity: sensor.b2500_02_kn
-              - entity: sensor.b2500_03_kn
-              - entity: sensor.b2500_04_kn
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_it
-              - entity: sensor.b2500_02_it
-              - entity: sensor.b2500_03_it
-              - entity: sensor.b2500_04_it
-              - entity: sensor.b2500_01_m0
-              - entity: sensor.b2500_02_m0
-              - entity: sensor.b2500_03_m0
-              - entity: sensor.b2500_04_m0
-              - entity: sensor.b2500_01_m1
-              - entity: sensor.b2500_02_m1
-              - entity: sensor.b2500_03_m1
-              - entity: sensor.b2500_04_m1
-              - entity: sensor.b2500_01_m2
-              - entity: sensor.b2500_02_m2
-              - entity: sensor.b2500_03_m2
-              - entity: sensor.b2500_04_m2
-              - entity: sensor.b2500_01_m3
-              - entity: sensor.b2500_02_m3
-              - entity: sensor.b2500_03_m3
-              - entity: sensor.b2500_04_m3
-              - entity: sensor.b2500_01_sg
-              - entity: sensor.b2500_02_sg
-              - entity: sensor.b2500_03_sg
-              - entity: sensor.b2500_04_sg
-              - entity: sensor.b2500_01_sp
-              - entity: sensor.b2500_02_sp
-              - entity: sensor.b2500_03_sp
-              - entity: sensor.b2500_04_sp
-              - entity: sensor.b2500_01_st
-              - entity: sensor.b2500_02_st
-              - entity: sensor.b2500_03_st
-              - entity: sensor.b2500_04_st
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: sensor.b2500_01_lmo
-              - entity: sensor.b2500_02_lmo
-              - entity: sensor.b2500_03_lmo
-              - entity: sensor.b2500_04_lmo
-              - entity: sensor.b2500_01_lmi
-              - entity: sensor.b2500_02_lmi
-              - entity: sensor.b2500_03_lmi
-              - entity: sensor.b2500_04_lmi
-              - entity: sensor.b2500_01_lmf
-              - entity: sensor.b2500_02_lmf
-              - entity: sensor.b2500_03_lmf
-              - entity: sensor.b2500_04_lmf
-            show_header_toggle: false
-          - type: entities
-            entities:
-              - entity: binary_sensor.b2500_01_l0_bit0
-              - entity: binary_sensor.b2500_01_l0_bit1
-              - entity: binary_sensor.b2500_01_l0_bit2
-              - entity: binary_sensor.b2500_01_l0_bit3
-              - entity: binary_sensor.b2500_02_l0_bit0
-              - entity: binary_sensor.b2500_02_l0_bit1
-              - entity: binary_sensor.b2500_02_l0_bit2
-              - entity: binary_sensor.b2500_02_l0_bit3
-              - entity: binary_sensor.b2500_03_l0_bit0
-              - entity: binary_sensor.b2500_03_l0_bit1
-              - entity: binary_sensor.b2500_03_l0_bit2
-              - entity: binary_sensor.b2500_03_l0_bit3
-              - entity: binary_sensor.b2500_04_l0_bit0
-              - entity: binary_sensor.b2500_04_l0_bit1
-              - entity: binary_sensor.b2500_04_l0_bit2
-              - entity: binary_sensor.b2500_04_l0_bit3
+            heading: Informationen
+            heading_style: title
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_vv
+                  - entity: sensor.b2500_01_sv
+                  - entity: sensor.b2500_01_id
+                  - entity: sensor.b2500_01_fc
+                  - entity: sensor.b2500_01_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_tl
+                  - entity: sensor.b2500_01_tl
+                  - entity: sensor.b2500_01_tc
+                  - entity: sensor.b2500_01_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_kn
+                  - entity: sensor.b2500_01_a0
+                  - entity: sensor.b2500_01_pt
+                  - entity: sensor.b2500_01_bc
+                  - entity: sensor.b2500_01_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_01_l0_bit1
+                  - entity: binary_sensor.b2500_01_l0_bit0
+                  - entity: binary_sensor.b2500_01_l0_bit2
+                  - entity: binary_sensor.b2500_01_l0_bit3
+                  - entity: sensor.b2500_01_p1
+                  - entity: sensor.b2500_01_p2
+                  - entity: sensor.b2500_01_o1
+                  - entity: sensor.b2500_01_o2
+                  - entity: sensor.b2500_01_cj
+                  - entity: sensor.b2500_01_lv
+                  - entity: sensor.b2500_01_lmi
+                  - entity: sensor.b2500_01_lmo
+                  - entity: sensor.b2500_01_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b01_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_vv
+                  - entity: sensor.b2500_02_sv
+                  - entity: sensor.b2500_02_id
+                  - entity: sensor.b2500_02_fc
+                  - entity: sensor.b2500_02_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_tl
+                  - entity: sensor.b2500_02_tl
+                  - entity: sensor.b2500_02_tc
+                  - entity: sensor.b2500_02_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_kn
+                  - entity: sensor.b2500_02_a0
+                  - entity: sensor.b2500_02_pt
+                  - entity: sensor.b2500_02_bc
+                  - entity: sensor.b2500_02_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_02_l0_bit1
+                  - entity: binary_sensor.b2500_02_l0_bit0
+                  - entity: binary_sensor.b2500_02_l0_bit2
+                  - entity: binary_sensor.b2500_02_l0_bit3
+                  - entity: sensor.b2500_02_p1
+                  - entity: sensor.b2500_02_p2
+                  - entity: sensor.b2500_02_o1
+                  - entity: sensor.b2500_02_o2
+                  - entity: sensor.b2500_02_cj
+                  - entity: sensor.b2500_02_lv
+                  - entity: sensor.b2500_02_lmi
+                  - entity: sensor.b2500_02_lmo
+                  - entity: sensor.b2500_02_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b02_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_vv
+                  - entity: sensor.b2500_03_sv
+                  - entity: sensor.b2500_03_id
+                  - entity: sensor.b2500_03_fc
+                  - entity: sensor.b2500_03_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_tl
+                  - entity: sensor.b2500_03_tl
+                  - entity: sensor.b2500_03_tc
+                  - entity: sensor.b2500_03_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_kn
+                  - entity: sensor.b2500_03_a0
+                  - entity: sensor.b2500_03_pt
+                  - entity: sensor.b2500_03_bc
+                  - entity: sensor.b2500_03_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_03_l0_bit1
+                  - entity: binary_sensor.b2500_03_l0_bit0
+                  - entity: binary_sensor.b2500_03_l0_bit2
+                  - entity: binary_sensor.b2500_03_l0_bit3
+                  - entity: sensor.b2500_03_p1
+                  - entity: sensor.b2500_03_p2
+                  - entity: sensor.b2500_03_o1
+                  - entity: sensor.b2500_03_o2
+                  - entity: sensor.b2500_03_cj
+                  - entity: sensor.b2500_03_lv
+                  - entity: sensor.b2500_03_lmi
+                  - entity: sensor.b2500_03_lmo
+                  - entity: sensor.b2500_03_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b03_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_vv
+                  - entity: sensor.b2500_04_sv
+                  - entity: sensor.b2500_04_id
+                  - entity: sensor.b2500_04_fc
+                  - entity: sensor.b2500_04_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_tl
+                  - entity: sensor.b2500_04_tl
+                  - entity: sensor.b2500_04_tc
+                  - entity: sensor.b2500_04_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_kn
+                  - entity: sensor.b2500_04_a0
+                  - entity: sensor.b2500_04_pt
+                  - entity: sensor.b2500_04_bc
+                  - entity: sensor.b2500_04_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_04_l0_bit1
+                  - entity: binary_sensor.b2500_04_l0_bit0
+                  - entity: binary_sensor.b2500_04_l0_bit2
+                  - entity: binary_sensor.b2500_04_l0_bit3
+                  - entity: sensor.b2500_04_p1
+                  - entity: sensor.b2500_04_p2
+                  - entity: sensor.b2500_04_o1
+                  - entity: sensor.b2500_04_o2
+                  - entity: sensor.b2500_04_cj
+                  - entity: sensor.b2500_04_lv
+                  - entity: sensor.b2500_04_lmi
+                  - entity: sensor.b2500_04_lmo
+                  - entity: sensor.b2500_04_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b04_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_vv
+                  - entity: sensor.b2500_05_sv
+                  - entity: sensor.b2500_05_id
+                  - entity: sensor.b2500_05_fc
+                  - entity: sensor.b2500_05_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_tl
+                  - entity: sensor.b2500_05_tl
+                  - entity: sensor.b2500_05_tc
+                  - entity: sensor.b2500_05_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_kn
+                  - entity: sensor.b2500_05_a0
+                  - entity: sensor.b2500_05_pt
+                  - entity: sensor.b2500_05_bc
+                  - entity: sensor.b2500_05_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_05_l0_bit1
+                  - entity: binary_sensor.b2500_05_l0_bit0
+                  - entity: binary_sensor.b2500_05_l0_bit2
+                  - entity: binary_sensor.b2500_05_l0_bit3
+                  - entity: sensor.b2500_05_p1
+                  - entity: sensor.b2500_05_p2
+                  - entity: sensor.b2500_05_o1
+                  - entity: sensor.b2500_05_o2
+                  - entity: sensor.b2500_05_cj
+                  - entity: sensor.b2500_05_lv
+                  - entity: sensor.b2500_05_lmi
+                  - entity: sensor.b2500_05_lmo
+                  - entity: sensor.b2500_05_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b05_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_vv
+                  - entity: sensor.b2500_06_sv
+                  - entity: sensor.b2500_06_id
+                  - entity: sensor.b2500_06_fc
+                  - entity: sensor.b2500_06_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_tl
+                  - entity: sensor.b2500_06_tl
+                  - entity: sensor.b2500_06_tc
+                  - entity: sensor.b2500_06_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_kn
+                  - entity: sensor.b2500_06_a0
+                  - entity: sensor.b2500_06_pt
+                  - entity: sensor.b2500_06_bc
+                  - entity: sensor.b2500_06_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_06_l0_bit1
+                  - entity: binary_sensor.b2500_06_l0_bit0
+                  - entity: binary_sensor.b2500_06_l0_bit2
+                  - entity: binary_sensor.b2500_06_l0_bit3
+                  - entity: sensor.b2500_06_p1
+                  - entity: sensor.b2500_06_p2
+                  - entity: sensor.b2500_06_o1
+                  - entity: sensor.b2500_06_o2
+                  - entity: sensor.b2500_06_cj
+                  - entity: sensor.b2500_06_lv
+                  - entity: sensor.b2500_06_lmi
+                  - entity: sensor.b2500_06_lmo
+                  - entity: sensor.b2500_06_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b06_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_vv
+                  - entity: sensor.b2500_07_sv
+                  - entity: sensor.b2500_07_id
+                  - entity: sensor.b2500_07_fc
+                  - entity: sensor.b2500_07_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_tl
+                  - entity: sensor.b2500_07_tl
+                  - entity: sensor.b2500_07_tc
+                  - entity: sensor.b2500_07_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_kn
+                  - entity: sensor.b2500_07_a0
+                  - entity: sensor.b2500_07_pt
+                  - entity: sensor.b2500_07_bc
+                  - entity: sensor.b2500_07_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_07_l0_bit1
+                  - entity: binary_sensor.b2500_07_l0_bit0
+                  - entity: binary_sensor.b2500_07_l0_bit2
+                  - entity: binary_sensor.b2500_07_l0_bit3
+                  - entity: sensor.b2500_07_p1
+                  - entity: sensor.b2500_07_p2
+                  - entity: sensor.b2500_07_o1
+                  - entity: sensor.b2500_07_o2
+                  - entity: sensor.b2500_07_cj
+                  - entity: sensor.b2500_07_lv
+                  - entity: sensor.b2500_07_lmi
+                  - entity: sensor.b2500_07_lmo
+                  - entity: sensor.b2500_07_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b07_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_vv
+                  - entity: sensor.b2500_08_sv
+                  - entity: sensor.b2500_08_id
+                  - entity: sensor.b2500_08_fc
+                  - entity: sensor.b2500_08_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_tl
+                  - entity: sensor.b2500_08_tl
+                  - entity: sensor.b2500_08_tc
+                  - entity: sensor.b2500_08_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_kn
+                  - entity: sensor.b2500_08_a0
+                  - entity: sensor.b2500_08_pt
+                  - entity: sensor.b2500_08_bc
+                  - entity: sensor.b2500_08_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_08_l0_bit1
+                  - entity: binary_sensor.b2500_08_l0_bit0
+                  - entity: binary_sensor.b2500_08_l0_bit2
+                  - entity: binary_sensor.b2500_08_l0_bit3
+                  - entity: sensor.b2500_08_p1
+                  - entity: sensor.b2500_08_p2
+                  - entity: sensor.b2500_08_o1
+                  - entity: sensor.b2500_08_o2
+                  - entity: sensor.b2500_08_cj
+                  - entity: sensor.b2500_08_lv
+                  - entity: sensor.b2500_08_lmi
+                  - entity: sensor.b2500_08_lmo
+                  - entity: sensor.b2500_08_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b08_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_vv
+                  - entity: sensor.b2500_09_sv
+                  - entity: sensor.b2500_09_id
+                  - entity: sensor.b2500_09_fc
+                  - entity: sensor.b2500_09_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_tl
+                  - entity: sensor.b2500_09_tl
+                  - entity: sensor.b2500_09_tc
+                  - entity: sensor.b2500_09_tf
+                title: Temperatur
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_kn
+                  - entity: sensor.b2500_09_a0
+                  - entity: sensor.b2500_09_pt
+                  - entity: sensor.b2500_09_bc
+                  - entity: sensor.b2500_09_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_09_l0_bit1
+                  - entity: binary_sensor.b2500_09_l0_bit0
+                  - entity: binary_sensor.b2500_09_l0_bit2
+                  - entity: binary_sensor.b2500_09_l0_bit3
+                  - entity: sensor.b2500_09_p1
+                  - entity: sensor.b2500_09_p2
+                  - entity: sensor.b2500_09_o1
+                  - entity: sensor.b2500_09_o2
+                  - entity: sensor.b2500_09_cj
+                  - entity: sensor.b2500_09_lv
+                  - entity: sensor.b2500_09_lmi
+                  - entity: sensor.b2500_09_lmo
+                  - entity: sensor.b2500_09_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b09_mac
+                state_not: '0'
         column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Neuer Abschnitt
+    cards: []
   - type: sections
     max_columns: 4
     title: Leistung
@@ -1805,6 +2141,56 @@ views:
             entities: []
             columns: 2
             title: Smartmeter infos (Entitäten fehlen noch !)
+      - type: grid
+        cards:
+          - type: heading
+            heading: Neuer Abschnitt
+          - type: entities
+            entities:
+              - entity: sensor.b2500_01_c0
+              - entity: sensor.b2500_02_c0
+              - entity: sensor.b2500_03_c0
+              - entity: sensor.b2500_04_c0
+              - entity: sensor.b2500_01_c1
+              - entity: sensor.b2500_02_c1
+              - entity: sensor.b2500_03_c1
+              - entity: sensor.b2500_04_c1
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b2500_01_it
+              - entity: sensor.b2500_02_it
+              - entity: sensor.b2500_03_it
+              - entity: sensor.b2500_04_it
+              - entity: sensor.b2500_01_m0
+              - entity: sensor.b2500_02_m0
+              - entity: sensor.b2500_03_m0
+              - entity: sensor.b2500_04_m0
+              - entity: sensor.b2500_01_m1
+              - entity: sensor.b2500_02_m1
+              - entity: sensor.b2500_03_m1
+              - entity: sensor.b2500_04_m1
+              - entity: sensor.b2500_01_m2
+              - entity: sensor.b2500_02_m2
+              - entity: sensor.b2500_03_m2
+              - entity: sensor.b2500_04_m2
+              - entity: sensor.b2500_01_m3
+              - entity: sensor.b2500_02_m3
+              - entity: sensor.b2500_03_m3
+              - entity: sensor.b2500_04_m3
+              - entity: sensor.b2500_01_sg
+              - entity: sensor.b2500_02_sg
+              - entity: sensor.b2500_03_sg
+              - entity: sensor.b2500_04_sg
+              - entity: sensor.b2500_01_sp
+              - entity: sensor.b2500_02_sp
+              - entity: sensor.b2500_03_sp
+              - entity: sensor.b2500_04_sp
+              - entity: sensor.b2500_01_st
+              - entity: sensor.b2500_02_st
+              - entity: sensor.b2500_03_st
+              - entity: sensor.b2500_04_st
+            show_header_toggle: false
   - type: sections
     max_columns: 4
     title: Überschusseinspeisung
@@ -1955,7 +2341,7 @@ views:
                 cards:
                   - type: entities
                     entities:
-                      - entity: sensor.b2500_cd1601_m1
+                      - entity: sensor.b2500_01_cd16m1
                         name: PV1
                       - entity: sensor.b2500_01_cd16c1
                         name: PV1
@@ -1964,7 +2350,7 @@ views:
                     show_header_toggle: false
                   - type: entities
                     entities:
-                      - entity: sensor.b2500_cd1601_m2
+                      - entity: sensor.b2500_01_cd16m2
                         name: ' PV2'
                       - entity: sensor.b2500_01_cd16c2
                         name: ' PV2'
