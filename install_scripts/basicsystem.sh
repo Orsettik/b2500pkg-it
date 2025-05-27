@@ -16,6 +16,14 @@ rm -f /config/packages/b2500pkg/automations/b08_sensor_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b09_sensor_discovery.yaml
 
 rm -f /config/packages/b2500pkg/automations/b01_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b02_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b03_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b04_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b05_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b06_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b07_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b08_cd16_sensor_discovery.yaml
+rm -f /config/packages/b2500pkg/automations/b09_cd16_sensor_discovery.yaml
 
 rm -f /config/packages/b2500pkg/automations/b01_voltage_discovery.yaml
 rm -f /config/packages/b2500pkg/automations/b02_voltage_discovery.yaml
@@ -79,6 +87,14 @@ wget -q -O /config/packages/b2500pkg/automations/b08_sensor_discovery.yaml https
 wget -q -O /config/packages/b2500pkg/automations/b09_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b09_sensor_discovery.yaml
 
 wget -q -O /config/packages/b2500pkg/automations/b01_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b01_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b02_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b02_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b03_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b03_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b04_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b04_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b05_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b05_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b06_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b06_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b07_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b07_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b08_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b08_cd16_sensor_discovery.yaml
+wget -q -O /config/packages/b2500pkg/automations/b09_cd16_sensor_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b09_cd16_sensor_discovery.yaml
 
 wget -q -O /config/packages/b2500pkg/automations/b01_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b01_voltage_discovery.yaml
 wget -q -O /config/packages/b2500pkg/automations/b02_voltage_discovery.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/b02_voltage_discovery.yaml
