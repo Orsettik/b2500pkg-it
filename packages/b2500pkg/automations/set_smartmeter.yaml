@@ -170,5 +170,17 @@ automation:
         retain: false
         topic: "{{ b2500_topic }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl"
         payload: cd=01
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 3
+    - action: mqtt.publish
+      metadata: {}
+      data:
+        evaluate_payload: false
+        qos: 0
+        retain: false
+        topic: "{{ b2500_topic }}/{{ b2500_typ }}/App/{{ b2500_mac }}/ctrl"
+        payload: cd=10
   mode: queued
   max: 10
