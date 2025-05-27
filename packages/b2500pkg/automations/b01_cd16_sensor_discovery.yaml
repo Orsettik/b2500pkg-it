@@ -191,7 +191,7 @@ automation:
                 "name": "B01 Akku Current",
                 "state_topic": "B2500PKG/B2500_01/CD16",
                 "unit_of_measurement": "A",
-                "value_template": "{{ value.split('bc=')[1].split(',')[0] }}",
+                "value_template": "{{ (value.split('bc=')[1].split(',')[0] | float) / 1000 }}",
                 "unique_id": "sensor.b2500_01_cd16bc",
                 "object_id": "b2500_01_cd16bc",
                 "entity_category": "diagnostic"
