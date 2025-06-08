@@ -50,7 +50,6 @@ input_text:
   zeropower_measure:
     name: Entität des Leistungsmessers
     initial: sensor.mein_powermeter_sensor
-    icon: mdi:gauge
 
   zeropower_status:
     name: Zeropower Statusanzeige
