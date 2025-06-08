@@ -1,0 +1,240 @@
+input_number:
+  zeropower_tracker:
+    name: Tracker für Nulleinspeisung  
+    min: 0
+    max: 800
+
+  zeropower_extra_blocks:
+    name: Zusätzliche Blöcke für erweiterte Nulleinspeisung  
+    min: 0
+    max: 80
+
+input_boolean:
+  zeropower_use_b01:
+    name: B01 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b02:
+    name: B02 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b03:
+    name: B03 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b04:
+    name: B04 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b05:
+    name: B05 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b06:
+    name: B06 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b07:
+    name: B07 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b08:
+    name: B08 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b09:
+    name: B09 verwenden
+    icon: mdi:battery
+
+input_text:
+  zeropower_measure:
+    name: Entität des Leistungsmessers
+    initial: sensor.mein_powermeter_sensor
+    icon: mdi:gauge
+
+  zeropower_status:
+    name: Zeropower Statusanzeige
+    initial: B2500PKG_Zeropower
+
+template:
+  - sensor:
+      - name: "zeropower_measure_load"
+        state: >
+          {{ states(states('input_text.zeropower_measure')) | float(0) | int }}
+          
+          
+
+
+automation:
+  alias: B2500PKG_Zeropower
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.zeropower_measure_load
+      trigger: state
+      enabled: true
+  conditions:
+    - alias: 5 Sekunden minimale Pause zwischen 2 Aufrufen
+      condition: template
+      value_template: >
+        {% set last = state_attr('automation.b2500pkg_zeropower',
+        'last_triggered') %} {{ last is not none and (now() -
+        last).total_seconds() > 5 }}
+  actions:
+    - variables:
+        useable_batteries: |
+          {% set ns = namespace(result=[]) %} {% for i in range(1,10) %}
+            {% set id_str = '{:02d}'.format(i) %}
+            {% set enabled = is_state('input_boolean.zeropower_use_b' ~ id_str, 'on') %}
+            {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) %}
+            {% set dod = states('sensor.b2500_' ~ id_str ~ '_do') | float(0) %}
+            {% if enabled and soc > (100 - dod) %}
+              {% set ns.result = ns.result + [{'id': i, 'soc': soc, 'dod': dod}] %}
+            {% endif %}
+          {% endfor %} {{ ns.result | sort(attribute='soc', reverse=true) }}
+        load_new: >
+          {{ (states('input_number.zeropower_tracker') | int(0)) +
+          (states('sensor.zeropower_measure_load') | int(0)) + 6 }}
+        master_battery_id: >
+          {% set sorted_batteries = useable_batteries %} {% set first_battery =
+          sorted_batteries[0] if sorted_batteries|length > 0 else None %} {{
+          first_battery.id if first_battery else '' }}
+        available_extra_batteries: "{{ useable_batteries | length - 1 }}"
+        block_size: 80
+    - alias: Nachregelung Nulleinspeisung
+      if:
+        - condition: or
+          conditions:
+            - condition: numeric_state
+              entity_id: sensor.zeropower_measure_load
+              above: 0
+            - condition: numeric_state
+              entity_id: sensor.zeropower_measure_load
+              below: -15
+          enabled: true
+          alias: Prüfe ob aktueller Verbrauch ausserhalb Hysterese liegt
+      then:
+        - sequence:
+            - variables:
+                topic: >
+                  {% set i = master_battery_id %} {{ states('input_text.b0' ~
+                  i|string ~ '_topic') }}/{{ states('input_text.b0' ~ i|string ~
+                  '_typ') }}/App/{{ states('input_text.b0' ~ i|string ~ '_mac')
+                  }}/ctrl 
+                current_power_setting: >
+                  {% set i = master_battery_id %} {{ states('sensor.b2500_0' ~
+                  i|string ~ '_h1') | float(0) }} 
+                new_power_setting: "{{ [30, [load_new | float, 800] | min] | max | int }}"
+            - alias: Sende MQTT nur wenn neuer Wert verschieden ist
+              if:
+                - condition: template
+                  value_template: "{{ new_power_setting != current_power_setting }}"
+              then:
+                - data:
+                    topic: "{{ topic }}"
+                    payload: |
+                      cd=20,md=0,a1=1,b1=0:0,e1=24:0,v1={{ new_power_setting }}
+                  action: mqtt.publish
+                - target:
+                    entity_id: input_number.zeropower_tracker
+                  data:
+                    value: "{{ new_power_setting }}"
+                  action: input_number.set_value
+    - alias: Zu oder Abschaltung von 80 Watt Blöcken der restlichen Speicher
+      choose:
+        - conditions:
+            - condition: numeric_state
+              entity_id: input_number.zeropower_tracker
+              above: 300
+          sequence:
+            - variables:
+                needed_blocks: >
+                  {{ ([0, (states('input_number.zeropower_extra_blocks') | float +
+                  1), 80] | sort)[1] }}
+        - conditions:
+            - condition: numeric_state
+              entity_id: input_number.zeropower_tracker
+              below: 85
+          sequence:
+            - variables:
+                needed_blocks: >
+                  {{ ([0, (states('input_number.zeropower_extra_blocks') | float -
+                  1), 80] | sort)[1] }}
+      enabled: true
+      default:
+        - variables:
+            needed_blocks: >
+              {{ ([0, (states('input_number.zeropower_extra_blocks') | float ),
+              80] | sort)[1] }}
+    - if:
+        - alias: Blockverteilung starten wenn needed_blocks geändert wurde
+          condition: template
+          value_template: >
+            {{ needed_blocks != (states('input_number.zeropower_extra_blocks') |
+            float) }}
+      then:
+        - alias: Blockverteilung starten
+          sequence:
+            - variables:
+                remaining_blocks: "{{ needed_blocks | int }}"
+                remaining_batteries: "{{ available_extra_batteries | int }}"
+            - repeat:
+                count: "{{ available_extra_batteries }}"
+                sequence:
+                  - variables:
+                      current_extra_index: "{{ repeat.index }}"
+                      current_extra_id: "{{ useable_batteries[current_extra_index]['id'] }}"
+                      blocks_for_current_extra: |-
+                        {% if remaining_batteries > 0 %}
+                          {{ [((remaining_blocks / remaining_batteries) | round(0, 'ceil')), 10] | min }}
+                        {% else %}
+                          0
+                        {% endif %}
+                      current_topic: >
+                        {{ states('input_text.b0' ~ current_extra_id|string ~
+                        '_topic') }}/{{ states('input_text.b0' ~
+                        current_extra_id|string ~ '_typ') }}/App/{{
+                        states('input_text.b0' ~ current_extra_id|string ~ '_mac')
+                        }}/ctrl
+                      current_payload: >
+                        cd=20,md=0,a1=1,b1=0:0,e1=24:00,v1={{ [30,
+                        (blocks_for_current_extra | float * block_size | float)] |
+                        max | int }}
+                  - action: notify.persistent_notification
+                    metadata: {}
+                    data:
+                      message: |-
+                        useable: {{ useable_batteries }}
+                        needed: {{ needed_blocks }}
+                        available_extra_batteries: {{ available_extra_batteries }}
+                        remaining_blocks: {{ remaining_blocks }}
+                        remaining_batteries: {{ remaining_batteries }}
+                        current_extra_index: {{ current_extra_index}}
+                        current_extra_id: {{ current_extra_id }}
+                        blocks_for_current_extra: {{ blocks_for_current_extra }}
+                        current_topic: {{ current_topic }}
+                        payload: {{ current_payload }}
+                      title: B2500PKG_Load_Redistribution
+                      data:
+                        notification_id: zeropower_redistribute_{{ current_extra_id }}
+                    enabled: false
+                  - data:
+                      topic: "{{ current_topic }}"
+                      payload: "{{ current_payload }}"
+                    action: mqtt.publish
+                  - delay:
+                      hours: 0
+                      minutes: 0
+                      seconds: 0
+                      milliseconds: 200
+                    enabled: true
+                  - variables:
+                      remaining_blocks: "{{ remaining_blocks - blocks_for_current_extra }}"
+                      remaining_batteries: "{{ remaining_batteries - 1 }}"
+              enabled: true
+            - target:
+                entity_id: input_number.zeropower_extra_blocks
+              data:
+                value: "{{ needed_blocks }}"
+              action: input_number.set_value
+  mode: single
