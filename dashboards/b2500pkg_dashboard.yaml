@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-06-04
+            heading: 'B2500 Package 2025-06-08 (neu: Zeropower Nulleinspeisung)'
             grid_options:
               columns: 12
               rows: 1
@@ -2937,3 +2937,126 @@ views:
     type: masonry
     sections: []
     title: Leistung B01
+  - type: sections
+    max_columns: 4
+    title: ZeroPower Nulleinspeisung
+    path: zeropower-nulleinspeisung
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: 'Powermeter Entität auswählen '
+            badges: []
+          - type: gauge
+            entity: sensor.zeropower_measure_load
+            min: -80
+            max: 80
+            needle: true
+            severity:
+              green: -15
+              yellow: -80
+              red: 0
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_zeropower
+            show_header_toggle: false
+            title: Nulleinspeisung
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b01
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b01_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b02
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b02_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b03
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b03_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b04
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b04_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b05
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b05_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b06
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b06_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b07
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b07_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b08
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b08_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_boolean.zeropower_use_b09
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b09_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_text.zeropower_measure
+            show_header_toggle: false
+        column_span: 2
+      - type: grid
+        cards:
+          - type: heading
+            heading: Statistiken
+            heading_style: title
+          - graph: line
+            type: sensor
+            entity: input_number.zeropower_tracker
+            detail: 1
+            grid_options:
+              columns: 12
+              rows: 2
+          - graph: none
+            type: sensor
+            detail: 1
+            entity: input_number.zeropower_extra_blocks
+            limits: {}
+            unit: Blocks
+            grid_options:
+              columns: 12
+              rows: 2
