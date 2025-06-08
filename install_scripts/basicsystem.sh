@@ -63,6 +63,7 @@ rm -f /config/packages/b2500pkg/automations/set_smartmeter.yaml
 rm -f /config/packages/b2500pkg/automations/set_surplus.yaml
 rm -f /config/packages/b2500pkg/automations/mqtt_publish.yaml
 rm -f /config/packages/b2500pkg/automations/test_config.yaml
+rm -f /config/packages/b2500pkg/automations/zeropower.yaml
 
 rm -f /config/packages/b2500pkg/b2500pkg_input.yaml
 rm -f /config/b2500pkg_templates.yaml
@@ -135,6 +136,7 @@ wget -q -O /config/packages/b2500pkg/automations/set_surplus.yaml https://raw.gi
 wget -q -O /config/packages/b2500pkg/automations/mqtt_publish.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/mqtt_publish.yaml
 
 wget -q -O /config/packages/b2500pkg/automations/test_config.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/test_config.yaml
+wget -q -O /config/packages/b2500pkg/automations/zeropower.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/automations/zeropower.yaml
 
 wget -q -O /config/packages/b2500pkg/b2500pkg_input.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/b2500pkg_input.yaml
 wget -q -O /config/packages/b2500pkg/b2500pkg_templates.yaml https://raw.githubusercontent.com/Martin0475/b2500pkg/main/packages/b2500pkg/b2500pkg_templates.yaml
