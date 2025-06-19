@@ -1,16 +1,16 @@
 input_button:
-  b2500_reset:
-    name: Sende Reset Befehl
+  b2500_restart:
+    name: Sende Restart Befehl
 
 automation:
-  alias: B2500PKG Send Reset
+  alias: B2500PKG Send Restart
   description: |+
   
 
   triggers:
     - trigger: state
       entity_id:
-        - input_button.b2500_reset
+        - input_button.b2500_restart
 
   conditions: []
 
