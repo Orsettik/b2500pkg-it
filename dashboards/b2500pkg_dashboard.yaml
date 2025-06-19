@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: 'B2500 Package 2025-06-19 (neu: Restart Befehl senden)'
+            heading: 'B2500 Package 2025-06-19 (neu: Neue Regelung für Nulleinspeisung)'
             grid_options:
               columns: 12
               rows: 1
@@ -2949,34 +2949,34 @@ views:
             heading_style: title
           - type: markdown
             content: >
-              Leistung Master: {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).mp |
-                  float(0) | int }}
+              **Leistung Master:** {{ (states('input_text.zeropower_variables')
+              | from_json | default({})).mp |
+                  float(0) | int }} Watt
                   
-              e1p_lastrun: {{ (states('input_text.zeropower_variables') |
+              **Extra_1:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e1p
-                  | float(0) | int }}
-              e2p_lastrun: {{ (states('input_text.zeropower_variables') |
+                  | float(0) | int }} Watt
+              **Extra_2:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e2p
-                  | float(0) | int }}
-              e3p_lastrun: {{ (states('input_text.zeropower_variables') |
+                  | float(0) | int }} Watt
+              **Extra_3:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e3p
-                  | float(0) | int }}
-              e4p_lastrun: {{ (states('input_text.zeropower_variables') |
+                  | float(0) | int }} Watt
+              **Extra_4:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e4p
-                  | float(0) | int }}
-              e5p_lastrun: {{ (states('input_text.zeropower_variables') |
+                  | float(0) | int }} Watt
+              **Extra_5:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e5p
-                  | float(0) | int }}
-              e6p_lastrun: {{ (states('input_text.zeropower_variables') |
+                  | float(0) | int }} Watt
+              **Extra_6:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e6p
-                  | float(0) | int }}
-              e7p_lastrun: {{ (states('input_text.zeropower_variables') |
+                  | float(0) | int }} Watt
+              **Extra_7:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e7p
-                  | float(0) | int }}
-              e8p_lastrun: {{ (states('input_text.zeropower_variables') |
+                  | float(0) | int }} Watt
+              **Extra_8:** {{ (states('input_text.zeropower_variables') |
               from_json | default({})).e8p
-                  | float(0) | int }}
+                  | float(0) | int }} Watt
       - type: grid
         cards:
           - type: heading
@@ -3136,20 +3136,20 @@ views:
         column_span: 2
   - type: sections
     max_columns: 4
-    title: Restart
-    path: restart
+    title: Reset
+    path: reset
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Sende Restart Befehl an ausgewählten Speicher
+            heading: Sende Reset Befehl an ausgewählten Speicher
             heading_style: title
           - type: entities
             entities:
               - entity: input_select.speicherauswahl
-              - entity: input_button.b2500_restart
-              - entity: automation.b2500pkg_send_restart
+              - entity: input_button.b2500_reset
+              - entity: automation.b2500pkg_send_reset
                 secondary_info: none
                 icon: mdi:restart
-                name: Restart Funktion aus/einschalten
+                name: Reset Funktion aus/einschalten
             show_header_toggle: false
