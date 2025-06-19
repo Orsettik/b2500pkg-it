@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: 'B2500 Package 2025-06-08 (neu: Zeropower Nulleinspeisung)'
+            heading: 'B2500 Package 2025-06-19 (neu: Reset Befehl senden)'
             grid_options:
               columns: 12
               rows: 1
@@ -2945,6 +2945,41 @@ views:
       - type: grid
         cards:
           - type: heading
+            heading: Statistiken
+            heading_style: title
+          - type: markdown
+            content: >
+              Leistung Master: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).mp |
+                  float(0) | int }}
+                  
+              e1p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e1p
+                  | float(0) | int }}
+              e2p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e2p
+                  | float(0) | int }}
+              e3p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e3p
+                  | float(0) | int }}
+              e4p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e4p
+                  | float(0) | int }}
+              e5p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e5p
+                  | float(0) | int }}
+              e6p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e6p
+                  | float(0) | int }}
+              e7p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e7p
+                  | float(0) | int }}
+              e8p_lastrun: {{ (states('input_text.zeropower_variables') |
+              from_json | default({})).e8p
+                  | float(0) | int }}
+      - type: grid
+        cards:
+          - type: heading
             heading_style: title
             heading: 'Powermeter Entität auswählen '
             badges: []
@@ -3038,25 +3073,83 @@ views:
             entities:
               - entity: input_text.zeropower_measure
             show_header_toggle: false
+          - square: true
+            type: grid
+            cards:
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b01
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b02
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b03
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b04
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b05
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b06
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b07
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b08
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_boolean.zeropower_use_b09
+                show_state: true
+              - show_name: true
+                show_icon: false
+                type: button
+                entity: input_select.speicherauswahl
+                show_state: true
+                tap_action:
+                  action: perform-action
+                  perform_action: input_select.select_next
+                  target:
+                    entity_id: input_select.speicherauswahl
+                  data:
+                    cycle: true
         column_span: 2
+  - type: sections
+    max_columns: 4
+    title: Reset
+    path: reset
+    sections:
       - type: grid
         cards:
           - type: heading
-            heading: Statistiken
+            heading: Sende Reset Befehl an ausgewählten Speicher
             heading_style: title
-          - graph: line
-            type: sensor
-            entity: input_number.zeropower_tracker
-            detail: 1
-            grid_options:
-              columns: 12
-              rows: 2
-          - graph: none
-            type: sensor
-            detail: 1
-            entity: input_number.zeropower_extra_blocks
-            limits: {}
-            unit: Blocks
-            grid_options:
-              columns: 12
-              rows: 2
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_button.b2500_reset
+              - entity: automation.b2500pkg_send_reset
+                secondary_info: none
+                icon: mdi:restart
+                name: Reset Funktion aus/einschalten
+            show_header_toggle: false
