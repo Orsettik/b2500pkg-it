@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: 'B2500 Package 2025-06-19 (neu: Reset Befehl senden)'
+            heading: 'B2500 Package 2025-06-19 (neu: Restart Befehl senden)'
             grid_options:
               columns: 12
               rows: 1
@@ -3136,20 +3136,20 @@ views:
         column_span: 2
   - type: sections
     max_columns: 4
-    title: Reset
-    path: reset
+    title: Restart
+    path: restart
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Sende Reset Befehl an ausgewählten Speicher
+            heading: Sende Restart Befehl an ausgewählten Speicher
             heading_style: title
           - type: entities
             entities:
               - entity: input_select.speicherauswahl
-              - entity: input_button.b2500_reset
-              - entity: automation.b2500pkg_send_reset
+              - entity: input_button.b2500_restart
+              - entity: automation.b2500pkg_send_restart
                 secondary_info: none
                 icon: mdi:restart
-                name: Reset Funktion aus/einschalten
+                name: Restart Funktion aus/einschalten
             show_header_toggle: false
