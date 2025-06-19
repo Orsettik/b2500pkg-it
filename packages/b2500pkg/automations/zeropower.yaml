@@ -42,18 +42,7 @@ input_text:
 
   zeropower_variables:
     name: Zeropower Variables
-    initial: >
-      {
-        "mp": 0,
-        "e1p": 0,
-        "e2p": 0,
-        "e3p": 0,
-        "e4p": 0,
-        "e5p": 0,
-        "e6p": 0,
-        "e7p": 0,
-        "e8p": 0
-      }
+    initial: '{"mp":0,"e1p":0,"e2p":0,"e3p":0,"e4p":0,"e5p":0,"e6p":0,"e7p":0,"e8p":0}'
 
 
 template:
