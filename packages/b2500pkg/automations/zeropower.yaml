@@ -42,6 +42,7 @@ input_text:
 
   zeropower_variables:
     name: Zeropower Variables
+    max: 255
     initial: '{"mp":0,"e1p":0,"e2p":0,"e3p":0,"e4p":0,"e5p":0,"e6p":0,"e7p":0,"e8p":0}'
 
 
@@ -53,31 +54,23 @@ template:
           
           
 
-
 automation:
   alias: B2500PKG_Zeropower
+  id: b2500pkg_zeropower
   description: ""
   triggers:
-    - entity_id:
+    - trigger: state
+      entity_id:
         - sensor.zeropower_measure_load
-      trigger: state
-      enabled: true
   conditions:
-    - alias: 5 Sekunden minimale Pause zwischen 2 Aufrufen
-      condition: template
-      value_template: >
-        {% set last = state_attr('automation.b2500pkg_zeropower',
-        'last_triggered') %} {{ last is not none and (now() -
-        last).total_seconds() > 5 }}
-      enabled: true
     - condition: or
       conditions:
         - condition: numeric_state
           entity_id: sensor.zeropower_measure_load
-          below: -15
+          above: 0
         - condition: numeric_state
           entity_id: sensor.zeropower_measure_load
-          above: 0
+          below: -15
   actions:
     - variables:
         variables_lastrun: >
@@ -117,7 +110,7 @@ automation:
     - variables:
         curr_diff: "{{ (states('sensor.zeropower_measure_load') | float(0) | int) + 2 }}"
         p_master_candidate: "{{ mp_lastrun + curr_diff }}"
-        redistribution_needed: "{{ p_master_candidate < 20 or p_master_candidate > 350 }}"
+        redistribution_needed: "{{ p_master_candidate < 100 or p_master_candidate > 500 }}"
     - choose:
         - conditions:
             - condition: template
@@ -129,7 +122,7 @@ automation:
                   i|string ~ '_topic') }}/{{ states('input_text.b0' ~ i|string ~
                   '_typ') }}/App/{{ states('input_text.b0' ~ i|string ~ '_mac')
                   }}/ctrl 
-                new_power_master: "{{ [400, [15, p_master_candidate] | max ] | min }}"
+                new_power_master: "{{ [800, [80, p_master_candidate] | max ] | min }}"
                 e1p: "{{ e1p_lastrun }}"
                 e2p: "{{ e2p_lastrun }}"
                 e3p: "{{ e3p_lastrun }}"
@@ -155,47 +148,46 @@ automation:
                   chosen_batteries > 0 else 80 }}
             - variables:
                 new_power_master: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 15 ] | max if
-                  enabled_batteries > 0 else 15 }}
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
+                  enabled_batteries > 0 else 80 }}
             - variables:
                 e1p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 1 else 0 }}
                 e2p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 2 else 0 }}
                 e3p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 3 else 0 }}
                 e4p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 4 else 0 }}
                 e5p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 5 else 0 }}
                 e6p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 6 else 0 }}
                 e7p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 7 else 0 }}
                 e8p: >-
-                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  {{ [ [chosen_power_per_battery, 800] | min, 80 ] | max if
                   chosen_batteries > 8 else 0 }}
           alias: Neuverteilung
     - target:
         entity_id: input_text.zeropower_variables
       data:
         value: |
-          {{
-            {
-              "mp": new_power_master,
-              "e1p": e1p, "e2p": e2p, "e3p": e3p, "e4p": e4p,
-              "e5p": e5p, "e6p": e6p, "e7p": e7p, "e8p": e8p
-            } | tojson
-          }}
+          {{ {
+            "mp": new_power_master,
+            "e1p": e1p, "e2p": e2p, "e3p": e3p,
+            "e4p": e4p, "e5p": e5p, "e6p": e6p,
+            "e7p": e7p, "e8p": e8p
+          } | tojson }}
       action: input_text.set_value
-    - alias: Setze Leistrung von Master
+    - alias: Setze Leistung von Master
       sequence:
         - variables:
             current_power_master: >
@@ -250,6 +242,7 @@ automation:
                   current_power_extra: >
                     {% set i = current_extra_id %} {{ states('sensor.b2500_0' ~
                     i|string ~ '_h1') | float(0) }} 
+                enabled: true
               - alias: Sende MQTT nur wenn nötig
                 if:
                   - condition: template
@@ -264,8 +257,9 @@ automation:
                         current_extra_id|string ~ '_typ') }}/App/{{
                         states('input_text.b0' ~ current_extra_id|string ~ '_mac')
                         }}/ctrl
-                      current_payload: |
-                        cd=20,md=0,a1=1,b1=0:0,e1=24:00,v1={{ current_v1 }}
+                      current_payload: >
+                        cd=20,md=0,a1=1,b1=0:0,e1=24:00,v1={{ [current_v1, 80] |
+                        max }}
                   - data:
                       topic: "{{ current_topic }}"
                       payload: "{{ current_payload }}"
@@ -273,4 +267,9 @@ automation:
                     action: mqtt.publish
                     alias: Sende MQTT an aktuelle Batterie
           enabled: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0
   mode: single
