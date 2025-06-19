@@ -1,0 +1,287 @@
+input_boolean:
+  zeropower_use_b01:
+    name: B01 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b02:
+    name: B02 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b03:
+    name: B03 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b04:
+    name: B04 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b05:
+    name: B05 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b06:
+    name: B06 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b07:
+    name: B07 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b08:
+    name: B08 verwenden
+    icon: mdi:battery
+
+  zeropower_use_b09:
+    name: B09 verwenden
+    icon: mdi:battery
+
+input_text:
+  zeropower_measure:
+    name: Entität des Leistungsmessers
+    initial: sensor.mein_powermeter_sensor
+
+  zeropower_variables:
+    name: Zeropower Variables
+    initial: >
+      {
+        "mp": 0,
+        "e1p": 0,
+        "e2p": 0,
+        "e3p": 0,
+        "e4p": 0,
+        "e5p": 0,
+        "e6p": 0,
+        "e7p": 0,
+        "e8p": 0
+      }
+
+
+template:
+  - sensor:
+      - name: "zeropower_measure_load"
+        state: >
+          {{ states(states('input_text.zeropower_measure')) | float(0) | int }}
+          
+          
+
+
+automation:
+  alias: B2500PKG_Zeropower
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.zeropower_measure_load
+      trigger: state
+      enabled: true
+  conditions:
+    - alias: 5 Sekunden minimale Pause zwischen 2 Aufrufen
+      condition: template
+      value_template: >
+        {% set last = state_attr('automation.b2500pkg_zeropower',
+        'last_triggered') %} {{ last is not none and (now() -
+        last).total_seconds() > 5 }}
+      enabled: true
+    - condition: or
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.zeropower_measure_load
+          below: -15
+        - condition: numeric_state
+          entity_id: sensor.zeropower_measure_load
+          above: 0
+  actions:
+    - variables:
+        variables_lastrun: >
+          {% set txt = states('input_text.zeropower_variables') %} {{ txt if
+          txt|length > 0 and txt | from_json else {"mp": 0, "e1p": 0, "e2p": 0,
+          "e3p": 0, "e4p": 0, "e5p": 0, "e6p": 0, "e7p": 0, "e8p": 0}  }}
+        mp_lastrun: "{{ variables_lastrun.mp | float(0) | int }}"
+        e1p_lastrun: "{{ variables_lastrun.e1p | float(0) | int }}"
+        e2p_lastrun: "{{ variables_lastrun.e2p | float(0) | int }}"
+        e3p_lastrun: "{{ variables_lastrun.e3p | float(0) | int }}"
+        e4p_lastrun: "{{ variables_lastrun.e4p | float(0) | int }}"
+        e5p_lastrun: "{{ variables_lastrun.e5p | float(0) | int }}"
+        e6p_lastrun: "{{ variables_lastrun.e6p | float(0) | int }}"
+        e7p_lastrun: "{{ variables_lastrun.e7p | float(0) | int }}"
+        e8p_lastrun: "{{ variables_lastrun.e8p | float(0) | int }}"
+        total_p_lastrun: |
+          {{ mp_lastrun + e1p_lastrun + e2p_lastrun + e3p_lastrun +
+             e4p_lastrun + e5p_lastrun + e6p_lastrun + e7p_lastrun + e8p_lastrun }}
+      alias: Einlesen der Werte des letzten Durchlaufs
+    - variables:
+        useable_batteries: |
+          {% set ns = namespace(result=[]) %} {% for i in range(1,10) %}
+            {% set id_str = '{:02d}'.format(i) %}
+            {% set enabled = is_state('input_boolean.zeropower_use_b' ~ id_str, 'on') %}
+            {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) | int %}
+            {% set dod = states('sensor.b2500_' ~ id_str ~ '_do') | float(0) | int %}
+            {% if enabled %}
+              {% set ns.result = ns.result + [{'id': i, 'soc': soc, 'dod': dod}] %}
+            {% endif %}
+          {% endfor %} {{ ns.result | sort(attribute='soc', reverse=true) }}
+        master_battery_id: >
+          {% set sorted_batteries = useable_batteries %} {% set first_battery =
+          sorted_batteries[0] if sorted_batteries|length > 0 else None %} {{
+          first_battery.id if first_battery else '' }}
+        enabled_batteries: "{{ useable_batteries |length | int }}"
+        available_extra_batteries: "{{ useable_batteries | length - 1 | int }}"
+    - variables:
+        curr_diff: "{{ (states('sensor.zeropower_measure_load') | float(0) | int) + 2 }}"
+        p_master_candidate: "{{ mp_lastrun + curr_diff }}"
+        redistribution_needed: "{{ p_master_candidate < 20 or p_master_candidate > 350 }}"
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ not redistribution_needed }}"
+          sequence:
+            - variables:
+                topic: >
+                  {% set i = master_battery_id %} {{ states('input_text.b0' ~
+                  i|string ~ '_topic') }}/{{ states('input_text.b0' ~ i|string ~
+                  '_typ') }}/App/{{ states('input_text.b0' ~ i|string ~ '_mac')
+                  }}/ctrl 
+                new_power_master: "{{ [400, [15, p_master_candidate] | max ] | min }}"
+                e1p: "{{ e1p_lastrun }}"
+                e2p: "{{ e2p_lastrun }}"
+                e3p: "{{ e3p_lastrun }}"
+                e4p: "{{ e4p_lastrun }}"
+                e5p: "{{ e5p_lastrun }}"
+                e6p: "{{ e6p_lastrun }}"
+                e7p: "{{ e7p_lastrun }}"
+                e8p: "{{ e8p_lastrun }}"
+          alias: Master nachregeln
+        - conditions:
+            - condition: template
+              value_template: "{{ redistribution_needed }}"
+          sequence:
+            - variables:
+                total_load: "{{ total_p_lastrun + curr_diff }}"
+            - variables:
+                needed_batteries: >
+                  {% set val = (total_load / 400) | round(0) | int %} {{ val if
+                  val > 0 else 1 }}
+                chosen_batteries: "{{ [ needed_batteries, enabled_batteries ] | min }}"
+                chosen_power_per_battery: >
+                  {{ (total_load / chosen_batteries) | round(0) if
+                  chosen_batteries > 0 else 80 }}
+            - variables:
+                new_power_master: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 15 ] | max if
+                  enabled_batteries > 0 else 15 }}
+            - variables:
+                e1p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 1 else 0 }}
+                e2p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 2 else 0 }}
+                e3p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 3 else 0 }}
+                e4p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 4 else 0 }}
+                e5p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 5 else 0 }}
+                e6p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 6 else 0 }}
+                e7p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 7 else 0 }}
+                e8p: >-
+                  {{ [ [chosen_power_per_battery, 400] | min, 80 ] | max if
+                  chosen_batteries > 8 else 0 }}
+          alias: Neuverteilung
+    - target:
+        entity_id: input_text.zeropower_variables
+      data:
+        value: |
+          {{
+            {
+              "mp": new_power_master,
+              "e1p": e1p, "e2p": e2p, "e3p": e3p, "e4p": e4p,
+              "e5p": e5p, "e6p": e6p, "e7p": e7p, "e8p": e8p
+            } | tojson
+          }}
+      action: input_text.set_value
+    - alias: Setze Leistrung von Master
+      sequence:
+        - variables:
+            current_power_master: >
+              {% set i = master_battery_id %} {{ states('sensor.b2500_0' ~
+              i|string ~ '_h1') | float(0) }} 
+        - alias: Sende MQTT nur wenn nötig
+          if:
+            - condition: template
+              value_template: "{{ new_power_master != current_power_master }}"
+              alias: new_power_master ungleich der aktuell gesetzen Leistung ist
+          then:
+            - variables:
+                topic: >
+                  {% set i = master_battery_id %} {{ states('input_text.b0' ~
+                  i|string ~ '_topic') }}/{{ states('input_text.b0' ~ i|string ~
+                  '_typ') }}/App/{{ states('input_text.b0' ~ i|string ~ '_mac')
+                  }}/ctrl 
+            - data:
+                topic: "{{ topic }}"
+                payload: |
+                  cd=20,md=0,a1=1,b1=0:0,e1=24:0,v1={{ new_power_master }}
+              action: mqtt.publish
+              alias: Sende MQTT an Master
+    - alias: Setze Leistung von extra_batteries
+      sequence:
+        - repeat:
+            count: "{{ available_extra_batteries }}"
+            sequence:
+              - variables:
+                  current_extra_index: "{{ repeat.index }}"
+                  current_extra_id: "{{ useable_batteries[current_extra_index]['id'] }}"
+                  current_v1: |-
+                    {% if current_extra_index == 1 %}
+                      {{ e1p }}
+                    {% elif current_extra_index == 2 %}
+                      {{ e2p }}
+                    {% elif current_extra_index == 3 %}
+                      {{ e3p }}
+                    {% elif current_extra_index == 4 %}
+                      {{ e4p }}
+                    {% elif current_extra_index == 5 %}
+                      {{ e5p }}
+                    {% elif current_extra_index == 6 %}
+                      {{ e6p }}
+                    {% elif current_extra_index == 7 %}
+                      {{ e7p }}
+                    {% elif current_extra_index == 8 %}
+                      {{ e8p }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  current_power_extra: >
+                    {% set i = current_extra_id %} {{ states('sensor.b2500_0' ~
+                    i|string ~ '_h1') | float(0) }} 
+              - alias: Sende MQTT nur wenn nötig
+                if:
+                  - condition: template
+                    value_template: "{{ current_v1 != current_power_extra }}"
+                    enabled: true
+                    alias: Leistung v1 ungleich der aktuell gesetzten Leistung ist
+                then:
+                  - variables:
+                      current_topic: >
+                        {{ states('input_text.b0' ~ current_extra_id|string ~
+                        '_topic') }}/{{ states('input_text.b0' ~
+                        current_extra_id|string ~ '_typ') }}/App/{{
+                        states('input_text.b0' ~ current_extra_id|string ~ '_mac')
+                        }}/ctrl
+                      current_payload: |
+                        cd=20,md=0,a1=1,b1=0:0,e1=24:00,v1={{ current_v1 }}
+                  - data:
+                      topic: "{{ current_topic }}"
+                      payload: "{{ current_payload }}"
+                      qos: "1"
+                    action: mqtt.publish
+                    alias: Sende MQTT an aktuelle Batterie
+          enabled: true
+  mode: single
