@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: 'B2500 Package 2025-06-19 (neu: Neue Regelung für Nulleinspeisung)'
+            heading: 'B2500 Package 2025-06-23 (neu: Zeropower update)'
             grid_options:
               columns: 12
               rows: 1
@@ -3073,66 +3073,15 @@ views:
             entities:
               - entity: input_text.zeropower_measure
             show_header_toggle: false
-          - square: true
-            type: grid
-            cards:
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b01
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b02
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b03
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b04
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b05
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b06
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b07
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b08
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_boolean.zeropower_use_b09
-                show_state: true
-              - show_name: true
-                show_icon: false
-                type: button
-                entity: input_select.speicherauswahl
-                show_state: true
-                tap_action:
-                  action: perform-action
-                  perform_action: input_select.select_next
-                  target:
-                    entity_id: input_select.speicherauswahl
-                  data:
-                    cycle: true
+          - type: entities
+            entities:
+              - entity: input_number.zeropower_target_value
+              - entity: input_number.zeropower_target_deviation
+              - entity: input_number.zeropower_min_limit
+              - entity: input_number.zeropower_max_limit
+              - entity: input_boolean.zeropower_surplus_enabled
+              - entity: input_number.zeropower_surplus_level
+            show_header_toggle: false
         column_span: 2
   - type: sections
     max_columns: 4
