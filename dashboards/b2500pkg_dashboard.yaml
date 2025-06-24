@@ -2949,7 +2949,7 @@ views:
             heading_style: title
           - type: markdown
             content: >2
-                {% set t = state_attr('automation.b2500pkg_zeropower_2', 'last_triggered') %}
+                {% set t = state_attr('automation.b2500pkg_zeropower', 'last_triggered') %}
                 {% if t %}
               Letzte Ausführung: {{ t.astimezone().strftime('%H:%M:%S') }}
                 {% else %}
