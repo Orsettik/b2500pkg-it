@@ -122,7 +122,7 @@ automation:
             - alias: "Last Triggered vor 4 Sekunden "
               condition: template
               value_template: >
-                {% set t = state_attr('automation.b2500pkg_zeropower_2',
+                {% set t = state_attr('automation.b2500pkg_zeropower',
                 'last_triggered') %} {{ t is not none and (now() -
                 t).total_seconds() > 4 }}
             - condition: or
