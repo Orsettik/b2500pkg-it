@@ -19,6 +19,7 @@ template:
 
   - sensor:
       - name: "B01_min_Spannung"
+        unique_id: b01_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -43,6 +44,7 @@ template:
 
   - sensor:
       - name: "B02_min_Spannung"
+        unique_id: b02_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -67,6 +69,7 @@ template:
 
   - sensor:
       - name: "B03_min_Spannung"
+        unique_id: b03_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -91,6 +94,7 @@ template:
 
   - sensor:
       - name: "B04_min_Spannung"
+        unique_id: b04_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -115,6 +119,7 @@ template:
 
   - sensor:
       - name: "B05_min_Spannung"
+        unique_id: b05_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -139,6 +144,7 @@ template:
 
   - sensor:
       - name: "B06_min_Spannung"
+        unique_id: b06_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -163,6 +169,7 @@ template:
 
   - sensor:
       - name: "B07_min_Spannung"
+        unique_id: b07_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -187,6 +194,7 @@ template:
 
   - sensor:
       - name: "B08_min_Spannung"
+        unique_id: b08_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
@@ -211,6 +219,7 @@ template:
 
   - sensor:
       - name: "B09_min_Spannung"
+        unique_id: b09_min_spannung
         unit_of_measurement: "mV"
         state_class: measurement
         device_class: voltage
