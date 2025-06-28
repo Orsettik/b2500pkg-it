@@ -91,6 +91,7 @@ input_number:
 template:
   - sensor:
       - name: "zeropower_measure_load"
+        unique_id: zeropower_measure_load
         state: >
           {{ states(states('input_text.zeropower_measure')) | float(0) | int }}
           
