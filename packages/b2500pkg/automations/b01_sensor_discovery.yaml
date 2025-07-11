@@ -17,7 +17,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B01 Entladen",
+                "name": "B01 Scarica",
                 "state_topic": "B2500PKG/B2500_01/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -36,7 +36,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B01 Laden",
+                "name": "B01 Carica",
                 "state_topic": "B2500PKG/B2500_01/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
@@ -55,7 +55,7 @@ automation:
             retain: true
             payload: |
               {% raw %} {
-                "name": "B01 DOD erreicht",
+                "name": "B01 Profondità di scarica raggiunta",
                 "state_topic": "B2500PKG/B2500_01/CD01",
                 "payload_on": "1",
                 "payload_off": "0",
