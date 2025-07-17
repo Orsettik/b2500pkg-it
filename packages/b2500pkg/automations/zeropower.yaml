@@ -45,8 +45,7 @@ input_boolean:
 input_text:
   zeropower_measure:
     name: Entität des Leistungsmessers
-    initial: sensor.mein_powermeter_sensor
-
+    
   zeropower_variables:
     name: Zeropower Variables
     max: 255
