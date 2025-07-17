@@ -1,0 +1,97 @@
+input_number:
+  lvp_voltage_cutoff:
+    name: Spannung Untergrenze LVP
+    min: 0
+    max: 6000
+    step: 1
+    unit_of_measurement: "mV"
+    mode: box
+    icon: mdi:flash-alert
+    initial: 3000
+
+  lvp_voltage_normal:
+    name: Spannung Normalgrenze LVP
+    min: 0
+    max: 6000
+    step: 1
+    unit_of_measurement: "mV"
+    mode: box
+    icon: mdi:flash-check
+    initial: 3150
+
+  lvp_dod_normal:
+    name: DOD Normalwert LVP
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: "%"
+    mode: box
+    icon: mdi:percent
+    initial: 90
+
+
+automation:
+  alias: B2500PKG_Unterspannungsschutz
+  id: b2500pkg_low_voltage_protection
+  description: >-
+    Überwacht Batteriespannungen (b01–b09) und sendet MQTT-Kommandos bei Unter-
+    und Rückkehrspannung
+  triggers:
+    - entity_id:
+        - sensor.b01_min_spannung
+        - sensor.b02_min_spannung
+        - sensor.b03_min_spannung
+        - sensor.b04_min_spannung
+        - sensor.b05_min_spannung
+        - sensor.b06_min_spannung
+        - sensor.b07_min_spannung
+        - sensor.b08_min_spannung
+        - sensor.b09_min_spannung
+      trigger: state
+  conditions:
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: >
+            {{ states(trigger.entity_id) | float <
+            states('input_number.lvp_voltage_cutoff') | float }}
+        - condition: template
+          value_template: >
+            {{ states(trigger.entity_id) | float >
+            states('input_number.lvp_voltage_normal') | float }}
+  actions:
+    - variables:
+        full_entity: "{{ trigger.entity_id }}"
+        speicher_nummer: "{{ full_entity.split('.')[1][1:3] }}"
+        current_voltage: "{{ states(trigger.entity_id) | float }}"
+        cutoff_voltage: "{{ states('input_number.lvp_voltage_cutoff') | float }}"
+        normal_voltage: "{{ states('input_number.lvp_voltage_normal') | float }}"
+        topic_prefix: "{{ states('input_text.b' ~ speicher_nummer ~ '_topic') }}"
+        topic_typ: "{{ states('input_text.b' ~ speicher_nummer ~ '_typ') }}"
+        topic_mac: "{{ states('input_text.b' ~ speicher_nummer ~ '_mac') }}"
+        topic: "{{ topic_prefix }}/{{ topic_typ }}/App/{{ topic_mac }}/ctrl"
+        dod_normal: "{{ states('input_number.lvp_dod_normal') | int }}"
+        current_dod: "{{ states('sensor.b2500_' ~ speicher_nummer ~ '_do') }}"
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ current_voltage < cutoff_voltage }}"
+            - condition: template
+              value_template: "{{ current_dod != 0 }}"
+          sequence:
+            - data:
+                topic: "{{ topic }}"
+                payload: cd=19,md=0
+              action: mqtt.publish
+        - conditions:
+            - condition: template
+              value_template: "{{ current_voltage > normal_voltage }}"
+            - condition: template
+              value_template: "{{ current_dod != dod_normal }}"
+          sequence:
+            - data:
+                topic: "{{ topic }}"
+                payload: cd=19,md={{ dod_normal }}
+              action: mqtt.publish
+  mode: parallel
+  max: 10
