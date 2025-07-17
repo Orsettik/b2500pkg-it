@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-06-25 (Bugfix Zeropower)
+            heading: B2500 Package 2025-07-17 (Unterspannungsschutz)
             grid_options:
               columns: 12
               rows: 1
@@ -255,7 +255,7 @@ views:
             heading: Timer Status
             badges: []
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -286,7 +286,7 @@ views:
                 entity: input_text.b01_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -317,7 +317,7 @@ views:
                 entity: input_text.b02_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -348,7 +348,7 @@ views:
                 entity: input_text.b03_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -379,7 +379,7 @@ views:
                 entity: input_text.b04_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -410,7 +410,7 @@ views:
                 entity: input_text.b05_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -441,7 +441,7 @@ views:
                 entity: input_text.b06_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -472,7 +472,7 @@ views:
                 entity: input_text.b07_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -503,7 +503,7 @@ views:
                 entity: input_text.b08_mac
                 state_not: '0'
           - show_name: false
-            show_icon: true
+            show_icon: false
             show_state: true
             type: glance
             entities:
@@ -1003,7 +1003,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: Spannungen Hauptspeicher
+            heading: B01
           - type: history-graph
             entities:
               - entity: sensor.b2500_01_zelle01
@@ -1026,6 +1026,22 @@ views:
             min_y_axis: 2600
           - type: history-graph
             entities:
+              - entity: sensor.b2500_01_pe
+            min_y_axis: 0
+            max_y_axis: 100
+          - type: history-graph
+            entities:
+              - entity: sensor.b01_spannungsdifferenz
+            min_y_axis: 0
+            max_y_axis: 100
+        column_span: 1
+      - type: grid
+        cards:
+          - type: heading
+            heading: B02
+            heading_style: title
+          - type: history-graph
+            entities:
               - entity: sensor.b2500_02_zelle01
               - entity: sensor.b2500_02_zelle02
               - entity: sensor.b2500_02_zelle03
@@ -1046,14 +1062,19 @@ views:
             min_y_axis: 2600
           - type: history-graph
             entities:
-              - entity: sensor.b2500_01_pe
+              - entity: sensor.b2500_02_pe
             min_y_axis: 0
             max_y_axis: 100
           - type: history-graph
             entities:
-              - entity: sensor.b2500_02_pe
+              - entity: sensor.b02_spannungsdifferenz
             min_y_axis: 0
             max_y_axis: 100
+      - type: grid
+        cards:
+          - type: heading
+            heading: B03
+            heading_style: title
           - type: history-graph
             entities:
               - entity: sensor.b2500_03_zelle01
@@ -1076,6 +1097,21 @@ views:
             min_y_axis: 2600
           - type: history-graph
             entities:
+              - entity: sensor.b2500_03_pe
+            min_y_axis: 0
+            max_y_axis: 100
+          - type: history-graph
+            entities:
+              - entity: sensor.b03_spannungsdifferenz
+            min_y_axis: 0
+            max_y_axis: 100
+      - type: grid
+        cards:
+          - type: heading
+            heading: B04
+            heading_style: title
+          - type: history-graph
+            entities:
               - entity: sensor.b2500_04_zelle01
               - entity: sensor.b2500_04_zelle02
               - entity: sensor.b2500_04_zelle03
@@ -1096,15 +1132,14 @@ views:
             min_y_axis: 2600
           - type: history-graph
             entities:
-              - entity: sensor.b2500_03_pe
+              - entity: sensor.b2500_04_pe
             min_y_axis: 0
             max_y_axis: 100
           - type: history-graph
             entities:
-              - entity: sensor.b2500_04_pe
+              - entity: sensor.b04_spannungsdifferenz
             min_y_axis: 0
             max_y_axis: 100
-        column_span: 2
   - type: sections
     max_columns: 4
     title: Informationen
@@ -1130,7 +1165,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_01_tl
-                  - entity: sensor.b2500_01_tl
+                  - entity: sensor.b2500_01_th
                   - entity: sensor.b2500_01_tc
                   - entity: sensor.b2500_01_tf
                 title: Temperatur
@@ -1186,7 +1221,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_02_tl
-                  - entity: sensor.b2500_02_tl
+                  - entity: sensor.b2500_02_th
                   - entity: sensor.b2500_02_tc
                   - entity: sensor.b2500_02_tf
                 title: Temperatur
@@ -1242,7 +1277,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_03_tl
-                  - entity: sensor.b2500_03_tl
+                  - entity: sensor.b2500_03_th
                   - entity: sensor.b2500_03_tc
                   - entity: sensor.b2500_03_tf
                 title: Temperatur
@@ -1298,7 +1333,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_04_tl
-                  - entity: sensor.b2500_04_tl
+                  - entity: sensor.b2500_04_th
                   - entity: sensor.b2500_04_tc
                   - entity: sensor.b2500_04_tf
                 title: Temperatur
@@ -1354,7 +1389,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_05_tl
-                  - entity: sensor.b2500_05_tl
+                  - entity: sensor.b2500_05_th
                   - entity: sensor.b2500_05_tc
                   - entity: sensor.b2500_05_tf
                 title: Temperatur
@@ -1410,7 +1445,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_06_tl
-                  - entity: sensor.b2500_06_tl
+                  - entity: sensor.b2500_06_th
                   - entity: sensor.b2500_06_tc
                   - entity: sensor.b2500_06_tf
                 title: Temperatur
@@ -1466,7 +1501,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_07_tl
-                  - entity: sensor.b2500_07_tl
+                  - entity: sensor.b2500_07_th
                   - entity: sensor.b2500_07_tc
                   - entity: sensor.b2500_07_tf
                 title: Temperatur
@@ -1522,7 +1557,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_08_tl
-                  - entity: sensor.b2500_08_tl
+                  - entity: sensor.b2500_08_th
                   - entity: sensor.b2500_08_tc
                   - entity: sensor.b2500_08_tf
                 title: Temperatur
@@ -1578,7 +1613,7 @@ views:
               - type: entities
                 entities:
                   - entity: sensor.b2500_09_tl
-                  - entity: sensor.b2500_09_tl
+                  - entity: sensor.b2500_09_th
                   - entity: sensor.b2500_09_tc
                   - entity: sensor.b2500_09_tf
                 title: Temperatur
@@ -2934,9 +2969,568 @@ views:
                   - entity: sensor.b2500_01_g2
                     name: OUT2
         columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b01_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_02_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_02_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_02_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_02_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_02_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_02_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b02_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd16bv
+                  - entity: sensor.b2500_02_cd16bc
+                  - entity: sensor.b2500_02_cd16bb
+          - type: gauge
+            entity: sensor.b02_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_02_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_02_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_02_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_02_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b02_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_03_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_03_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_03_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_03_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_03_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_03_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b03_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd16bv
+                  - entity: sensor.b2500_03_cd16bc
+                  - entity: sensor.b2500_03_cd16bb
+          - type: gauge
+            entity: sensor.b03_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_03_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_03_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_03_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_03_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b03_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_04_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_04_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_04_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_04_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_04_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_04_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b04_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd16bv
+                  - entity: sensor.b2500_04_cd16bc
+                  - entity: sensor.b2500_04_cd16bb
+          - type: gauge
+            entity: sensor.b04_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_04_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_04_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_04_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_04_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b04_mac_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_05_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_05_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_05_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_05_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_05_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_05_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b05_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd16bv
+                  - entity: sensor.b2500_05_cd16bc
+                  - entity: sensor.b2500_05_cd16bb
+          - type: gauge
+            entity: sensor.b05_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_05_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_05_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_05_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_05_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b05_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_06_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_06_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_06_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_06_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_06_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_06_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b06_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd16bv
+                  - entity: sensor.b2500_06_cd16bc
+                  - entity: sensor.b2500_06_cd16bb
+          - type: gauge
+            entity: sensor.b06_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_06_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_06_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_06_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_06_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b06_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_07_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_07_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_07_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_07_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_07_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_07_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b07_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd16bv
+                  - entity: sensor.b2500_07_cd16bc
+                  - entity: sensor.b2500_07_cd16bb
+          - type: gauge
+            entity: sensor.b07_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_07_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_07_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_07_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_07_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b07_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_08_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_08_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_08_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_08_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_08_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_08_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b08_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd16bv
+                  - entity: sensor.b2500_08_cd16bc
+                  - entity: sensor.b2500_08_cd16bb
+          - type: gauge
+            entity: sensor.b08_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_08_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_08_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_08_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_08_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b08_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_09_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_09_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_09_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_09_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_09_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_09_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b09_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd16bv
+                  - entity: sensor.b2500_09_cd16bc
+                  - entity: sensor.b2500_09_cd16bb
+          - type: gauge
+            entity: sensor.b09_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_09_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_09_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_09_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_09_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b09_mac
+            state_not: '0'
     type: masonry
     sections: []
-    title: Leistung B01
+    title: Info CD16
   - type: sections
     max_columns: 4
     title: ZeroPower Nulleinspeisung
@@ -3100,6 +3694,8 @@ views:
               - entity: input_number.zeropower_surplus_level
             show_header_toggle: false
         column_span: 2
+    subview: false
+    cards: []
   - type: sections
     max_columns: 4
     title: Restart
@@ -3120,3 +3716,44 @@ views:
                 name: Restart Funktion aus/einschalten
             show_header_toggle: false
     cards: []
+  - type: sections
+    max_columns: 4
+    title: Unterspannungsschutz
+    path: unterspannungsschutz
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Neuer Abschnitt
+          - type: entities
+            entities:
+              - entity: sensor.b01_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_01_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b02_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_02_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b03_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_03_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b04_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_04_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: input_number.lvp_voltage_cutoff
+              - entity: input_number.lvp_voltage_normal
+              - entity: input_number.lvp_dod_normal
+              - entity: automation.b2500pkg_unterspannungsschutz
+                secondary_info: last-triggered
+            show_header_toggle: false
