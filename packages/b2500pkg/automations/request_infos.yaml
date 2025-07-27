@@ -42,8 +42,9 @@ automation:
   alias: B2500PKG_Infos und Zellenspannung anfordern
   description: ""
   triggers:
-    - trigger: homeassistant
-      event: start
+    - trigger: time_pattern
+      enabled: true
+      minutes: /5
     - trigger: event
       event_type:
         - automation_reloaded
