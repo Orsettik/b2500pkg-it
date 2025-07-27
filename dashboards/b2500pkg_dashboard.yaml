@@ -1700,9 +1700,6 @@ views:
             title: Momentanleistung
             columns: 2
             state_color: true
-          - type: entities
-            entities:
-              - entity: input_button.aktualisieren
           - show_name: true
             show_icon: true
             show_state: true
@@ -3542,51 +3539,113 @@ views:
             heading: Statistiken
             heading_style: title
           - type: markdown
-            content: >2
+            content: >-
+              {% set v2 = states('input_text.zeropower_variables2') | from_json
+              %}
+
+              {% set m_id, e1_id, e2_id, e3_id, e4_id, e5_id, e6_id, e7_id,
+              e8_id = v2.ID.split('|') %}
+
+              {% set sp_master, e1sp, e2sp, e3sp, e4sp, e5sp, e6sp, e7sp, e8sp =
+              v2.SP.split('|') %}
+
+
+
+              {% set mp = (states('input_text.zeropower_variables') | from_json
+              | default({})).mp |
+                  float(0) | int %}
+              {% set e1p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e1p
+                  | float(0) | int %}
+              {% set e2p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e2p
+                  | float(0) | int %}
+              {% set e3p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e3p
+                  | float(0) | int %}
+              {% set e4p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e4p
+                  | float(0) | int %}
+              {% set e5p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e5p
+                  | float(0) | int %}
+              {% set e6p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e6p
+                  | float(0) | int %}
+              {% set e7p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e7p
+                  | float(0) | int %}
+              {% set e8p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e8p
+                  | float(0) | int %}
+              {% set msoc = states('sensor.b2500_0' ~ m_id ~ '_pe') | int(0) %}
+
+              {% set e1soc = states('sensor.b2500_0' ~ e1_id ~ '_pe') | int(0)
+              %}
+
+              {% set e2soc = states('sensor.b2500_0' ~ e2_id ~ '_pe') | int(0)
+              %}
+
+              {% set e3soc = states('sensor.b2500_0' ~ e3_id ~ '_pe') | int(0)
+              %}
+
+              {% set e4soc = states('sensor.b2500_0' ~ e4_id ~ '_pe') | int(0)
+              %}
+
+              {% set e5soc = states('sensor.b2500_0' ~ e5_id ~ '_pe') | int(0)
+              %}
+
+              {% set e6soc = states('sensor.b2500_0' ~ e6_id ~ '_pe') | int(0)
+              %}
+
+              {% set e7soc = states('sensor.b2500_0' ~ e7_id ~ '_pe') | int(0)
+              %}
+
+              {% set e8soc = states('sensor.b2500_0' ~ e8_id ~ '_pe') | int(0)
+              %}
+
+
+
+
                 {% set t = state_attr('automation.b2500pkg_zeropower', 'last_triggered') %}
                 {% if t %}
               Letzte Ausführung: {{ t.astimezone().strftime('%H:%M:%S') }}
                 {% else %}
               Letzte Ausführung: noch nie
                 {% endif %}
-              Leistung: Nulleinspeisung/Überschuss
 
-              **Master:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).mp |
-                  float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).msp |
-                  float(0) | int }} Watt
-              **Extra_1:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e1p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e1sp
-                  | float(0) | int }} Watt
-              **Extra_2:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e2p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e2sp
-                  | float(0) | int }} Watt
-              **Extra_3:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e3p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e3sp
-                  | float(0) | int }} Watt
-              **Extra_4:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e4p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e4sp
-                  | float(0) | int }} Watt
-              **Extra_5:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e5p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e5sp
-                  | float(0) | int }} Watt
-              **Extra_6:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e6p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e6sp
-                  | float(0) | int }} Watt
-              **Extra_7:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e7p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e7sp
-                  | float(0) | int }} Watt
-              **Extra_8:** {{ (states('input_text.zeropower_variables') |
-              from_json | default({})).e8p
-                  | float(0) | int }}/{{ (states('input_text.zeropower_variables') | from_json | default({})).e8sp
-                  | float(0) | int }} Watt
+              <pre>
+                                Einspeisung
+              ID Name    SOC   Null/Überschuss  
+                                    
+              {{ m_id }} Master  ({{ "%3s"|format(msoc) }}):{{ "%5s"|format(mp)
+              }}/{{ "%-5s"|format(sp_master) }} W
+
+              {{ e1_id }} Extra_1 ({{ "%3s"|format(e1soc) }}):{{
+              "%5s"|format(e1p) }}/{{ "%-5s"|format(e1sp) }} W
+
+              {{ e2_id }} Extra_2 ({{ "%3s"|format(e2soc) }}):{{
+              "%5s"|format(e2p) }}/{{ "%-5s"|format(e2sp) }} W
+
+              {{ e3_id }} Extra_3 ({{ "%3s"|format(e3soc) }}):{{
+              "%5s"|format(e3p) }}/{{ "%-5s"|format(e3sp) }} W
+
+              {{ e4_id }} Extra_4 ({{ "%3s"|format(e4soc) }}):{{
+              "%5s"|format(e4p) }}/{{ "%-5s"|format(e4sp) }} W
+
+              {{ e5_id }} Extra_5 ({{ "%3s"|format(e5soc) }}):{{
+              "%5s"|format(e5p) }}/{{ "%-5s"|format(e5sp) }} W
+
+              {{ e6_id }} Extra_6 ({{ "%3s"|format(e6soc) }}):{{
+              "%5s"|format(e6p) }}/{{ "%-5s"|format(e6sp) }} W
+
+              {{ e7_id }} Extra_7 ({{ "%3s"|format(e7soc) }}):{{
+              "%5s"|format(e7p) }}/{{ "%-5s"|format(e7sp) }} W
+
+              {{ e8_id }} Extra_8 ({{ "%3s"|format(e8soc) }}):{{
+              "%5s"|format(e8p) }}/{{ "%-5s"|format(e8sp) }} W
+
+              </pre>
       - type: grid
         cards:
           - type: heading
