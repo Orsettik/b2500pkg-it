@@ -94,9 +94,9 @@ template:
           
 
 automation:
-  alias: B2500PKG_Zeropower
   id: b2500pkg_zeropower
-  description: V1_3
+  alias: B2500PKG_Zeropower
+  description: V1_4
   triggers:
     - trigger: state
       entity_id:
@@ -176,9 +176,11 @@ automation:
             {% set id_str = '{:02d}'.format(i) %}
             {% set enabled = is_state('input_boolean.zeropower_use_b' ~ id_str, 'on') %}
             {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) | int %}
-            {% set active = is_state('sensor.b2500_' ~ id_str ~ '_o1', '1') | float(0) | int %}
-            {% if enabled and active %}
-              {% set ns.result = ns.result + [{'id': i, 'soc': soc, 'active': active}] %}
+            {% set tim_act = is_state('binary_sensor.b2500_' ~ id_str ~ '_d1', 'on') | float(0) | int %}
+            {% set charge_only = is_state('sensor.b2500_' ~ id_str ~ '_cs', 'Laden vor dem Entladen') and not is_state('sensor.b2500_' ~ id_str ~ '_cj', '1') %}
+            {% set no_dod = is_state('binary_sensor.b2500_' ~ id_str ~ '_l0_bit2', 'off') %}
+            {% if enabled and no_dod and tim_act and not charge_only %}
+              {% set ns.result = ns.result + [{'id': i, 'soc': soc, 'tim_act': tim_act}] %}
             {% endif %}
           {% endfor %} {{ ns.result | sort(attribute='soc', reverse=true) }}
         master_battery_id: >
