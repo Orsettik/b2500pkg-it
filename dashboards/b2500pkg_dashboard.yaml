@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-07-28 (ZeroPower aktualisiert)
+            heading: B2500 Package 2025-07-31 (ZeroPower aktualisiert)
             grid_options:
               columns: 12
               rows: 1
@@ -3607,7 +3607,7 @@ views:
 
 
 
-                {% set t = state_attr('automation.b2500pkg_zeropower', 'last_triggered') %}
+                {% set t = state_attr('script.b2500pkg_zeropower_main', 'last_triggered') %}
                 {% if t %}
               Letzte Ausführung: {{ t.astimezone().strftime('%H:%M:%S') }}
                 {% else %}
@@ -3663,8 +3663,12 @@ views:
               red: 0
           - type: entities
             entities:
-              - entity: automation.b2500pkg_zeropower
-                secondary_info: last-updated
+              - entity: automation.b2500pkg_zeropower_trigger
+                secondary_info: last-triggered
+                name: Automatik Aus/Ein
+              - entity: script.b2500pkg_zeropower_main
+                secondary_info: none
+                name: Manuelle Auslösung
             show_header_toggle: false
             title: Nulleinspeisung
           - type: entities
@@ -3747,11 +3751,16 @@ views:
             entities:
               - entity: input_number.zeropower_target_value
               - entity: input_number.zeropower_target_deviation
+              - entity: input_boolean.zeropower_use_both_outputs
               - entity: input_number.zeropower_min_limit
               - entity: input_number.zeropower_max_limit
               - entity: input_boolean.zeropower_surplus_enabled
               - entity: input_number.zeropower_surplus_level
+              - entity: input_number.zeropower_passthrough_value
             show_header_toggle: false
+            grid_options:
+              columns: 18
+              rows: auto
         column_span: 2
     subview: false
     cards: []
