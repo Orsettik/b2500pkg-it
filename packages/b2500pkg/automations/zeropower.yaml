@@ -200,12 +200,14 @@ script:
             {% for i in range(1, 10) %}
               {% set id_str = '{:02d}'.format(i) %}
               {% set enabled = is_state('input_boolean.zeropower_use_b' ~ id_str, 'on') %}
-              {% set passthrough = is_state('sensor.b2500_' ~ id_str ~ '_p2', '2') %}
-              {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) %}
-              {% set soc_rounded = [((soc / 5) | round(0, 'ceil') * 5), 100] | min %}
-              {% set output_act = is_state('sensor.b2500_' ~ id_str ~ '_o2', '1') | int %}
-              {% if enabled and output_act or passthrough %}
-                {% set entry = {'id': i, 'soc': soc, 'soc_rounded': soc_rounded, 'pt': passthrough} %}
+              {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) | int %}
+              {% set soc_rounded = [((soc / 5) | round(0, 'ceil') * 5), 100] | min | int %}
+              {% set pv_mode = states('sensor.b2500_' ~ id_str ~ '_p2') | float(0) | int %} 
+              {% set passthrough = (pv_mode == 2) %}
+              {% set pv_mode3 = (pv_mode == 3) or (pv_mode == 0 and soc == 100) %}
+              {% set output_act = is_state('sensor.b2500_' ~ id_str ~ '_o2', '1') %}
+              {% if enabled and (output_act or passthrough) %}
+                {% set entry = {'id': i, 'soc': soc, 'soc_rounded': soc_rounded, 'pt': passthrough, 'pvm3': pv_mode3} %}
                 {% set ns.batteries_list = ns.batteries_list + [entry] %}
               {% endif %}
             {% endfor %} {{ ns.batteries_list }}
@@ -378,9 +380,10 @@ script:
                   current_index: 0
                   current_id: "{{ total_batteries_list[current_index]['id'] }}"
                   current_pt: "{{ total_batteries_list[current_index]['pt'] }}"
+                  current_pvm3: "{{ total_batteries_list[current_index]['pvm3'] }}"
                   current_soc: "{{ total_batteries_list[current_index]['soc'] | float }}"
                   sp_master: >-
-                    {{ [pt_power if current_pt else surplus_step * difference,
+                    {{ [pt_power if current_pt else max_limit if current_pvm3 else surplus_step * difference,
                     max_limit] | min | int }}
           - variables:
               es_power_list: |
@@ -389,8 +392,9 @@ script:
                     {% set b = total_batteries_list[i + 1] %}
                     {% set soc = b.soc | float %}
                     {% set pt = b.pt %}
+                    {% set pvm3 = b.pvm3 %}
                     {% set diff = soc - surplus_level if soc > surplus_level else 0 %}
-                    {% set val = pt_power if pt else surplus_step * diff %}
+                    {% set val = pt_power if pt else max_limit if pvm3 else surplus_step * diff %}
                     {% set power = [val, max_limit] | min | int %}
                   {% else %}
                     {% set power = 0 %}
@@ -453,26 +457,6 @@ script:
                       {% set idx = current_extra_index - 1 %} {{ [max_limit,
                       [e_power_list[idx], es_power_list[idx], min_limit] | max] |
                       min }}
-                    current_total_alt: |-
-                      {% if current_extra_index == 1 %}
-                        {{ [max_limit, [power_e1, e1sp, min_limit] | max] | min }}
-                      {% elif current_extra_index == 2 %}
-                        {{ [max_limit, [power_e2, e2sp, min_limit] | max] | min }}
-                      {% elif current_extra_index == 3 %}
-                        {{ [max_limit, [power_e3, e3sp, min_limit] | max] | min }}
-                      {% elif current_extra_index == 4 %}
-                        {{ [max_limit, [power_e4, e4sp, min_limit] | max] | min }}
-                      {% elif current_extra_index == 5 %}
-                        {{ [max_limit, [power_e5, e5sp, min_limit] | max] | min }}
-                      {% elif current_extra_index == 6 %}
-                        {{ [max_limit, [power_e6, e6sp, min_limit] | max] | min }}
-                      {% elif current_extra_index == 7 %}
-                        {{ [max_limit, [power_e7, e7sp, min_limit] | max] | min }}
-                      {% elif current_extra_index == 8 %}
-                        {{ [max_limit, [power_e8, e8sp, min_limit] | max] | min }}
-                      {% else %}
-                        0
-                      {% endif %}
                     current_v1: "{{ current_total * 2 if not both_outputs else current_total }}"
                     current_power_extra: >
                       {% set i = current_extra_id %} {{ states('sensor.b2500_0' ~

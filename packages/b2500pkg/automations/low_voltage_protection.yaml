@@ -1,23 +1,23 @@
 input_number:
   lvp_voltage_cutoff:
     name: Spannung Untergrenze LVP
-    min: 0
+    min: 2400
     max: 6000
     step: 1
     unit_of_measurement: "mV"
     mode: box
     icon: mdi:flash-alert
-    initial: 3000
+
 
   lvp_voltage_normal:
     name: Spannung Normalgrenze LVP
-    min: 0
+    min: 2500
     max: 6000
     step: 1
     unit_of_measurement: "mV"
     mode: box
     icon: mdi:flash-check
-    initial: 3150
+ 
 
   lvp_dod_normal:
     name: DOD Normalwert LVP
@@ -27,8 +27,7 @@ input_number:
     unit_of_measurement: "%"
     mode: box
     icon: mdi:percent
-    initial: 90
-
+    
 
 automation:
   alias: B2500PKG_Unterspannungsschutz
