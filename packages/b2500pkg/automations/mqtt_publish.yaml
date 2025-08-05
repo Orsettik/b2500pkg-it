@@ -13,7 +13,7 @@ automation:
                 value_template: "{{ states('input_text.b' ~ repeat.item ~ '_mac') != '0' }}"
             then:
               - variables:
-                  voltage: >-
+                  voltage_mv: >-
                     {{ float(states('sensor.b2500_' ~ repeat.item ~ '_zelle01')) +
                     float(states('sensor.b2500_' ~ repeat.item ~ '_zelle02')) +
                     float(states('sensor.b2500_' ~ repeat.item ~ '_zelle03')) +
@@ -29,9 +29,16 @@ automation:
                     float(states('sensor.b2500_' ~ repeat.item ~ '_zelle13')) +
                     float(states('sensor.b2500_' ~ repeat.item ~ '_zelle14')) +
                     float(states('sensor.b2500_' ~ repeat.item ~ '_zelle15')) +
-                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle16')) }}
-                  soc: "{{ states('sensor.b2500_' ~ repeat.item ~ '_pe') }}"
-                  capacity: "{{ states('sensor.b2500_' ~ repeat.item ~ '_kn') }}"
+                    float(states('sensor.b2500_' ~ repeat.item ~ '_zelle16'))  |
+                    int }}
+                  voltage: "{{ '{:.3f}'.format(voltage_mv | int / 1000 ) }}"
+                  soc: "{{ states('sensor.b2500_' ~ repeat.item ~ '_pe') | int }}"
+                  capacity: "{{ states('sensor.b2500_' ~ repeat.item ~ '_kn') | int }}"
+                  power_in: "{{ states('sensor.b' ~ repeat.item ~ '_pv_gesamt') | int }}"
+                  power_out: >-
+                    {{ states('sensor.b' ~ repeat.item ~ '_output_gesamt') | int
+                    }}
+                  ampere: "{{ '{:.3f}'.format((power_in - power_out - 5) / voltage ) }}"
                   topic: B2500PKG/B2500_{{ repeat.item }}
               - action: mqtt.publish
                 metadata: {}
@@ -41,13 +48,18 @@ automation:
               - action: mqtt.publish
                 metadata: {}
                 data:
-                  payload: "{{'{:.3f}'.format(voltage | int / 1000 )}}V"
+                  payload: "{{ voltage }}V"
                   topic: "{{ topic }}/voltage"
               - action: mqtt.publish
                 metadata: {}
                 data:
                   topic: "{{ topic }}/capacity"
                   payload: "{{ capacity }}Wh"
+              - action: mqtt.publish
+                metadata: {}
+                data:
+                  topic: "{{ topic }}/ampere"
+                  payload: "{{ ampere }}A"
         for_each:
           - "01"
           - "02"
