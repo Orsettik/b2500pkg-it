@@ -646,7 +646,12 @@ script:
         enabled: true
     fields:
       force_redistribution:
-        selector:
-          boolean: {}
-        name: "Neuverteilung erzwingen "
-        required: true
+        name: "Neuverteilung erzwingen"
+        selector: {boolean}
+
+
+
+
+
+
+        
