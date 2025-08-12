@@ -5,7 +5,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: B2500 Package 2025-07-31 (ZeroPower aktualisiert)
+            heading: B2500 Package 2025-08-12 (ZeroPower aktualisiert)
             grid_options:
               columns: 12
               rows: 1
@@ -3606,13 +3606,19 @@ views:
 
 
 
+              {% set t = states.input_text.zeropower_variables.last_updated %}
 
-                {% set t = state_attr('script.b2500pkg_zeropower_main', 'last_triggered') %}
-                {% if t %}
-              Letzte Ausführung: {{ t.astimezone().strftime('%H:%M:%S') }}
-                {% else %}
-              Letzte Ausführung: noch nie
-                {% endif %}
+              {% if t %}
+
+              Letzte Änderung: {{ t.astimezone().strftime('%H:%M:%S') }}
+
+              {% else %}
+
+              Letzte Änderung: noch nie
+
+              {% endif %}
+
+               
 
               <pre>
                                 Einspeisung
@@ -3755,6 +3761,7 @@ views:
               - entity: input_number.zeropower_min_limit
               - entity: input_number.zeropower_max_limit
               - entity: input_boolean.zeropower_surplus_enabled
+              - entity: input_number.zeropower_surplus_bypass
               - entity: input_number.zeropower_surplus_level
               - entity: input_number.zeropower_passthrough_value
             show_header_toggle: false
