@@ -74,6 +74,13 @@ input_number:
     max: 100
     min: 10
     mode: box
+
+  zeropower_surplus_bypass:
+    name: Ladeleistung für Akku reservieren 
+    max: 1000
+    min: 10
+    mode: box
+    
     
   zeropower_passthrough_value:
     name: Leistung bei Hardware-Passthrough
@@ -83,8 +90,8 @@ input_number:
 
   zeropower_target_value:
     name: Zielwert der Regelung
-    min: -1000
-    max: 1000
+    min: -2000
+    max: 2000
     mode: box
     
   zeropower_target_deviation:
@@ -102,12 +109,24 @@ template:
         state: >
           {{ states(states('input_text.zeropower_measure')) | float(0) | int }}
 
+  - sensor:
+      - name: zeropower_target_range_low
+        unique_id: zeropower_target_range_low
+        state: >
+          {{ states('input_number.zeropower_target_value') | float(0) - states('input_number.zeropower_target_deviation') | float(0) }}
+
+
+  - sensor:
+      - name: zeropower_target_range_high
+        unique_id: zeropower_target_range_high
+        state: >
+          {{ states('input_number.zeropower_target_value') | float(0) + states('input_number.zeropower_target_deviation') | float(0) }}
 
 
 automation:
   id: b2500pkg_zeropower_trigger
   alias: B2500PKG_Zeropower_trigger
-  description: V1_4
+  description: V1_5
   triggers:
     - trigger: state
       entity_id:
@@ -119,48 +138,64 @@ automation:
       id: trigger_time
       minutes: /5
   conditions:
-    - condition: and
+    - condition: or
       conditions:
-        - alias: "Last Triggered vor 5 Sekunden "
-          condition: template
-          value_template: >
-            {% set t = state_attr('automation.b2500pkg_zeropower_trigger',
-            'last_triggered') %} {{ t is none or (now() - t).total_seconds() > 4
-            }}
-        - condition: or
+        - alias: ausserhalb der Grenzwerte
+          condition: and
           conditions:
-            - alias: ausserhalb der Grenzwerte
-              condition: or
-              conditions:
-                - condition: template
-                  value_template: |
-                    {{ states('sensor.zeropower_measure_load') | float >
-                      (states('input_number.zeropower_target_value') | float +
-                       states('input_number.zeropower_target_deviation') | float) }}
-                  alias: Grenzwert überschritten
-                - condition: template
-                  value_template: |
-                    {{ states('sensor.zeropower_measure_load') | float <
-                      (states('input_number.zeropower_target_value') | float -
-                       states('input_number.zeropower_target_deviation') | float) }}
-                  alias: Grenzwert unterschritten
-                - condition: template
-                  value_template: |
-                    {{ trigger.id == 'trigger_time' }}
-                  alias: Wenn ausgelöst durch Zeit-Trigger
+            - condition: template
+              value_template: |
+                {{ states('sensor.zeropower_measure_load') | float >
+                  (states('input_number.zeropower_target_value') | float +
+                   states('input_number.zeropower_target_deviation') | float) }}
+              alias: Grenzwert überschritten
+            - condition: template
+              value_template: |
+                {{ states('sensor.zeropower_measure_load') | float <
+                  (states('input_number.zeropower_target_value') | float -
+                   states('input_number.zeropower_target_deviation') | float) }}
+              alias: Grenzwert unterschritten
+            - condition: template
+              value_template: |
+                {{ trigger.id == 'trigger_time' }}
+              alias: Wenn ausgelöst durch Zeit-Trigger
   actions:
-  - service: script.turn_on
-    target:
-      entity_id: script.b2500pkg_zeropower_main
-
-  
-  
+    - choose:
+        - conditions:
+            - condition: trigger
+              id:
+                - trigger_state
+          sequence:
+            - action: script.b2500pkg_zeropower
+              data:
+                force_redistribution: false
+        - conditions:
+            - condition: trigger
+              id:
+                - trigger_time
+          sequence:
+            - action: script.b2500pkg_zeropower
+              data:
+                force_redistribution: true
+    
   
   
 script:
   b2500pkg_zeropower_main:
     alias: "B2500PKG_Zeropower_main"
     sequence:
+      - variables:
+          sp_master: 0
+          e1sp: 0
+          e2sp: 0
+          e3sp: 0
+          e4sp: 0
+          e5sp: 0
+          e6sp: 0
+          e7sp: 0
+          e8sp: 0
+        enabled: true
+        alias: Surplus Power Variablen definieren
       - variables:
           variables_lastrun: >
             {% set txt = states('input_text.zeropower_variables') %} {% if txt not
@@ -180,378 +215,438 @@ script:
                 "e4p": 0, "e5p": 0, "e6p": 0, "e7p": 0, "e8p": 0
               } }}
             {% endif %}
-          mp_lastrun: "{{ (variables_lastrun.mp | default(0)) | float(0) | int }}"
-          e1p_lastrun: "{{ (variables_lastrun.e1p | default(0)) | float(0) | int }}"
-          e2p_lastrun: "{{ (variables_lastrun.e2p | default(0)) | float(0) | int }}"
-          e3p_lastrun: "{{ (variables_lastrun.e3p | default(0)) | float(0) | int }}"
-          e4p_lastrun: "{{ (variables_lastrun.e4p | default(0)) | float(0) | int }}"
-          e5p_lastrun: "{{ (variables_lastrun.e5p | default(0)) | float(0) | int }}"
-          e6p_lastrun: "{{ (variables_lastrun.e6p | default(0)) | float(0) | int }}"
-          e7p_lastrun: "{{ (variables_lastrun.e7p | default(0)) | float(0) | int }}"
-          e8p_lastrun: "{{ (variables_lastrun.e8p | default(0)) | float(0) | int }}"
-          chosen_power_lastrun: "{{ (variables_lastrun.chp | default(0)) | float | int }}"
-          total_p_lastrun: |
-            {{ mp_lastrun + e1p_lastrun + e2p_lastrun + e3p_lastrun +
-               e4p_lastrun + e5p_lastrun + e6p_lastrun + e7p_lastrun + e8p_lastrun }}
+          power_master: "{{ (variables_lastrun.mp | default(0)) | float(0) | int }}"
+          power_e1: "{{ (variables_lastrun.e1p | default(0)) | float(0) | int }}"
+          power_e2: "{{ (variables_lastrun.e2p | default(0)) | float(0) | int }}"
+          power_e3: "{{ (variables_lastrun.e3p | default(0)) | float(0) | int }}"
+          power_e4: "{{ (variables_lastrun.e4p | default(0)) | float(0) | int }}"
+          power_e5: "{{ (variables_lastrun.e5p | default(0)) | float(0) | int }}"
+          power_e6: "{{ (variables_lastrun.e6p | default(0)) | float(0) | int }}"
+          power_e7: "{{ (variables_lastrun.e7p | default(0)) | float(0) | int }}"
+          power_e8: "{{ (variables_lastrun.e8p | default(0)) | float(0) | int }}"
         alias: Einlesen der Werte des letzten Durchlaufs
-      - variables:
-          batteries_list: |
-            {% set ns = namespace(batteries_list=[]) %}
-            {% for i in range(1, 10) %}
-              {% set id_str = '{:02d}'.format(i) %}
-              {% set enabled = is_state('input_boolean.zeropower_use_b' ~ id_str, 'on') %}
-              {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) | int %}
-              {% set soc_rounded = [((soc / 5) | round(0, 'ceil') * 5), 100] | min | int %}
-              {% set pv_mode = states('sensor.b2500_' ~ id_str ~ '_p2') | float(0) | int %} 
-              {% set passthrough = (pv_mode == 2) %}
-              {% set pv_mode3 = (pv_mode == 3) or (pv_mode == 0 and soc == 100) %}
-              {% set output_act = is_state('sensor.b2500_' ~ id_str ~ '_o2', '1') %}
-              {% if enabled and (output_act or passthrough) %}
-                {% set entry = {'id': i, 'soc': soc, 'soc_rounded': soc_rounded, 'pt': passthrough, 'pvm3': pv_mode3} %}
-                {% set ns.batteries_list = ns.batteries_list + [entry] %}
-              {% endif %}
-            {% endfor %} {{ ns.batteries_list }}
-          useable_batteries_list: |
-            {% set useable = batteries_list
-              | selectattr('pt', 'equalto', false)
-              | sort(attribute='soc_rounded', reverse=true)
-              | list %}
-            {{ useable }}
-          other_batteries_list: |
-            {% set other = batteries_list
-              | selectattr('pt', 'equalto', true)
-              | sort(attribute='soc_rounded', reverse=true)
-              | list %}
-            {{ other }}
-          total_batteries_list: "{{ useable_batteries_list + other_batteries_list }}"
-          master_battery_id: >-
-            {{ useable_batteries_list[0].id if useable_batteries_list | length > 0
-            else '' }}
-          total_batteries: "{{ total_batteries_list | length | int }}"
-          useable_batteries: "{{ useable_batteries_list | length | int }}"
-          available_extra_batteries: "{{ total_batteries_list | length - 1 | int }}"
-        enabled: true
-      - variables:
-          target: "{{ states('input_number.zeropower_target_value') | int }}"
-          curr_diff: >-
-            {{ (states('sensor.zeropower_measure_load') | float(0) | int) - (target)
-            }}
-          p_master_candidate: "{{ mp_lastrun + curr_diff }}"
-          both_outputs: "{{ is_state('input_boolean.zeropower_use_both_outputs', 'on') }}"
-          min_limit: "{{ states('input_number.zeropower_min_limit') | int }}"
-          max_limit: >-
-            {{ [(states('input_number.zeropower_max_limit') | int), (800 if
-            both_outputs else 400)] |min | int }}
-          redistribution_needed: |
-            {{ p_master_candidate <= min_limit or
-               p_master_candidate >= max_limit or
-               (p_master_candidate - chosen_power_lastrun) | abs > 20 }}
-        enabled: true
-      - choose:
-          - conditions:
-              - condition: template
-                value_template: "{{ not redistribution_needed }}"
-            sequence:
-              - variables:
-                  topic: >
-                    {% set i = master_battery_id %} {{ states('input_text.b0' ~
-                    i|string ~ '_topic') }}/{{ states('input_text.b0' ~ i|string ~
-                    '_typ') }}/App/{{ states('input_text.b0' ~ i|string ~ '_mac')
-                    }}/ctrl 
-                  power_master: >-
-                    {{ [max_limit, [min_limit, p_master_candidate] | max ] | min  if
-                    useable_batteries_list | length > 0 else 0 | int }}
-                  e_power_list: |
-                    {% set last_values = [
-                      e1p_lastrun, e2p_lastrun, e3p_lastrun, e4p_lastrun,
-                      e5p_lastrun, e6p_lastrun, e7p_lastrun, e8p_lastrun
-                    ] %} {% set result = namespace(p=[]) %} {% for i in range(8) %}
-                      {% if total_batteries_list | length > i + 1 %}
-                        {% set value = last_values[i] %}
-                      {% else %}
-                        {% set value = 0 %}
-                      {% endif %}
-                      {% set result.p = result.p + [value | int] %}
-                    {% endfor %} {{ result.p }}
-                  power_e1: >-
-                    {{ e1p_lastrun if total_batteries_list | length > 1 else 0 | int
-                    }}
-                  power_e2: >-
-                    {{ e2p_lastrun if total_batteries_list | length > 2 else 0 | int
-                    }}
-                  power_e3: >-
-                    {{ e3p_lastrun if total_batteries_list | length > 3 else 0 | int
-                    }}
-                  power_e4: >-
-                    {{ e4p_lastrun if total_batteries_list | length > 4 else 0 | int
-                    }}
-                  power_e5: >-
-                    {{ e5p_lastrun if total_batteries_list | length > 5 else 0 | int
-                    }}
-                  power_e6: >-
-                    {{ e6p_lastrun if total_batteries_list | length > 6 else 0 | int
-                    }}
-                  power_e7: >-
-                    {{ e7p_lastrun if total_batteries_list | length > 7 else 0 | int
-                    }}
-                  power_e8: >-
-                    {{ e8p_lastrun if total_batteries_list | length > 8 else 0 | int
-                    }}
-                  chosen_power_per_battery: "{{ chosen_power_lastrun }}"
-            alias: Master nachregeln
-          - conditions:
-              - condition: template
-                value_template: "{{ redistribution_needed }}"
-            sequence:
-              - variables:
-                  total_load: "{{ total_p_lastrun + curr_diff | int }}"
-                enabled: true
-              - variables:
-                  chosen_power_per_battery: >
-                    {{ (total_load / useable_batteries) | round(0) if
-                    useable_batteries > 0 else min_limit }}
-                enabled: true
-              - variables:
-                  power_master: >-
-                    {{ [ [chosen_power_per_battery, max_limit] | min, min_limit ] |
-                    max if useable_batteries > 0 else min_limit }}
-                enabled: true
-              - variables:
-                  e_power_list: |-
-                    {% set powers = namespace(list=[]) %} {% for i in range(8) %}
-                      {% if useable_batteries > i + 1 %}
-                        {% set p = [[chosen_power_per_battery, max_limit] | min, min_limit] | max %}
-                      {% else %}
-                        {% set p = 0 %}
-                      {% endif %}
-                      {% set powers.list = powers.list + [p] %}
-                    {% endfor %} {{ powers.list }}
-              - variables:
-                  power_e1: "{{ e_power_list[0] if e_power_list | length > 0 else 0 }}"
-                  power_e2: "{{ e_power_list[1] if e_power_list | length > 1 else 0 }}"
-                  power_e3: "{{ e_power_list[2] if e_power_list | length > 2 else 0 }}"
-                  power_e4: "{{ e_power_list[3] if e_power_list | length > 3 else 0 }}"
-                  power_e5: "{{ e_power_list[4] if e_power_list | length > 4 else 0 }}"
-                  power_e6: "{{ e_power_list[5] if e_power_list | length > 5 else 0 }}"
-                  power_e7: "{{ e_power_list[6] if e_power_list | length > 6 else 0 }}"
-                  power_e8: "{{ e_power_list[7] if e_power_list | length > 7 else 0 }}"
-            alias: Neuverteilung
-        enabled: true
-      - variables:
-          sp_master: 0
-          e1sp: 0
-          e2sp: 0
-          e3sp: 0
-          e4sp: 0
-          e5sp: 0
-          e6sp: 0
-          e7sp: 0
-          e8sp: 0
-        enabled: true
-      - alias: Auf Surplus Modus prüfen
-        if:
-          - condition: state
-            entity_id: input_boolean.zeropower_surplus_enabled
-            state: "on"
-        then:
-          - variables:
-              surplus_level: >-
-                {{ (states('input_number.zeropower_surplus_level') | float(0) | int)
-                }}
-              surplus_step: "{{ max_limit / 5 }}"
-              master_id: >-
-                {{ useable_batteries_list[0]['id'] if useable_batteries_list |
-                length > 0 else 0 | int }}
-              master_soc: >-
-                {{ useable_batteries_list[0]['soc'] if useable_batteries_list |
-                length > 0 else total_batteries_list[0]['soc'] if
-                total_batteries_list | length > 0 else 0 | int }}
-              pt_power: >-
-                {{ (states('input_number.zeropower_passthrough_value') | float(0) |
-                int) }}
-          - if:
-              - condition: template
-                value_template: "{{ master_soc >= surplus_level }}"
-            then:
-              - variables:
-                  difference: >-
-                    {{ (master_soc - surplus_level) if master_soc > surplus_level
-                    else 0 }}
-                  current_index: 0
-                  current_id: "{{ total_batteries_list[current_index]['id'] }}"
-                  current_pt: "{{ total_batteries_list[current_index]['pt'] }}"
-                  current_pvm3: "{{ total_batteries_list[current_index]['pvm3'] }}"
-                  current_soc: "{{ total_batteries_list[current_index]['soc'] | float }}"
-                  sp_master: >-
-                    {{ [pt_power if current_pt else max_limit if current_pvm3 else surplus_step * difference,
-                    max_limit] | min | int }}
-          - variables:
-              es_power_list: |
-                {% set powers = namespace(list=[]) %} {% for i in range(8) %}
-                  {% if i < available_extra_batteries and (i + 1) < total_batteries_list | length %}
-                    {% set b = total_batteries_list[i + 1] %}
-                    {% set soc = b.soc | float %}
-                    {% set pt = b.pt %}
-                    {% set pvm3 = b.pvm3 %}
-                    {% set diff = soc - surplus_level if soc > surplus_level else 0 %}
-                    {% set val = pt_power if pt else max_limit if pvm3 else surplus_step * diff %}
-                    {% set power = [val, max_limit] | min | int %}
-                  {% else %}
-                    {% set power = 0 %}
-                  {% endif %}
-                  {% set powers.list = powers.list + [power] %}
-                {% endfor %} {{ powers.list }}
-          - variables:
-              e1sp: "{{ es_power_list[0] | int }}"
-              e2sp: "{{ es_power_list[1] | int }}"
-              e3sp: "{{ es_power_list[2] | int }}"
-              e4sp: "{{ es_power_list[3] | int }}"
-              e5sp: "{{ es_power_list[4] | int }}"
-              e6sp: "{{ es_power_list[5] | int }}"
-              e7sp: "{{ es_power_list[6] | int }}"
-              e8sp: "{{ es_power_list[7] | int }}"
-        enabled: true
-      - alias: Setze Leistung von Master
-        sequence:
-          - variables:
-              current_power_master: >
-                {% set i = master_battery_id %} {{ states('sensor.b2500_0' ~
-                i|string ~ '_h1') | float(0) }} 
-              total_power_m: >-
-                {{ [max_limit, [(power_master + sp_master), min_limit, 10] | max] |
-                min }}
-              total_power_master: "{{ total_power_m * 2 if not both_outputs else total_power_m }}"
-          - alias: Sende MQTT nur wenn nötig
-            if:
-              - alias: total_power_master ungleich der aktuell gesetzen Leistung ist
-                condition: template
-                value_template: "{{ total_power_master != current_power_master }}"
-            then:
-              - variables:
-                  topic: >
-                    {% set i = master_battery_id %} {{ states('input_text.b0' ~
-                    i|string ~ '_topic') }}/{{ states('input_text.b0' ~ i|string ~
-                    '_typ') }}/App/{{ states('input_text.b0' ~ i|string ~ '_mac')
-                    }}/ctrl 
-              - alias: Sende MQTT an Master
-                data:
-                  topic: "{{ topic }}"
-                  payload: |
-                    cd=20,md=0,a1=1,b1=0:0,e1=24:0,v1={{ total_power_master }}
-                action: mqtt.publish
-        enabled: true
-      - alias: Setze Leistung von extra_batteries
-        sequence:
-          - repeat:
-              count: "{{ available_extra_batteries }}"
-              sequence:
-                - variables:
-                    current_extra_index: "{{ repeat.index }}"
-                    current_extra_id: |
-                      {% if current_extra_index < total_batteries_list | length %}
-                        {{ total_batteries_list[current_extra_index]['id'] }}
-                      {% else %}
-                        0
-                      {% endif %}
-                    current_total: >-
-                      {% set idx = current_extra_index - 1 %} {{ [max_limit,
-                      [e_power_list[idx], es_power_list[idx], min_limit] | max] |
-                      min }}
-                    current_v1: "{{ current_total * 2 if not both_outputs else current_total }}"
-                    current_power_extra: >
-                      {% set i = current_extra_id %} {{ states('sensor.b2500_0' ~
-                      i|string ~ '_h1') | float(0) }} 
-                  enabled: true
-                - alias: Sende MQTT nur wenn nötig
-                  if:
+      - repeat:
+          sequence:
+            - variables:
+                target: "{{ states('input_number.zeropower_target_value') | int }}"
+                curr_diff: >-
+                  {{ (states('sensor.zeropower_measure_load') | float(0) | int) -
+                  (target) }}
+                p_master_candidate: "{{ power_master + curr_diff }}"
+                both_outputs: "{{ is_state('input_boolean.zeropower_use_both_outputs', 'on') }}"
+                min_limit: "{{ states('input_number.zeropower_min_limit') | int }}"
+                max_limit: >-
+                  {{ [(states('input_number.zeropower_max_limit') | int), (800 if
+                  both_outputs else 400)] |min | int }}
+                redistribution_needed: |
+                  {{ p_master_candidate <= min_limit or
+                     p_master_candidate >= max_limit or
+                     force_redistribution }}
+              enabled: true
+            - variables:
+                batteries_list: |
+                  {% set ns = namespace(batteries_list=[]) %}
+                  {% for i in range(1, 10) %}
+                    {% set id_str = '{:02d}'.format(i) %}
+                    {% set enabled = is_state('input_boolean.zeropower_use_b' ~ id_str, 'on') %}
+                    {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) | int %}
+                    {% set soc_rounded = [((soc / 5) | round(0, 'ceil') * 5), 100] | min | int %}
+                    {% set pv_power = states('sensor.b' ~ id_str ~ '_pv_gesamt') | float(0) | int %}
+                    {% set sp_rounded = [[(((pv_power - states('input_number.zeropower_surplus_bypass') | float(0) ) / 10) | round(0, 'ceil') * 10), max_limit] | min, 0] | max| int %}
+                    {% set pv_mode = states('sensor.b2500_' ~ id_str ~ '_p2') | float(0) | int %} 
+                    {% set passthrough = (pv_mode == 2) %}
+                    {% set pv_mode3 = (pv_mode == 3) or (pv_mode == 0 and soc == 100) %}
+                    {% set output_act = is_state('sensor.b2500_' ~ id_str ~ '_o2', '1') %}
+                    {% if enabled and (output_act or passthrough) %}
+                      {% set entry = {'id': i, 'soc': soc, 'soc_rounded': soc_rounded, 'pt': passthrough, 'pvm3': pv_mode3, 'sp_rounded': sp_rounded} %}
+                      {% set ns.batteries_list = ns.batteries_list + [entry] %}
+                    {% endif %}
+                  {% endfor %} {{ ns.batteries_list }}
+                useable_batteries_list: |
+                  {% set useable = batteries_list
+                    | selectattr('pt', 'equalto', false)
+                    | sort(attribute='soc', reverse=true)
+                    | list %}
+                  {{ useable }}
+                other_batteries_list: |
+                  {% set other = batteries_list
+                    | selectattr('pt', 'equalto', true)
+                    | sort(attribute='soc', reverse=true)
+                    | list %}
+                  {{ other }}
+                total_batteries_list: "{{ useable_batteries_list + other_batteries_list }}"
+                master_battery_id: >-
+                  {{ useable_batteries_list[0].id if useable_batteries_list | length
+                  > 0 else '' }}
+                total_batteries: "{{ total_batteries_list | length | int }}"
+                useable_batteries: "{{ useable_batteries_list | length | int }}"
+                available_extra_batteries: "{{ total_batteries_list | length - 1 | int }}"
+              enabled: true
+            - choose:
+                - conditions:
                     - condition: template
-                      value_template: "{{ current_v1 != current_power_extra }}"
+                      value_template: "{{ not redistribution_needed }}"
+                  sequence:
+                    - variables:
+                        topic: >
+                          {% set i = master_battery_id %} {{ states('input_text.b0'
+                          ~ i|string ~ '_topic') }}/{{ states('input_text.b0' ~
+                          i|string ~ '_typ') }}/App/{{ states('input_text.b0' ~
+                          i|string ~ '_mac') }}/ctrl 
+                        power_master: >-
+                          {{ [max_limit, [min_limit, p_master_candidate] | max ] |
+                          min  if useable_batteries_list | length > 0 else 0 | int
+                          }}
+                  alias: Master nachregeln
+                - conditions:
+                    - condition: template
+                      value_template: "{{ redistribution_needed }}"
+                  sequence:
+                    - variables:
+                        total_load: >-
+                          {{ (power_master + power_e1 + power_e2 + power_e3 +
+                          power_e4 + power_e5 + power_e6 + power_e7 + power_e8) +
+                          curr_diff | int }}
                       enabled: true
-                      alias: Leistung v1 ungleich der aktuell gesetzten Leistung ist
+                    - variables:
+                        e_power_list: |-
+                          {% set batt = useable_batteries_list %}
+                          {% set total_soc = batt | map(attribute='soc') | sum %}
+                          {% set loads = batt
+                            | map(attribute='soc')
+                            | map('float')
+                            | map('multiply', total_load / total_soc if total_soc > 0 else 0)
+                            | list %}
+                          {% set ns = namespace(remaining=0, final=[]) %}
+
+                          {# 1. Initiale Limit-Prüfung #}
+                          {% for l in loads %}
+                            {% if l > max_limit %}
+                              {% set ns.final = ns.final + [max_limit] %}
+                              {% set ns.remaining = ns.remaining + (l - max_limit) %}
+                            {% else %}
+                              {% set ns.final = ns.final + [l] %}
+                            {% endif %}
+                          {% endfor %}
+
+                          {# 2. Restlast-Verteilung (for statt while) #}
+                          {% set max_loops = 15 %}
+                          {% for _ in range(max_loops) %}
+                            {% if ns.remaining <= 0 %}
+                              {% break %}
+                            {% endif %}
+
+                            {% set free_total = 0 %}
+                            {% for idx in range(ns.final|length) %}
+                              {% set cap = max_limit - ns.final[idx] %}
+                              {% if cap > 0 %}
+                                {% set free_total = free_total + batt[idx].soc %}
+                              {% endif %}
+                            {% endfor %}
+
+                            {% if free_total == 0 %}
+                              {% break %}
+                            {% endif %}
+
+                            {% for idx in range(ns.final|length) %}
+                              {% set cap = max_limit - ns.final[idx] %}
+                              {% if cap > 0 %}
+                                {% set add = min(cap, ns.remaining * (batt[idx].soc / free_total)) %}
+                                {% set ns.final = ns.final[:idx] + [ns.final[idx] + add] + ns.final[idx+1:] %}
+                                {% set ns.remaining = ns.remaining - add %}
+                              {% endif %}
+                            {% endfor %}
+                          {% endfor %}
+
+                          {# 3. In 9er-Liste mit min/max-Grenzen übertragen #}
+                          {% set powers = namespace(list=[]) %}
+                          {% for i in range(9) %}
+                            {% if i < ns.final|length %}
+                              {% set p = [[ns.final[i], max_limit] | min, min_limit] | max | int %}
+                            {% else %}
+                              {% set p = 0 %}
+                            {% endif %}
+                            {% set powers.list = powers.list + [p] %}
+                          {% endfor %}
+                          {{ powers.list }}
+                    - variables:
+                        power_master: "{{ e_power_list[0] if e_power_list | length > 0 else 0 }}"
+                        power_e1: "{{ e_power_list[1] if e_power_list | length > 1 else 0 }}"
+                        power_e2: "{{ e_power_list[2] if e_power_list | length > 2 else 0 }}"
+                        power_e3: "{{ e_power_list[3] if e_power_list | length > 3 else 0 }}"
+                        power_e4: "{{ e_power_list[4] if e_power_list | length > 4 else 0 }}"
+                        power_e5: "{{ e_power_list[5] if e_power_list | length > 5 else 0 }}"
+                        power_e6: "{{ e_power_list[6] if e_power_list | length > 6 else 0 }}"
+                        power_e7: "{{ e_power_list[7] if e_power_list | length > 7 else 0 }}"
+                        power_e8: "{{ e_power_list[8] if e_power_list | length > 7 else 0 }}"
+                    - variables:
+                        force_redistribution: false
+                  alias: Neuverteilung
+              enabled: true
+            - alias: Auf Surplus Modus prüfen
+              if:
+                - condition: state
+                  entity_id: input_boolean.zeropower_surplus_enabled
+                  state: "on"
+              then:
+                - variables:
+                    surplus_level: >-
+                      {{ (states('input_number.zeropower_surplus_level') | float(0)
+                      | int) }}
+                    surplus_step: "{{ max_limit / 5 }}"
+                    master_id: >-
+                      {{ useable_batteries_list[0]['id'] if useable_batteries_list |
+                      length > 0 else 0 | int }}
+                    master_soc: >-
+                      {{ useable_batteries_list[0]['soc'] if useable_batteries_list
+                      | length > 0 else total_batteries_list[0]['soc'] if
+                      total_batteries_list | length > 0 else 0 | int }}
+                    pt_power: >-
+                      {{ (states('input_number.zeropower_passthrough_value') |
+                      float(0) | int) }}
+                - if:
+                    - condition: template
+                      value_template: "{{ master_soc >= surplus_level }}"
                   then:
                     - variables:
-                        current_topic: >
-                          {{ states('input_text.b0' ~ current_extra_id|string ~
-                          '_topic') }}/{{ states('input_text.b0' ~
-                          current_extra_id|string ~ '_typ') }}/App/{{
-                          states('input_text.b0' ~ current_extra_id|string ~ '_mac')
-                          }}/ctrl
-                        current_payload: |
-                          cd=20,md=0,a1=1,b1=0:0,e1=24:00,v1={{ current_v1 }}
-                    - data:
-                        topic: "{{ current_topic }}"
-                        payload: "{{ current_payload }}"
-                        qos: "1"
+                        difference: >-
+                          {{ (master_soc - surplus_level) if master_soc >
+                          surplus_level else 0 }}
+                        current_index: 0
+                        current_id: "{{ total_batteries_list[current_index]['id'] }}"
+                        current_pt: "{{ total_batteries_list[current_index]['pt'] }}"
+                        current_pvm3: "{{ total_batteries_list[current_index]['pvm3'] }}"
+                        current_soc: "{{ total_batteries_list[current_index]['soc'] | float }}"
+                        current_sp: >-
+                          {{ total_batteries_list[current_index]['sp_rounded'] |
+                          float }}
+                        sp_master: >-
+                          {{ [pt_power if current_pt else max_limit if current_pvm3
+                          else current_sp, max_limit] | min | int }}
+                - variables:
+                    es_power_list: |
+                      {% set powers = namespace(list=[]) %} {% for i in range(8) %}
+                        {% if i < available_extra_batteries and (i + 1) < total_batteries_list | length %}
+                          {% set b = total_batteries_list[i + 1] %}
+                          {% set soc = b.soc | float %}
+                          {% set pt = b.pt %}
+                          {% set pvm3 = b.pvm3 %}
+                          {% set sp_power = b.sp_rounded %}
+                          {% set diff = soc - surplus_level if soc > surplus_level else 0 %}
+                          {% set val = pt_power if pt else max_limit if pvm3 else sp_power if diff > 0 else 0 | int(0) %}
+                          {% set power = [val, max_limit] | min | int %}
+                        {% else %}
+                          {% set power = 0 %}
+                        {% endif %}
+                        {% set powers.list = powers.list + [power] %}
+                      {% endfor %} {{ powers.list }}
+                - variables:
+                    e1sp: "{{ es_power_list[0] | int }}"
+                    e2sp: "{{ es_power_list[1] | int }}"
+                    e3sp: "{{ es_power_list[2] | int }}"
+                    e4sp: "{{ es_power_list[3] | int }}"
+                    e5sp: "{{ es_power_list[4] | int }}"
+                    e6sp: "{{ es_power_list[5] | int }}"
+                    e7sp: "{{ es_power_list[6] | int }}"
+                    e8sp: "{{ es_power_list[7] | int }}"
+                  enabled: true
+              enabled: true
+              else:
+                - variables:
+                    sp_master: 0
+                    e1sp: 0
+                    e2sp: 0
+                    e3sp: 0
+                    e4sp: 0
+                    e5sp: 0
+                    e6sp: 0
+                    e7sp: 0
+                    e8sp: 0
+                  enabled: true
+            - alias: Setze Leistung von Master
+              sequence:
+                - variables:
+                    current_power_master: >
+                      {% set i = master_battery_id %} {{ states('sensor.b2500_0' ~
+                      i|string ~ '_h1') | float(0) }} 
+                    total_power_m: >-
+                      {{ [max_limit, [(power_master + sp_master), min_limit, 10] |
+                      max] | min }}
+                    total_power_master: "{{ total_power_m * 2 if not both_outputs else total_power_m }}"
+                - alias: Sende MQTT nur wenn nötig
+                  if:
+                    - alias: >-
+                        total_power_master ungleich der aktuell gesetzen Leistung
+                        ist
+                      condition: template
+                      value_template: "{{ total_power_master != current_power_master }}"
+                  then:
+                    - variables:
+                        topic: >
+                          {% set i = master_battery_id %} {{ states('input_text.b0'
+                          ~ i|string ~ '_topic') }}/{{ states('input_text.b0' ~
+                          i|string ~ '_typ') }}/App/{{ states('input_text.b0' ~
+                          i|string ~ '_mac') }}/ctrl 
+                    - alias: Sende MQTT an Master
+                      data:
+                        topic: "{{ topic }}"
+                        payload: |
+                          cd=20,md=0,a1=1,b1=0:0,e1=24:0,v1={{ total_power_master }}
                       action: mqtt.publish
-                      alias: Sende MQTT an aktuelle Batterie
-            enabled: true
+              enabled: true
+            - alias: Setze Leistung von extra_batteries
+              sequence:
+                - repeat:
+                    count: "{{ available_extra_batteries }}"
+                    sequence:
+                      - variables:
+                          current_extra_index: "{{ repeat.index }}"
+                          current_extra_id: >
+                            {% if current_extra_index < total_batteries_list |
+                            length %}
+                              {{ total_batteries_list[current_extra_index]['id'] }}
+                            {% else %}
+                              0
+                            {% endif %}
+                          e_power: >
+                            {% set idx = current_extra_index %} {% if idx == 1 %}{{
+                            power_e1 }} {% elif idx == 2 %}{{ power_e2 }} {% elif
+                            idx == 3 %}{{ power_e3 }} {% elif idx == 4 %}{{ power_e4
+                            }} {% elif idx == 5 %}{{ power_e5 }} {% elif idx == 6
+                            %}{{ power_e6 }} {% elif idx == 7 %}{{ power_e7 }} {%
+                            elif idx == 8 %}{{ power_e8 }} {% else %}0{% endif %}
+                          es_power: >
+                            {% set idx = current_extra_index %} {% if idx == 1 %}{{
+                            e1sp }} {% elif idx == 2 %}{{ e2sp }} {% elif idx == 3
+                            %}{{ e3sp }} {% elif idx == 4 %}{{ e4sp }} {% elif idx
+                            == 5 %}{{ e5sp }} {% elif idx == 6 %}{{ e6sp }} {% elif
+                            idx == 7 %}{{ e7sp }} {% elif idx == 8 %}{{ e8sp }} {%
+                            else %}0{% endif %}
+                          current_total: >-
+                            {% set idx = current_extra_index - 1 %} {{ [max_limit,
+                            [(e_power + es_power), min_limit] | max] | min }}
+                          current_v1: >-
+                            {{ current_total * 2 if not both_outputs else
+                            current_total }}
+                          current_power_extra: >
+                            {% set i = current_extra_id %} {{
+                            states('sensor.b2500_0' ~ i|string ~ '_h1') | float(0)
+                            }} 
+                        enabled: true
+                      - alias: Sende MQTT nur wenn nötig
+                        if:
+                          - condition: template
+                            value_template: "{{ current_v1 != current_power_extra }}"
+                            enabled: true
+                            alias: >-
+                              Leistung v1 ungleich der aktuell gesetzten Leistung
+                              ist
+                        then:
+                          - variables:
+                              current_topic: >
+                                {{ states('input_text.b0' ~ current_extra_id|string
+                                ~ '_topic') }}/{{ states('input_text.b0' ~
+                                current_extra_id|string ~ '_typ') }}/App/{{
+                                states('input_text.b0' ~ current_extra_id|string ~
+                                '_mac') }}/ctrl
+                              current_payload: |
+                                cd=20,md=0,a1=1,b1=0:0,e1=24:00,v1={{ current_v1 }}
+                          - data:
+                              topic: "{{ current_topic }}"
+                              payload: "{{ current_payload }}"
+                              qos: "1"
+                            action: mqtt.publish
+                            alias: Sende MQTT an aktuelle Batterie
+                  enabled: true
+              enabled: true
+            - target:
+                entity_id: input_text.zeropower_variables
+              data:
+                value: |
+                  {{ {
+                    "mp":power_master,
+                    "e1p":power_e1,
+                    "e2p":power_e2,
+                    "e3p": power_e3,
+                    "e4p": power_e4,
+                    "e5p": power_e5,
+                    "e6p": power_e6,
+                    "e7p": power_e7,
+                    "e8p": power_e8
+                  } | tojson }}
+              action: input_text.set_value
+              enabled: true
+            - target:
+                entity_id: input_text.zeropower_variables2
+              data:
+                value: >
+                  {% set m_id = ( ('p' if total_batteries_list[0].pt else
+                  total_batteries_list[0].id) if total_batteries > 0 else '-' ) %}
+
+                  {% set e1_id = ('p' if total_batteries_list[1].pt else
+                  total_batteries_list[1].id) if total_batteries > 1 else '-' %}
+
+                  {% set e2_id = ('p' if total_batteries_list[2].pt else
+                  total_batteries_list[2].id) if total_batteries_list | length > 2
+                  else '-' %}
+
+                  {% set e3_id = ('p' if total_batteries_list[3].pt else
+                  total_batteries_list[3].id) if total_batteries_list | length > 3
+                  else '-' %}
+
+                  {% set e4_id = ('p' if total_batteries_list[4].pt else
+                  total_batteries_list[4].id) if total_batteries_list | length > 4
+                  else '-' %}
+
+                  {% set e5_id = ('p' if total_batteries_list[5].pt else
+                  total_batteries_list[5].id) if total_batteries_list | length > 5
+                  else '-' %}
+
+                  {% set e6_id = ('p' if total_batteries_list[6].pt else
+                  total_batteries_list[6].id) if total_batteries_list | length > 6
+                  else '-' %}
+
+                  {% set e7_id = ('p' if total_batteries_list[7].pt else
+                  total_batteries_list[7].id) if total_batteries_list | length > 7
+                  else '-' %}
+
+                  {% set e8_id = ('p' if total_batteries_list[8].pt else
+                  total_batteries_list[8].id) if total_batteries_list | length > 8
+                  else '-' %}
+
+
+
+                  {
+
+                  "ID": "{{ m_id }}|{{ e1_id }}|{{ e2_id }}|{{ e3_id }}|{{ e4_id
+                  }}|{{ e5_id }}|{{ e6_id }}|{{ e7_id }}|{{ e8_id }}", "SP": "{{
+                  sp_master }}|{{ e1sp }}|{{ e2sp }}|{{ e3sp }}|{{ e4sp }}|{{ e5sp
+                  }}|{{ e6sp }}|{{ e7sp }}|{{ e8sp }}"
+
+                  }
+              action: input_text.set_value
+              enabled: true
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 5
+                milliseconds: 0
+              enabled: true
+          until:
+            - condition: and
+              conditions:
+                - condition: numeric_state
+                  entity_id: sensor.zeropower_measure_load
+                  below: sensor.zeropower_target_range_high
+                - condition: numeric_state
+                  entity_id: sensor.zeropower_measure_load
+                  above: sensor.zeropower_target_range_low
+                - condition: template
+                  value_template: "{{ not force_redistribution }}"
         enabled: true
-      - target:
-          entity_id: input_text.zeropower_variables
-        data:
-          value: |
-            {{ {
-              "mp":power_master,
-              "e1p":power_e1,
-              "e2p":power_e2,
-              "e3p": power_e3,
-              "e4p": power_e4,
-              "e5p": power_e5,
-              "e6p": power_e6,
-              "e7p": power_e7,
-              "e8p": power_e8,
-              "chp": chosen_power_per_battery
-            } | tojson }}
-        action: input_text.set_value
-        enabled: true
-      - target:
-          entity_id: input_text.zeropower_variables2
-        data:
-          value: >
-            {% set m_id = ( ('p' if total_batteries_list[0].pt else
-            total_batteries_list[0].id) if total_batteries > 0 else '-' ) %}
-
-            {% set e1_id = ('p' if total_batteries_list[1].pt else
-            total_batteries_list[1].id) if total_batteries > 1 else '-' %}
-
-            {% set e2_id = ('p' if total_batteries_list[2].pt else
-            total_batteries_list[2].id) if total_batteries_list | length > 2 else
-            '-' %}
-
-            {% set e3_id = ('p' if total_batteries_list[3].pt else
-            total_batteries_list[3].id) if total_batteries_list | length > 3 else
-            '-' %}
-
-            {% set e4_id = ('p' if total_batteries_list[4].pt else
-            total_batteries_list[4].id) if total_batteries_list | length > 4 else
-            '-' %}
-
-            {% set e5_id = ('p' if total_batteries_list[5].pt else
-            total_batteries_list[5].id) if total_batteries_list | length > 5 else
-            '-' %}
-
-            {% set e6_id = ('p' if total_batteries_list[6].pt else
-            total_batteries_list[6].id) if total_batteries_list | length > 6 else
-            '-' %}
-
-            {% set e7_id = ('p' if total_batteries_list[7].pt else
-            total_batteries_list[7].id) if total_batteries_list | length > 7 else
-            '-' %}
-
-            {% set e8_id = ('p' if total_batteries_list[8].pt else
-            total_batteries_list[8].id) if total_batteries_list | length > 8 else
-            '-' %}
-
-
-
-            {
-
-            "ID": "{{ m_id }}|{{ e1_id }}|{{ e2_id }}|{{ e3_id }}|{{ e4_id }}|{{
-            e5_id }}|{{ e6_id }}|{{ e7_id }}|{{ e8_id }}", "SP": "{{ sp_master }}|{{
-            e1sp }}|{{ e2sp }}|{{ e3sp }}|{{ e4sp }}|{{ e5sp }}|{{ e6sp }}|{{ e7sp
-            }}|{{ e8sp }}"
-
-            }
-        action: input_text.set_value
-        enabled: true
-    description: ""
+    fields:
+      force_redistribution:
+        selector:
+          boolean: {}
+        name: "Neuverteilung erzwingen "
+        required: true
