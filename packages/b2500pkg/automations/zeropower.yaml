@@ -179,7 +179,6 @@ automation:
   
 script:
   b2500pkg_zeropower_main:
-    alias: "B2500PKG_Zeropower_main"
     sequence:
       - variables:
           sp_master: 0
@@ -315,7 +314,7 @@ script:
                             | map('multiply', total_load / total_soc if total_soc > 0 else 0)
                             | list %}
                           {% set ns = namespace(remaining=0, final=[]) %}
-
+    
                           {# 1. Initiale Limit-Prüfung #}
                           {% for l in loads %}
                             {% if l > max_limit %}
@@ -325,14 +324,14 @@ script:
                               {% set ns.final = ns.final + [l] %}
                             {% endif %}
                           {% endfor %}
-
+    
                           {# 2. Restlast-Verteilung (for statt while) #}
                           {% set max_loops = 15 %}
                           {% for _ in range(max_loops) %}
                             {% if ns.remaining <= 0 %}
                               {% break %}
                             {% endif %}
-
+    
                             {% set free_total = 0 %}
                             {% for idx in range(ns.final|length) %}
                               {% set cap = max_limit - ns.final[idx] %}
@@ -340,11 +339,11 @@ script:
                                 {% set free_total = free_total + batt[idx].soc %}
                               {% endif %}
                             {% endfor %}
-
+    
                             {% if free_total == 0 %}
                               {% break %}
                             {% endif %}
-
+    
                             {% for idx in range(ns.final|length) %}
                               {% set cap = max_limit - ns.final[idx] %}
                               {% if cap > 0 %}
@@ -354,7 +353,7 @@ script:
                               {% endif %}
                             {% endfor %}
                           {% endfor %}
-
+    
                           {# 3. In 9er-Liste mit min/max-Grenzen übertragen #}
                           {% set powers = namespace(list=[]) %}
                           {% for i in range(9) %}
@@ -579,47 +578,47 @@ script:
                 value: >
                   {% set m_id = ( ('p' if total_batteries_list[0].pt else
                   total_batteries_list[0].id) if total_batteries > 0 else '-' ) %}
-
+    
                   {% set e1_id = ('p' if total_batteries_list[1].pt else
                   total_batteries_list[1].id) if total_batteries > 1 else '-' %}
-
+    
                   {% set e2_id = ('p' if total_batteries_list[2].pt else
                   total_batteries_list[2].id) if total_batteries_list | length > 2
                   else '-' %}
-
+    
                   {% set e3_id = ('p' if total_batteries_list[3].pt else
                   total_batteries_list[3].id) if total_batteries_list | length > 3
                   else '-' %}
-
+    
                   {% set e4_id = ('p' if total_batteries_list[4].pt else
                   total_batteries_list[4].id) if total_batteries_list | length > 4
                   else '-' %}
-
+    
                   {% set e5_id = ('p' if total_batteries_list[5].pt else
                   total_batteries_list[5].id) if total_batteries_list | length > 5
                   else '-' %}
-
+    
                   {% set e6_id = ('p' if total_batteries_list[6].pt else
                   total_batteries_list[6].id) if total_batteries_list | length > 6
                   else '-' %}
-
+    
                   {% set e7_id = ('p' if total_batteries_list[7].pt else
                   total_batteries_list[7].id) if total_batteries_list | length > 7
                   else '-' %}
-
+    
                   {% set e8_id = ('p' if total_batteries_list[8].pt else
                   total_batteries_list[8].id) if total_batteries_list | length > 8
                   else '-' %}
-
-
-
+    
+    
+    
                   {
-
+    
                   "ID": "{{ m_id }}|{{ e1_id }}|{{ e2_id }}|{{ e3_id }}|{{ e4_id
                   }}|{{ e5_id }}|{{ e6_id }}|{{ e7_id }}|{{ e8_id }}", "SP": "{{
                   sp_master }}|{{ e1sp }}|{{ e2sp }}|{{ e3sp }}|{{ e4sp }}|{{ e5sp
                   }}|{{ e6sp }}|{{ e7sp }}|{{ e8sp }}"
-
+    
                   }
               action: input_text.set_value
               enabled: true
@@ -629,26 +628,21 @@ script:
                 seconds: 5
                 milliseconds: 0
               enabled: true
-          until:
-            - condition: and
+          while:
+            - condition: or
               conditions:
                 - condition: numeric_state
                   entity_id: sensor.zeropower_measure_load
-                  below: sensor.zeropower_target_range_high
+                  below: sensor.zeropower_target_range_low
                 - condition: numeric_state
                   entity_id: sensor.zeropower_measure_load
-                  above: sensor.zeropower_target_range_low
+                  above: sensor.zeropower_target_range_high
                 - condition: template
-                  value_template: "{{ not force_redistribution }}"
+                  value_template: "{{ force_redistribution }}"
         enabled: true
+    alias: B2500PKG_Zeropower_main
     fields:
       force_redistribution:
-        name: "Neuverteilung erzwingen"
-        selector: {boolean}
-
-
-
-
-
-
-        
+        name: Neuverteilung erzwingen
+        selector: { boolean }
+    description: ""
