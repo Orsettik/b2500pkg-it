@@ -140,25 +140,22 @@ automation:
   conditions:
     - condition: or
       conditions:
-        - alias: ausserhalb der Grenzwerte
-          condition: and
-          conditions:
-            - condition: template
-              value_template: |
-                {{ states('sensor.zeropower_measure_load') | float >
-                  (states('input_number.zeropower_target_value') | float +
-                   states('input_number.zeropower_target_deviation') | float) }}
-              alias: Grenzwert überschritten
-            - condition: template
-              value_template: |
-                {{ states('sensor.zeropower_measure_load') | float <
-                  (states('input_number.zeropower_target_value') | float -
-                   states('input_number.zeropower_target_deviation') | float) }}
-              alias: Grenzwert unterschritten
-            - condition: template
-              value_template: |
-                {{ trigger.id == 'trigger_time' }}
-              alias: Wenn ausgelöst durch Zeit-Trigger
+        - condition: template
+          value_template: |
+            {{ states('sensor.zeropower_measure_load') | float >
+              (states('input_number.zeropower_target_value') | float +
+               states('input_number.zeropower_target_deviation') | float) }}
+          alias: Grenzwert überschritten
+        - condition: template
+          value_template: |
+            {{ states('sensor.zeropower_measure_load') | float <
+              (states('input_number.zeropower_target_value') | float -
+               states('input_number.zeropower_target_deviation') | float) }}
+          alias: Grenzwert unterschritten
+        - condition: template
+          value_template: |
+            {{ trigger.id == 'trigger_time' }}
+          alias: Wenn ausgelöst durch Zeit-Trigger
   actions:
     - choose:
         - conditions:
@@ -166,7 +163,7 @@ automation:
               id:
                 - trigger_state
           sequence:
-            - action: script.b2500pkg_zeropower
+            - action: script.b2500pkg_zeropower_main
               data:
                 force_redistribution: false
         - conditions:
@@ -174,7 +171,7 @@ automation:
               id:
                 - trigger_time
           sequence:
-            - action: script.b2500pkg_zeropower
+            - action: script.b2500pkg_zeropower_main
               data:
                 force_redistribution: true
     
