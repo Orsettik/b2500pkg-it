@@ -473,7 +473,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B02_Spannungsdifferenz"
@@ -501,7 +501,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B03_Spannungsdifferenz"
@@ -529,7 +529,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B04_Spannungsdifferenz"
@@ -557,7 +557,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B05_Spannungsdifferenz"
@@ -585,7 +585,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B06_Spannungsdifferenz"
@@ -613,7 +613,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B07_Spannungsdifferenz"
@@ -641,7 +641,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B08_Spannungsdifferenz"
@@ -669,7 +669,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
   - sensor:
     - name: "B09_Spannungsdifferenz"
@@ -697,7 +697,7 @@ template:
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
-          unknown
+          0
         {% endif %}
         
         
