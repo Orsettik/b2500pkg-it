@@ -127,6 +127,8 @@ automation:
   id: b2500pkg_zeropower_trigger
   alias: B2500PKG_Zeropower_trigger
   description: V1_5
+  mode: queued
+  max: 10
   triggers:
     - trigger: state
       entity_id:
@@ -138,24 +140,34 @@ automation:
       id: trigger_time
       minutes: /5
   conditions:
-    - condition: or
-      conditions:
-        - condition: template
-          value_template: |
-            {{ states('sensor.zeropower_measure_load') | float >
-              (states('input_number.zeropower_target_value') | float +
-               states('input_number.zeropower_target_deviation') | float) }}
-          alias: Grenzwert überschritten
-        - condition: template
-          value_template: |
-            {{ states('sensor.zeropower_measure_load') | float <
-              (states('input_number.zeropower_target_value') | float -
-               states('input_number.zeropower_target_deviation') | float) }}
-          alias: Grenzwert unterschritten
-        - condition: template
-          value_template: |
-            {{ trigger.id == 'trigger_time' }}
-          alias: Wenn ausgelöst durch Zeit-Trigger
+  - condition: or
+    conditions:
+      # Fall 1: Grenzwert über/unter + Script aus
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: script.b2500pkg_zeropower_main
+            state: "off"  # Script darf nicht laufen
+          - condition: or
+            conditions:
+              - condition: template
+                value_template: >
+                  {{ states('sensor.zeropower_measure_load') | float(0) >
+                     (states('input_number.zeropower_target_value') | float(0) +
+                      states('input_number.zeropower_target_deviation') | float(0) ) }}
+                alias: Grenzwert überschritten
+              - condition: template
+                value_template: >
+                  {{ states('sensor.zeropower_measure_load') | float(0) <
+                     (states('input_number.zeropower_target_value') | float(0) -
+                      states('input_number.zeropower_target_deviation') | float(0) ) }}
+                alias: Grenzwert unterschritten
+
+      # Fall 2: Zeit-Trigger ohne Rücksicht auf Script
+      - condition: template
+        value_template: >
+          {{ trigger.id == 'trigger_time' }}
+        alias: Wenn ausgelöst durch Zeit-Trigger
   actions:
     - choose:
         - conditions:
@@ -163,22 +175,32 @@ automation:
               id:
                 - trigger_state
           sequence:
-            - action: script.b2500pkg_zeropower_main
+            - service: script.turn_on
+              target:
+                entity_id: script.b2500pkg_zeropower_main
               data:
-                force_redistribution: false
+                variables:
+                  force_redistribution: false
+ 
+ 
         - conditions:
             - condition: trigger
               id:
                 - trigger_time
           sequence:
-            - action: script.b2500pkg_zeropower_main
+            - service: script.turn_on
+              target:
+                entity_id: script.b2500pkg_zeropower_main
               data:
-                force_redistribution: true
+                variables:
+                  force_redistribution: true
     
   
   
 script:
   b2500pkg_zeropower_main:
+    mode: queued
+    max: 10
     sequence:
       - variables:
           sp_master: 0
@@ -245,6 +267,7 @@ script:
                   {% for i in range(1, 10) %}
                     {% set id_str = '{:02d}'.format(i) %}
                     {% set enabled = is_state('input_boolean.zeropower_use_b' ~ id_str, 'on') %}
+                    {% set timer_enabled = is_state('binary_sensor.b2500_' ~ id_str ~ '_d1', 'on') %}
                     {% set soc = states('sensor.b2500_' ~ id_str ~ '_pe') | float(0) | int %}
                     {% set soc_rounded = [((soc / 5) | round(0, 'ceil') * 5), 100] | min | int %}
                     {% set pv_power = states('sensor.b' ~ id_str ~ '_pv_gesamt') | float(0) | int %}
@@ -253,7 +276,7 @@ script:
                     {% set passthrough = (pv_mode == 2) %}
                     {% set pv_mode3 = (pv_mode == 3) or (pv_mode == 0 and soc == 100) %}
                     {% set output_act = is_state('sensor.b2500_' ~ id_str ~ '_o2', '1') %}
-                    {% if enabled and (output_act or passthrough) %}
+                    {% if enabled and timer_enabled and (output_act or passthrough) %}
                       {% set entry = {'id': i, 'soc': soc, 'soc_rounded': soc_rounded, 'pt': passthrough, 'pvm3': pv_mode3, 'sp_rounded': sp_rounded} %}
                       {% set ns.batteries_list = ns.batteries_list + [entry] %}
                     {% endif %}
@@ -358,7 +381,7 @@ script:
                           {% set powers = namespace(list=[]) %}
                           {% for i in range(9) %}
                             {% if i < ns.final|length %}
-                              {% set p = [[ns.final[i], max_limit] | min, min_limit] | max | int %}
+                              {% set p = [[ns.final[i], max_limit] | min, min_limit] | max | round %}
                             {% else %}
                               {% set p = 0 %}
                             {% endif %}
@@ -629,20 +652,28 @@ script:
                 milliseconds: 0
               enabled: true
           while:
-            - condition: or
+            - condition: and
               conditions:
-                - condition: numeric_state
-                  entity_id: sensor.zeropower_measure_load
-                  below: sensor.zeropower_target_range_low
-                - condition: numeric_state
-                  entity_id: sensor.zeropower_measure_load
-                  above: sensor.zeropower_target_range_high
-                - condition: template
-                  value_template: "{{ force_redistribution }}"
-        enabled: true
+                - condition: or
+                  conditions:
+                    - condition: numeric_state
+                      entity_id: sensor.zeropower_measure_load
+                      below: sensor.zeropower_target_range_low
+                    - condition: numeric_state
+                      entity_id: sensor.zeropower_measure_load
+                      above: sensor.zeropower_target_range_high
+                    - condition: template
+                      value_template: "{{ force_redistribution }}"
+                - condition: state
+                  entity_id: automation.b2500pkg_zeropower_trigger
+                  state: "on"
+         
+          
     alias: B2500PKG_Zeropower_main
     fields:
       force_redistribution:
         name: Neuverteilung erzwingen
         selector: { boolean }
+        required: true
+        default: true
     description: ""
