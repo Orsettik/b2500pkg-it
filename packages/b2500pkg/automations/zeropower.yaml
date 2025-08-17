@@ -242,7 +242,8 @@ script:
           power_e6: "{{ (variables_lastrun.e6p | default(0)) | float(0) | int }}"
           power_e7: "{{ (variables_lastrun.e7p | default(0)) | float(0) | int }}"
           power_e8: "{{ (variables_lastrun.e8p | default(0)) | float(0) | int }}"
-        alias: Einlesen der Werte des letzten Durchlaufs
+          start_time: "{{ as_timestamp(now()) }}"
+        alias: Zuletzt gesetzte Werte einlesen und Startzeit setzen
       - repeat:
           sequence:
             - variables:
@@ -667,7 +668,8 @@ script:
                 - condition: state
                   entity_id: automation.b2500pkg_zeropower_trigger
                   state: "on"
-         
+                - condition: template
+                  value_template: "{{ (as_timestamp(now()) - start_time) < 270 }}"        
           
     alias: B2500PKG_Zeropower_main
     fields:
