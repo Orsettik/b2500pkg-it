@@ -226,24 +226,23 @@ template:
       - name: "B01_min_Spannung"
         unique_id: b01_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_01_zelle01') | float(999999),
-            states('sensor.b2500_01_zelle02') | float(999999),
-            states('sensor.b2500_01_zelle03') | float(999999),
-            states('sensor.b2500_01_zelle04') | float(999999),
-            states('sensor.b2500_01_zelle05') | float(999999),
-            states('sensor.b2500_01_zelle06') | float(999999),
-            states('sensor.b2500_01_zelle07') | float(999999),
-            states('sensor.b2500_01_zelle08') | float(999999),
-            states('sensor.b2500_01_zelle09') | float(999999),
-            states('sensor.b2500_01_zelle10') | float(999999),
-            states('sensor.b2500_01_zelle11') | float(999999),
-            states('sensor.b2500_01_zelle12') | float(999999),
-            states('sensor.b2500_01_zelle13') | float(999999),
-            states('sensor.b2500_01_zelle14') | float(999999)
+            states('sensor.b2500_01_zelle01') | float(5000),
+            states('sensor.b2500_01_zelle02') | float(5000),
+            states('sensor.b2500_01_zelle03') | float(5000),
+            states('sensor.b2500_01_zelle04') | float(5000),
+            states('sensor.b2500_01_zelle05') | float(5000),
+            states('sensor.b2500_01_zelle06') | float(5000),
+            states('sensor.b2500_01_zelle07') | float(5000),
+            states('sensor.b2500_01_zelle08') | float(5000),
+            states('sensor.b2500_01_zelle09') | float(5000),
+            states('sensor.b2500_01_zelle10') | float(5000),
+            states('sensor.b2500_01_zelle11') | float(5000),
+            states('sensor.b2500_01_zelle12') | float(5000),
+            states('sensor.b2500_01_zelle13') | float(5000),
+            states('sensor.b2500_01_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -251,24 +250,23 @@ template:
       - name: "B02_min_Spannung"
         unique_id: b02_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_02_zelle01') | float(999999),
-            states('sensor.b2500_02_zelle02') | float(999999),
-            states('sensor.b2500_02_zelle03') | float(999999),
-            states('sensor.b2500_02_zelle04') | float(999999),
-            states('sensor.b2500_02_zelle05') | float(999999),
-            states('sensor.b2500_02_zelle06') | float(999999),
-            states('sensor.b2500_02_zelle07') | float(999999),
-            states('sensor.b2500_02_zelle08') | float(999999),
-            states('sensor.b2500_02_zelle09') | float(999999),
-            states('sensor.b2500_02_zelle10') | float(999999),
-            states('sensor.b2500_02_zelle11') | float(999999),
-            states('sensor.b2500_02_zelle12') | float(999999),
-            states('sensor.b2500_02_zelle13') | float(999999),
-            states('sensor.b2500_02_zelle14') | float(999999)
+            states('sensor.b2500_02_zelle01') | float(5000),
+            states('sensor.b2500_02_zelle02') | float(5000),
+            states('sensor.b2500_02_zelle03') | float(5000),
+            states('sensor.b2500_02_zelle04') | float(5000),
+            states('sensor.b2500_02_zelle05') | float(5000),
+            states('sensor.b2500_02_zelle06') | float(5000),
+            states('sensor.b2500_02_zelle07') | float(5000),
+            states('sensor.b2500_02_zelle08') | float(5000),
+            states('sensor.b2500_02_zelle09') | float(5000),
+            states('sensor.b2500_02_zelle10') | float(5000),
+            states('sensor.b2500_02_zelle11') | float(5000),
+            states('sensor.b2500_02_zelle12') | float(5000),
+            states('sensor.b2500_02_zelle13') | float(5000),
+            states('sensor.b2500_02_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -276,24 +274,23 @@ template:
       - name: "B03_min_Spannung"
         unique_id: b03_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_03_zelle01') | float(999999),
-            states('sensor.b2500_03_zelle02') | float(999999),
-            states('sensor.b2500_03_zelle03') | float(999999),
-            states('sensor.b2500_03_zelle04') | float(999999),
-            states('sensor.b2500_03_zelle05') | float(999999),
-            states('sensor.b2500_03_zelle06') | float(999999),
-            states('sensor.b2500_03_zelle07') | float(999999),
-            states('sensor.b2500_03_zelle08') | float(999999),
-            states('sensor.b2500_03_zelle09') | float(999999),
-            states('sensor.b2500_03_zelle10') | float(999999),
-            states('sensor.b2500_03_zelle11') | float(999999),
-            states('sensor.b2500_03_zelle12') | float(999999),
-            states('sensor.b2500_03_zelle13') | float(999999),
-            states('sensor.b2500_03_zelle14') | float(999999)
+            states('sensor.b2500_03_zelle01') | float(5000),
+            states('sensor.b2500_03_zelle02') | float(5000),
+            states('sensor.b2500_03_zelle03') | float(5000),
+            states('sensor.b2500_03_zelle04') | float(5000),
+            states('sensor.b2500_03_zelle05') | float(5000),
+            states('sensor.b2500_03_zelle06') | float(5000),
+            states('sensor.b2500_03_zelle07') | float(5000),
+            states('sensor.b2500_03_zelle08') | float(5000),
+            states('sensor.b2500_03_zelle09') | float(5000),
+            states('sensor.b2500_03_zelle10') | float(5000),
+            states('sensor.b2500_03_zelle11') | float(5000),
+            states('sensor.b2500_03_zelle12') | float(5000),
+            states('sensor.b2500_03_zelle13') | float(5000),
+            states('sensor.b2500_03_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -301,24 +298,23 @@ template:
       - name: "B04_min_Spannung"
         unique_id: b04_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_04_zelle01') | float(999999),
-            states('sensor.b2500_04_zelle02') | float(999999),
-            states('sensor.b2500_04_zelle03') | float(999999),
-            states('sensor.b2500_04_zelle04') | float(999999),
-            states('sensor.b2500_04_zelle05') | float(999999),
-            states('sensor.b2500_04_zelle06') | float(999999),
-            states('sensor.b2500_04_zelle07') | float(999999),
-            states('sensor.b2500_04_zelle08') | float(999999),
-            states('sensor.b2500_04_zelle09') | float(999999),
-            states('sensor.b2500_04_zelle10') | float(999999),
-            states('sensor.b2500_04_zelle11') | float(999999),
-            states('sensor.b2500_04_zelle12') | float(999999),
-            states('sensor.b2500_04_zelle13') | float(999999),
-            states('sensor.b2500_04_zelle14') | float(999999)
+            states('sensor.b2500_04_zelle01') | float(5000),
+            states('sensor.b2500_04_zelle02') | float(5000),
+            states('sensor.b2500_04_zelle03') | float(5000),
+            states('sensor.b2500_04_zelle04') | float(5000),
+            states('sensor.b2500_04_zelle05') | float(5000),
+            states('sensor.b2500_04_zelle06') | float(5000),
+            states('sensor.b2500_04_zelle07') | float(5000),
+            states('sensor.b2500_04_zelle08') | float(5000),
+            states('sensor.b2500_04_zelle09') | float(5000),
+            states('sensor.b2500_04_zelle10') | float(5000),
+            states('sensor.b2500_04_zelle11') | float(5000),
+            states('sensor.b2500_04_zelle12') | float(5000),
+            states('sensor.b2500_04_zelle13') | float(5000),
+            states('sensor.b2500_04_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -326,24 +322,23 @@ template:
       - name: "B05_min_Spannung"
         unique_id: b05_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_05_zelle01') | float(999999),
-            states('sensor.b2500_05_zelle02') | float(999999),
-            states('sensor.b2500_05_zelle03') | float(999999),
-            states('sensor.b2500_05_zelle04') | float(999999),
-            states('sensor.b2500_05_zelle05') | float(999999),
-            states('sensor.b2500_05_zelle06') | float(999999),
-            states('sensor.b2500_05_zelle07') | float(999999),
-            states('sensor.b2500_05_zelle08') | float(999999),
-            states('sensor.b2500_05_zelle09') | float(999999),
-            states('sensor.b2500_05_zelle10') | float(999999),
-            states('sensor.b2500_05_zelle11') | float(999999),
-            states('sensor.b2500_05_zelle12') | float(999999),
-            states('sensor.b2500_05_zelle13') | float(999999),
-            states('sensor.b2500_05_zelle14') | float(999999)
+            states('sensor.b2500_05_zelle01') | float(5000),
+            states('sensor.b2500_05_zelle02') | float(5000),
+            states('sensor.b2500_05_zelle03') | float(5000),
+            states('sensor.b2500_05_zelle04') | float(5000),
+            states('sensor.b2500_05_zelle05') | float(5000),
+            states('sensor.b2500_05_zelle06') | float(5000),
+            states('sensor.b2500_05_zelle07') | float(5000),
+            states('sensor.b2500_05_zelle08') | float(5000),
+            states('sensor.b2500_05_zelle09') | float(5000),
+            states('sensor.b2500_05_zelle10') | float(5000),
+            states('sensor.b2500_05_zelle11') | float(5000),
+            states('sensor.b2500_05_zelle12') | float(5000),
+            states('sensor.b2500_05_zelle13') | float(5000),
+            states('sensor.b2500_05_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -351,24 +346,23 @@ template:
       - name: "B06_min_Spannung"
         unique_id: b06_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_06_zelle01') | float(999999),
-            states('sensor.b2500_06_zelle02') | float(999999),
-            states('sensor.b2500_06_zelle03') | float(999999),
-            states('sensor.b2500_06_zelle04') | float(999999),
-            states('sensor.b2500_06_zelle05') | float(999999),
-            states('sensor.b2500_06_zelle06') | float(999999),
-            states('sensor.b2500_06_zelle07') | float(999999),
-            states('sensor.b2500_06_zelle08') | float(999999),
-            states('sensor.b2500_06_zelle09') | float(999999),
-            states('sensor.b2500_06_zelle10') | float(999999),
-            states('sensor.b2500_06_zelle11') | float(999999),
-            states('sensor.b2500_06_zelle12') | float(999999),
-            states('sensor.b2500_06_zelle13') | float(999999),
-            states('sensor.b2500_06_zelle14') | float(999999)
+            states('sensor.b2500_06_zelle01') | float(5000),
+            states('sensor.b2500_06_zelle02') | float(5000),
+            states('sensor.b2500_06_zelle03') | float(5000),
+            states('sensor.b2500_06_zelle04') | float(5000),
+            states('sensor.b2500_06_zelle05') | float(5000),
+            states('sensor.b2500_06_zelle06') | float(5000),
+            states('sensor.b2500_06_zelle07') | float(5000),
+            states('sensor.b2500_06_zelle08') | float(5000),
+            states('sensor.b2500_06_zelle09') | float(5000),
+            states('sensor.b2500_06_zelle10') | float(5000),
+            states('sensor.b2500_06_zelle11') | float(5000),
+            states('sensor.b2500_06_zelle12') | float(5000),
+            states('sensor.b2500_06_zelle13') | float(5000),
+            states('sensor.b2500_06_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -376,24 +370,23 @@ template:
       - name: "B07_min_Spannung"
         unique_id: b07_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_07_zelle01') | float(999999),
-            states('sensor.b2500_07_zelle02') | float(999999),
-            states('sensor.b2500_07_zelle03') | float(999999),
-            states('sensor.b2500_07_zelle04') | float(999999),
-            states('sensor.b2500_07_zelle05') | float(999999),
-            states('sensor.b2500_07_zelle06') | float(999999),
-            states('sensor.b2500_07_zelle07') | float(999999),
-            states('sensor.b2500_07_zelle08') | float(999999),
-            states('sensor.b2500_07_zelle09') | float(999999),
-            states('sensor.b2500_07_zelle10') | float(999999),
-            states('sensor.b2500_07_zelle11') | float(999999),
-            states('sensor.b2500_07_zelle12') | float(999999),
-            states('sensor.b2500_07_zelle13') | float(999999),
-            states('sensor.b2500_07_zelle14') | float(999999)
+            states('sensor.b2500_07_zelle01') | float(5000),
+            states('sensor.b2500_07_zelle02') | float(5000),
+            states('sensor.b2500_07_zelle03') | float(5000),
+            states('sensor.b2500_07_zelle04') | float(5000),
+            states('sensor.b2500_07_zelle05') | float(5000),
+            states('sensor.b2500_07_zelle06') | float(5000),
+            states('sensor.b2500_07_zelle07') | float(5000),
+            states('sensor.b2500_07_zelle08') | float(5000),
+            states('sensor.b2500_07_zelle09') | float(5000),
+            states('sensor.b2500_07_zelle10') | float(5000),
+            states('sensor.b2500_07_zelle11') | float(5000),
+            states('sensor.b2500_07_zelle12') | float(5000),
+            states('sensor.b2500_07_zelle13') | float(5000),
+            states('sensor.b2500_07_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -401,24 +394,23 @@ template:
       - name: "B08_min_Spannung"
         unique_id: b08_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_08_zelle01') | float(999999),
-            states('sensor.b2500_08_zelle02') | float(999999),
-            states('sensor.b2500_08_zelle03') | float(999999),
-            states('sensor.b2500_08_zelle04') | float(999999),
-            states('sensor.b2500_08_zelle05') | float(999999),
-            states('sensor.b2500_08_zelle06') | float(999999),
-            states('sensor.b2500_08_zelle07') | float(999999),
-            states('sensor.b2500_08_zelle08') | float(999999),
-            states('sensor.b2500_08_zelle09') | float(999999),
-            states('sensor.b2500_08_zelle10') | float(999999),
-            states('sensor.b2500_08_zelle11') | float(999999),
-            states('sensor.b2500_08_zelle12') | float(999999),
-            states('sensor.b2500_08_zelle13') | float(999999),
-            states('sensor.b2500_08_zelle14') | float(999999)
+            states('sensor.b2500_08_zelle01') | float(5000),
+            states('sensor.b2500_08_zelle02') | float(5000),
+            states('sensor.b2500_08_zelle03') | float(5000),
+            states('sensor.b2500_08_zelle04') | float(5000),
+            states('sensor.b2500_08_zelle05') | float(5000),
+            states('sensor.b2500_08_zelle06') | float(5000),
+            states('sensor.b2500_08_zelle07') | float(5000),
+            states('sensor.b2500_08_zelle08') | float(5000),
+            states('sensor.b2500_08_zelle09') | float(5000),
+            states('sensor.b2500_08_zelle10') | float(5000),
+            states('sensor.b2500_08_zelle11') | float(5000),
+            states('sensor.b2500_08_zelle12') | float(5000),
+            states('sensor.b2500_08_zelle13') | float(5000),
+            states('sensor.b2500_08_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
 
@@ -426,24 +418,23 @@ template:
       - name: "B09_min_Spannung"
         unique_id: b09_min_spannung
         unit_of_measurement: "mV"
-        state_class: measurement
         device_class: voltage
         state: >
           {% set values = [
-            states('sensor.b2500_09_zelle01') | float(999999),
-            states('sensor.b2500_09_zelle02') | float(999999),
-            states('sensor.b2500_09_zelle03') | float(999999),
-            states('sensor.b2500_09_zelle04') | float(999999),
-            states('sensor.b2500_09_zelle05') | float(999999),
-            states('sensor.b2500_09_zelle06') | float(999999),
-            states('sensor.b2500_09_zelle07') | float(999999),
-            states('sensor.b2500_09_zelle08') | float(999999),
-            states('sensor.b2500_09_zelle09') | float(999999),
-            states('sensor.b2500_09_zelle10') | float(999999),
-            states('sensor.b2500_09_zelle11') | float(999999),
-            states('sensor.b2500_09_zelle12') | float(999999),
-            states('sensor.b2500_09_zelle13') | float(999999),
-            states('sensor.b2500_09_zelle14') | float(999999)
+            states('sensor.b2500_09_zelle01') | float(5000),
+            states('sensor.b2500_09_zelle02') | float(5000),
+            states('sensor.b2500_09_zelle03') | float(5000),
+            states('sensor.b2500_09_zelle04') | float(5000),
+            states('sensor.b2500_09_zelle05') | float(5000),
+            states('sensor.b2500_09_zelle06') | float(5000),
+            states('sensor.b2500_09_zelle07') | float(5000),
+            states('sensor.b2500_09_zelle08') | float(5000),
+            states('sensor.b2500_09_zelle09') | float(5000),
+            states('sensor.b2500_09_zelle10') | float(5000),
+            states('sensor.b2500_09_zelle11') | float(5000),
+            states('sensor.b2500_09_zelle12') | float(5000),
+            states('sensor.b2500_09_zelle13') | float(5000),
+            states('sensor.b2500_09_zelle14') | float(5000)
           ] %}
           {{ values | min | round(0) | int }}
           
@@ -451,25 +442,24 @@ template:
     - name: "B01_Spannungsdifferenz"
       unique_id: b01_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_01_zelle01') | float(999999),
-          states('sensor.b2500_01_zelle02') | float(999999),
-          states('sensor.b2500_01_zelle03') | float(999999),
-          states('sensor.b2500_01_zelle04') | float(999999),
-          states('sensor.b2500_01_zelle05') | float(999999),
-          states('sensor.b2500_01_zelle06') | float(999999),
-          states('sensor.b2500_01_zelle07') | float(999999),
-          states('sensor.b2500_01_zelle08') | float(999999),
-          states('sensor.b2500_01_zelle09') | float(999999),
-          states('sensor.b2500_01_zelle10') | float(999999),
-          states('sensor.b2500_01_zelle11') | float(999999),
-          states('sensor.b2500_01_zelle12') | float(999999),
-          states('sensor.b2500_01_zelle13') | float(999999),
-          states('sensor.b2500_01_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_01_zelle01') | float(5000),
+          states('sensor.b2500_01_zelle02') | float(5000),
+          states('sensor.b2500_01_zelle03') | float(5000),
+          states('sensor.b2500_01_zelle04') | float(5000),
+          states('sensor.b2500_01_zelle05') | float(5000),
+          states('sensor.b2500_01_zelle06') | float(5000),
+          states('sensor.b2500_01_zelle07') | float(5000),
+          states('sensor.b2500_01_zelle08') | float(5000),
+          states('sensor.b2500_01_zelle09') | float(5000),
+          states('sensor.b2500_01_zelle10') | float(5000),
+          states('sensor.b2500_01_zelle11') | float(5000),
+          states('sensor.b2500_01_zelle12') | float(5000),
+          states('sensor.b2500_01_zelle13') | float(5000),
+          states('sensor.b2500_01_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -479,25 +469,24 @@ template:
     - name: "B02_Spannungsdifferenz"
       unique_id: b02_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_02_zelle01') | float(999999),
-          states('sensor.b2500_02_zelle02') | float(999999),
-          states('sensor.b2500_02_zelle03') | float(999999),
-          states('sensor.b2500_02_zelle04') | float(999999),
-          states('sensor.b2500_02_zelle05') | float(999999),
-          states('sensor.b2500_02_zelle06') | float(999999),
-          states('sensor.b2500_02_zelle07') | float(999999),
-          states('sensor.b2500_02_zelle08') | float(999999),
-          states('sensor.b2500_02_zelle09') | float(999999),
-          states('sensor.b2500_02_zelle10') | float(999999),
-          states('sensor.b2500_02_zelle11') | float(999999),
-          states('sensor.b2500_02_zelle12') | float(999999),
-          states('sensor.b2500_02_zelle13') | float(999999),
-          states('sensor.b2500_02_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_02_zelle01') | float(5000),
+          states('sensor.b2500_02_zelle02') | float(5000),
+          states('sensor.b2500_02_zelle03') | float(5000),
+          states('sensor.b2500_02_zelle04') | float(5000),
+          states('sensor.b2500_02_zelle05') | float(5000),
+          states('sensor.b2500_02_zelle06') | float(5000),
+          states('sensor.b2500_02_zelle07') | float(5000),
+          states('sensor.b2500_02_zelle08') | float(5000),
+          states('sensor.b2500_02_zelle09') | float(5000),
+          states('sensor.b2500_02_zelle10') | float(5000),
+          states('sensor.b2500_02_zelle11') | float(5000),
+          states('sensor.b2500_02_zelle12') | float(5000),
+          states('sensor.b2500_02_zelle13') | float(5000),
+          states('sensor.b2500_02_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -507,25 +496,24 @@ template:
     - name: "B03_Spannungsdifferenz"
       unique_id: b03_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_03_zelle01') | float(999999),
-          states('sensor.b2500_03_zelle02') | float(999999),
-          states('sensor.b2500_03_zelle03') | float(999999),
-          states('sensor.b2500_03_zelle04') | float(999999),
-          states('sensor.b2500_03_zelle05') | float(999999),
-          states('sensor.b2500_03_zelle06') | float(999999),
-          states('sensor.b2500_03_zelle07') | float(999999),
-          states('sensor.b2500_03_zelle08') | float(999999),
-          states('sensor.b2500_03_zelle09') | float(999999),
-          states('sensor.b2500_03_zelle10') | float(999999),
-          states('sensor.b2500_03_zelle11') | float(999999),
-          states('sensor.b2500_03_zelle12') | float(999999),
-          states('sensor.b2500_03_zelle13') | float(999999),
-          states('sensor.b2500_03_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_03_zelle01') | float(5000),
+          states('sensor.b2500_03_zelle02') | float(5000),
+          states('sensor.b2500_03_zelle03') | float(5000),
+          states('sensor.b2500_03_zelle04') | float(5000),
+          states('sensor.b2500_03_zelle05') | float(5000),
+          states('sensor.b2500_03_zelle06') | float(5000),
+          states('sensor.b2500_03_zelle07') | float(5000),
+          states('sensor.b2500_03_zelle08') | float(5000),
+          states('sensor.b2500_03_zelle09') | float(5000),
+          states('sensor.b2500_03_zelle10') | float(5000),
+          states('sensor.b2500_03_zelle11') | float(5000),
+          states('sensor.b2500_03_zelle12') | float(5000),
+          states('sensor.b2500_03_zelle13') | float(5000),
+          states('sensor.b2500_03_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -535,25 +523,24 @@ template:
     - name: "B04_Spannungsdifferenz"
       unique_id: b04_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_04_zelle01') | float(999999),
-          states('sensor.b2500_04_zelle02') | float(999999),
-          states('sensor.b2500_04_zelle03') | float(999999),
-          states('sensor.b2500_04_zelle04') | float(999999),
-          states('sensor.b2500_04_zelle05') | float(999999),
-          states('sensor.b2500_04_zelle06') | float(999999),
-          states('sensor.b2500_04_zelle07') | float(999999),
-          states('sensor.b2500_04_zelle08') | float(999999),
-          states('sensor.b2500_04_zelle09') | float(999999),
-          states('sensor.b2500_04_zelle10') | float(999999),
-          states('sensor.b2500_04_zelle11') | float(999999),
-          states('sensor.b2500_04_zelle12') | float(999999),
-          states('sensor.b2500_04_zelle13') | float(999999),
-          states('sensor.b2500_04_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_04_zelle01') | float(5000),
+          states('sensor.b2500_04_zelle02') | float(5000),
+          states('sensor.b2500_04_zelle03') | float(5000),
+          states('sensor.b2500_04_zelle04') | float(5000),
+          states('sensor.b2500_04_zelle05') | float(5000),
+          states('sensor.b2500_04_zelle06') | float(5000),
+          states('sensor.b2500_04_zelle07') | float(5000),
+          states('sensor.b2500_04_zelle08') | float(5000),
+          states('sensor.b2500_04_zelle09') | float(5000),
+          states('sensor.b2500_04_zelle10') | float(5000),
+          states('sensor.b2500_04_zelle11') | float(5000),
+          states('sensor.b2500_04_zelle12') | float(5000),
+          states('sensor.b2500_04_zelle13') | float(5000),
+          states('sensor.b2500_04_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -563,25 +550,24 @@ template:
     - name: "B05_Spannungsdifferenz"
       unique_id: b05_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_05_zelle01') | float(999999),
-          states('sensor.b2500_05_zelle02') | float(999999),
-          states('sensor.b2500_05_zelle03') | float(999999),
-          states('sensor.b2500_05_zelle04') | float(999999),
-          states('sensor.b2500_05_zelle05') | float(999999),
-          states('sensor.b2500_05_zelle06') | float(999999),
-          states('sensor.b2500_05_zelle07') | float(999999),
-          states('sensor.b2500_05_zelle08') | float(999999),
-          states('sensor.b2500_05_zelle09') | float(999999),
-          states('sensor.b2500_05_zelle10') | float(999999),
-          states('sensor.b2500_05_zelle11') | float(999999),
-          states('sensor.b2500_05_zelle12') | float(999999),
-          states('sensor.b2500_05_zelle13') | float(999999),
-          states('sensor.b2500_05_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_05_zelle01') | float(5000),
+          states('sensor.b2500_05_zelle02') | float(5000),
+          states('sensor.b2500_05_zelle03') | float(5000),
+          states('sensor.b2500_05_zelle04') | float(5000),
+          states('sensor.b2500_05_zelle05') | float(5000),
+          states('sensor.b2500_05_zelle06') | float(5000),
+          states('sensor.b2500_05_zelle07') | float(5000),
+          states('sensor.b2500_05_zelle08') | float(5000),
+          states('sensor.b2500_05_zelle09') | float(5000),
+          states('sensor.b2500_05_zelle10') | float(5000),
+          states('sensor.b2500_05_zelle11') | float(5000),
+          states('sensor.b2500_05_zelle12') | float(5000),
+          states('sensor.b2500_05_zelle13') | float(5000),
+          states('sensor.b2500_05_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -591,25 +577,24 @@ template:
     - name: "B06_Spannungsdifferenz"
       unique_id: b06_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_06_zelle01') | float(999999),
-          states('sensor.b2500_06_zelle02') | float(999999),
-          states('sensor.b2500_06_zelle03') | float(999999),
-          states('sensor.b2500_06_zelle04') | float(999999),
-          states('sensor.b2500_06_zelle05') | float(999999),
-          states('sensor.b2500_06_zelle06') | float(999999),
-          states('sensor.b2500_06_zelle07') | float(999999),
-          states('sensor.b2500_06_zelle08') | float(999999),
-          states('sensor.b2500_06_zelle09') | float(999999),
-          states('sensor.b2500_06_zelle10') | float(999999),
-          states('sensor.b2500_06_zelle11') | float(999999),
-          states('sensor.b2500_06_zelle12') | float(999999),
-          states('sensor.b2500_06_zelle13') | float(999999),
-          states('sensor.b2500_06_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_06_zelle01') | float(5000),
+          states('sensor.b2500_06_zelle02') | float(5000),
+          states('sensor.b2500_06_zelle03') | float(5000),
+          states('sensor.b2500_06_zelle04') | float(5000),
+          states('sensor.b2500_06_zelle05') | float(5000),
+          states('sensor.b2500_06_zelle06') | float(5000),
+          states('sensor.b2500_06_zelle07') | float(5000),
+          states('sensor.b2500_06_zelle08') | float(5000),
+          states('sensor.b2500_06_zelle09') | float(5000),
+          states('sensor.b2500_06_zelle10') | float(5000),
+          states('sensor.b2500_06_zelle11') | float(5000),
+          states('sensor.b2500_06_zelle12') | float(5000),
+          states('sensor.b2500_06_zelle13') | float(5000),
+          states('sensor.b2500_06_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -619,25 +604,24 @@ template:
     - name: "B07_Spannungsdifferenz"
       unique_id: b07_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_07_zelle01') | float(999999),
-          states('sensor.b2500_07_zelle02') | float(999999),
-          states('sensor.b2500_07_zelle03') | float(999999),
-          states('sensor.b2500_07_zelle04') | float(999999),
-          states('sensor.b2500_07_zelle05') | float(999999),
-          states('sensor.b2500_07_zelle06') | float(999999),
-          states('sensor.b2500_07_zelle07') | float(999999),
-          states('sensor.b2500_07_zelle08') | float(999999),
-          states('sensor.b2500_07_zelle09') | float(999999),
-          states('sensor.b2500_07_zelle10') | float(999999),
-          states('sensor.b2500_07_zelle11') | float(999999),
-          states('sensor.b2500_07_zelle12') | float(999999),
-          states('sensor.b2500_07_zelle13') | float(999999),
-          states('sensor.b2500_07_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_07_zelle01') | float(5000),
+          states('sensor.b2500_07_zelle02') | float(5000),
+          states('sensor.b2500_07_zelle03') | float(5000),
+          states('sensor.b2500_07_zelle04') | float(5000),
+          states('sensor.b2500_07_zelle05') | float(5000),
+          states('sensor.b2500_07_zelle06') | float(5000),
+          states('sensor.b2500_07_zelle07') | float(5000),
+          states('sensor.b2500_07_zelle08') | float(5000),
+          states('sensor.b2500_07_zelle09') | float(5000),
+          states('sensor.b2500_07_zelle10') | float(5000),
+          states('sensor.b2500_07_zelle11') | float(5000),
+          states('sensor.b2500_07_zelle12') | float(5000),
+          states('sensor.b2500_07_zelle13') | float(5000),
+          states('sensor.b2500_07_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -647,25 +631,24 @@ template:
     - name: "B08_Spannungsdifferenz"
       unique_id: b08_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_08_zelle01') | float(999999),
-          states('sensor.b2500_08_zelle02') | float(999999),
-          states('sensor.b2500_08_zelle03') | float(999999),
-          states('sensor.b2500_08_zelle04') | float(999999),
-          states('sensor.b2500_08_zelle05') | float(999999),
-          states('sensor.b2500_08_zelle06') | float(999999),
-          states('sensor.b2500_08_zelle07') | float(999999),
-          states('sensor.b2500_08_zelle08') | float(999999),
-          states('sensor.b2500_08_zelle09') | float(999999),
-          states('sensor.b2500_08_zelle10') | float(999999),
-          states('sensor.b2500_08_zelle11') | float(999999),
-          states('sensor.b2500_08_zelle12') | float(999999),
-          states('sensor.b2500_08_zelle13') | float(999999),
-          states('sensor.b2500_08_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_08_zelle01') | float(5000),
+          states('sensor.b2500_08_zelle02') | float(5000),
+          states('sensor.b2500_08_zelle03') | float(5000),
+          states('sensor.b2500_08_zelle04') | float(5000),
+          states('sensor.b2500_08_zelle05') | float(5000),
+          states('sensor.b2500_08_zelle06') | float(5000),
+          states('sensor.b2500_08_zelle07') | float(5000),
+          states('sensor.b2500_08_zelle08') | float(5000),
+          states('sensor.b2500_08_zelle09') | float(5000),
+          states('sensor.b2500_08_zelle10') | float(5000),
+          states('sensor.b2500_08_zelle11') | float(5000),
+          states('sensor.b2500_08_zelle12') | float(5000),
+          states('sensor.b2500_08_zelle13') | float(5000),
+          states('sensor.b2500_08_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
@@ -675,25 +658,24 @@ template:
     - name: "B09_Spannungsdifferenz"
       unique_id: b09_spannungsdifferenz
       unit_of_measurement: "mV"
-      state_class: measurement
       device_class: voltage
       state: >
         {% set values = [
-          states('sensor.b2500_09_zelle01') | float(999999),
-          states('sensor.b2500_09_zelle02') | float(999999),
-          states('sensor.b2500_09_zelle03') | float(999999),
-          states('sensor.b2500_09_zelle04') | float(999999),
-          states('sensor.b2500_09_zelle05') | float(999999),
-          states('sensor.b2500_09_zelle06') | float(999999),
-          states('sensor.b2500_09_zelle07') | float(999999),
-          states('sensor.b2500_09_zelle08') | float(999999),
-          states('sensor.b2500_09_zelle09') | float(999999),
-          states('sensor.b2500_09_zelle10') | float(999999),
-          states('sensor.b2500_09_zelle11') | float(999999),
-          states('sensor.b2500_09_zelle12') | float(999999),
-          states('sensor.b2500_09_zelle13') | float(999999),
-          states('sensor.b2500_09_zelle14') | float(999999)
-        ] | select('lt', 999999) | list %}
+          states('sensor.b2500_09_zelle01') | float(5000),
+          states('sensor.b2500_09_zelle02') | float(5000),
+          states('sensor.b2500_09_zelle03') | float(5000),
+          states('sensor.b2500_09_zelle04') | float(5000),
+          states('sensor.b2500_09_zelle05') | float(5000),
+          states('sensor.b2500_09_zelle06') | float(5000),
+          states('sensor.b2500_09_zelle07') | float(5000),
+          states('sensor.b2500_09_zelle08') | float(5000),
+          states('sensor.b2500_09_zelle09') | float(5000),
+          states('sensor.b2500_09_zelle10') | float(5000),
+          states('sensor.b2500_09_zelle11') | float(5000),
+          states('sensor.b2500_09_zelle12') | float(5000),
+          states('sensor.b2500_09_zelle13') | float(5000),
+          states('sensor.b2500_09_zelle14') | float(5000)
+        ] | select('lt', 5000) | list %}
         {% if values | length > 0 %}
           {{ (values | max - values | min) | round(0) | int }}
         {% else %}
