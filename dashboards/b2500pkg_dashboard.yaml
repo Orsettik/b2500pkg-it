@@ -1667,7 +1667,6 @@ views:
             entities:
               - entity: input_number.zeropower_target_value
               - entity: input_number.zeropower_target_deviation
-              - entity: input_boolean.zeropower_use_both_outputs
               - entity: input_number.zeropower_min_limit
               - entity: input_number.zeropower_max_limit
               - entity: input_boolean.zeropower_surplus_enabled
@@ -1680,7 +1679,7 @@ views:
               rows: auto
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b01
+              - entity: input_select.zeropower_use_b01
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1688,7 +1687,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b02
+              - entity: input_select.zeropower_use_b02
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1696,7 +1695,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b03
+              - entity: input_select.zeropower_use_b03
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1704,7 +1703,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b04
+              - entity: input_select.zeropower_use_b04
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1712,7 +1711,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b05
+              - entity: input_select.zeropower_use_b05
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1720,7 +1719,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b06
+              - entity: input_select.zeropower_use_b06
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1728,7 +1727,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b07
+              - entity: input_select.zeropower_use_b07
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1736,7 +1735,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b08
+              - entity: input_select.zeropower_use_b08
             show_header_toggle: false
             visibility:
               - condition: state
@@ -1744,7 +1743,7 @@ views:
                 state_not: '0'
           - type: entities
             entities:
-              - entity: input_boolean.zeropower_use_b09
+              - entity: input_select.zeropower_use_b09
             show_header_toggle: false
             visibility:
               - condition: state
