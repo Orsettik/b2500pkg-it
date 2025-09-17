@@ -239,20 +239,6 @@ script:
     max: 10
     sequence:
       - variables:
-          sp_master: 0
-          e1sp: 0
-          e2sp: 0
-          e3sp: 0
-          e4sp: 0
-          e5sp: 0
-          e6sp: 0
-          e7sp: 0
-          e8sp: 0
-        enabled: true
-        alias: Surplus Power Variablen definieren
-
-
-      - variables:
           variables_lastrun: >
             {% set txt = states('input_text.zeropower_variables') %} {% if txt not
             in ['unknown', '', None] %}
@@ -507,29 +493,9 @@ script:
                         {% endif %}
                         {% set powers.list = powers.list + [power] %}
                       {% endfor %} {{ powers.list }}
-                - variables:
-                    sp_master: "{{ es_power_list[0] | int }}"
-                    e1sp: "{{ es_power_list[1] | int }}"
-                    e2sp: "{{ es_power_list[2] | int }}"
-                    e3sp: "{{ es_power_list[3] | int }}"
-                    e4sp: "{{ es_power_list[4] | int }}"
-                    e5sp: "{{ es_power_list[5] | int }}"
-                    e6sp: "{{ es_power_list[6] | int }}"
-                    e7sp: "{{ es_power_list[7] | int }}"
-                    e8sp: "{{ es_power_list[8] | int }}"
-                  enabled: true
-              enabled: true
               else:
                 - variables:
-                    sp_master: 0
-                    e1sp: 0
-                    e2sp: 0
-                    e3sp: 0
-                    e4sp: 0
-                    e5sp: 0
-                    e6sp: 0
-                    e7sp: 0
-                    e8sp: 0
+                    es_power_list: [0, 0, 0, 0, 0, 0, 0, 0, 0]
                   enabled: true
             - alias: Setze Leistung von allen Batterien
               sequence:
@@ -651,10 +617,16 @@ script:
                   {
     
                   "ID": "{{ m_id }}|{{ e1_id }}|{{ e2_id }}|{{ e3_id }}|{{ e4_id
-                  }}|{{ e5_id }}|{{ e6_id }}|{{ e7_id }}|{{ e8_id }}", "SP": "{{
-                  sp_master }}|{{ e1sp }}|{{ e2sp }}|{{ e3sp }}|{{ e4sp }}|{{ e5sp
-                  }}|{{ e6sp }}|{{ e7sp }}|{{ e8sp }}"
-    
+                  }}|{{ e5_id }}|{{ e6_id }}|{{ e7_id }}|{{ e8_id }}", "SP": "{{ 
+                  es_power_list[0] | int }}|{{ 
+                  es_power_list[1] | int }}|{{ 
+                  es_power_list[2] | int }}|{{ 
+                  es_power_list[3] | int }}|{{ 
+                  es_power_list[4] | int }}|{{ 
+                  es_power_list[5] | int }}|{{ 
+                  es_power_list[6] | int }}|{{ 
+                  es_power_list[7] | int }}|{{ 
+                  es_power_list[8] | int }}"
                   }
               action: input_text.set_value
               enabled: true
