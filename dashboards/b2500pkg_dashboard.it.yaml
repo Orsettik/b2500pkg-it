@@ -1,9 +1,5 @@
-# Traduzione italiana del file originale tedesco
-# File originale: b2500pkg_dashboard.yaml
-# Tradotto da: Marco Orsini + ChatGPT (ottobre 2025)
-
 views:
-  - title: Grundeinstellungen
+  - title: Impostazioni di base
     sections:
       - type: grid
         cards:
@@ -33,7 +29,7 @@ views:
               - entity: input_boolean.req_cd16
               - entity: input_boolean.req_start
             show_header_toggle: false
-            title: Abfrageeinstellungen
+            title: Impostazioni di lettura dati batteria
         column_span: 1
       - type: grid
         cards:
@@ -41,76 +37,76 @@ views:
             entities:
               - entity: input_select.speicherauswahl
               - entity: input_button.test_config
-            title: Konfiguration testen
+            title: Test configurazione
           - type: entities
             entities:
               - entity: input_text.b01_topic
               - entity: input_text.b01_typ
               - entity: input_text.b01_mac
             show_header_toggle: false
-            title: B01 Impostazioni
+            title: Impostazione B01
           - type: entities
             entities:
               - entity: input_text.b02_topic
               - entity: input_text.b02_typ
               - entity: input_text.b02_mac
             show_header_toggle: false
-            title: B02 Impostazioni
+            title: Impostazione B02
           - type: entities
             entities:
               - entity: input_text.b03_topic
               - entity: input_text.b03_typ
               - entity: input_text.b03_mac
             show_header_toggle: false
-            title: B03 Impostazioni
+            title: Impostazione B03
           - type: entities
             entities:
               - entity: input_text.b04_topic
               - entity: input_text.b04_typ
               - entity: input_text.b04_mac
             show_header_toggle: false
-            title: B04 Impostazioni
+            title: Impostazione B04
           - type: entities
             entities:
               - entity: input_text.b05_topic
               - entity: input_text.b05_typ
               - entity: input_text.b05_mac
             show_header_toggle: false
-            title: B05 Impostazioni
+            title: Impostazione B05
           - type: entities
             entities:
               - entity: input_text.b06_topic
               - entity: input_text.b06_typ
               - entity: input_text.b06_mac
             show_header_toggle: false
-            title: B06 Impostazioni
+            title: Impostazione B06
           - type: entities
             entities:
               - entity: input_text.b07_topic
               - entity: input_text.b07_typ
               - entity: input_text.b07_mac
             show_header_toggle: false
-            title: B07 Impostazioni
+            title: Impostazione B07
           - type: entities
             entities:
               - entity: input_text.b08_topic
               - entity: input_text.b08_typ
               - entity: input_text.b08_mac
             show_header_toggle: false
-            title: B08 Impostazioni
+            title: Impostazione B08
           - type: entities
             entities:
               - entity: input_text.b09_topic
               - entity: input_text.b09_typ
               - entity: input_text.b09_mac
             show_header_toggle: false
-            title: B09 Impostazioni
+            title: Impostazione B09
       - type: grid
         cards:
           - type: heading
             heading_style: subtitle
             badges: []
-            heading: MQTT Sensoren neu erstellen
+            heading: 'Creare nuovi sensori MQTT'
           - type: entities
             entities:
               - entity: automation.b2500pkg_b01_sensor_discovery
@@ -251,12 +247,12 @@ views:
               - entity: input_number.timer_leistung
               - entity: input_button.b2500_leistung_setzen
             show_header_toggle: false
-            title: Timer Impostazioni
+            title: Impostazione Timer
       - type: grid
         cards:
           - type: heading
             heading_style: title
-            heading: Timer Stato
+            heading: Stato Timer
             badges: []
           - show_name: false
             show_icon: false
@@ -283,7 +279,7 @@ views:
               - entity: sensor.b2500_01_h5
               - entity: sensor.b2500_01_e5
               - entity: sensor.b2500_01_f5
-            title: B2500_01 Timer 1 bis 5
+            title: B2500_01 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -314,7 +310,7 @@ views:
               - entity: sensor.b2500_02_h5
               - entity: sensor.b2500_02_e5
               - entity: sensor.b2500_02_f5
-            title: B2500_02 Timer 1 bis 5
+            title: B2500_02 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -345,7 +341,7 @@ views:
               - entity: sensor.b2500_03_h5
               - entity: sensor.b2500_03_e5
               - entity: sensor.b2500_03_f5
-            title: B2500_03 Timer 1 bis 5
+            title: B2500_03 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -376,7 +372,7 @@ views:
               - entity: sensor.b2500_04_h5
               - entity: sensor.b2500_04_e5
               - entity: sensor.b2500_04_f5
-            title: B2500_04 Timer 1 bis 5
+            title: B2500_04 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -407,7 +403,7 @@ views:
               - entity: sensor.b2500_05_h5
               - entity: sensor.b2500_05_e5
               - entity: sensor.b2500_05_f5
-            title: B2500_05 Timer 1 bis 5
+            title: B2500_05 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -438,7 +434,7 @@ views:
               - entity: sensor.b2500_06_h5
               - entity: sensor.b2500_06_e5
               - entity: sensor.b2500_06_f5
-            title: B2500_06 Timer 1 bis 5
+            title: B2500_06 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -469,7 +465,7 @@ views:
               - entity: sensor.b2500_07_h5
               - entity: sensor.b2500_07_e5
               - entity: sensor.b2500_07_f5
-            title: B2500_07 Timer 1 bis 5
+            title: B2500_07 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -500,7 +496,7 @@ views:
               - entity: sensor.b2500_08_h5
               - entity: sensor.b2500_08_e5
               - entity: sensor.b2500_08_f5
-            title: B2500_08 Timer 1 bis 5
+            title: B2500_08 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -531,7 +527,7 @@ views:
               - entity: sensor.b2500_09_h5
               - entity: sensor.b2500_09_e5
               - entity: sensor.b2500_09_f5
-            title: B2500_09 Timer 1 bis 5
+            title: B2500_09 Timer 1 di 5
             columns: 4
             visibility:
               - condition: state
@@ -645,7 +641,7 @@ views:
               - entity: input_select.speicherauswahl
               - entity: input_number.b2500_dod
               - entity: input_button.b2500_dod_setzen
-            title: B2500_ DOD setzen
+            title: B2500_ impostazioni profondità di scarica (DOD)
           - type: vertical-stack
             cards:
               - type: conditional
@@ -892,13 +888,13 @@ views:
     cards: []
   - type: sections
     max_columns: 4
-    title: Lademodus
+    title: Modalità di carica
     path: entlademodus-einstellen
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Lademodus einstellen
+            heading: Impostazione modalità di carica
             heading_style: title
           - type: entities
             entities:
@@ -1000,13 +996,13 @@ views:
     cards: []
   - type: sections
     max_columns: 4
-    title: Informationen
+    title: Informazioni
     path: sensoren
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Informationen
+            heading: Informazioni
             heading_style: title
           - square: false
             type: grid
@@ -1053,12 +1049,12 @@ views:
                   - entity: sensor.b2500_01_lmo
                   - entity: sensor.b2500_01_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_01_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1092,7 +1088,7 @@ views:
                   - entity: sensor.b2500_02_bc
                   - entity: sensor.b2500_02_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_02_l0_bit1
@@ -1109,12 +1105,12 @@ views:
                   - entity: sensor.b2500_02_lmo
                   - entity: sensor.b2500_02_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_02_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1130,7 +1126,7 @@ views:
                   - entity: sensor.b2500_03_id
                   - entity: sensor.b2500_03_fc
                   - entity: sensor.b2500_03_am
-                title: Infos
+                title: Info
                 show_header_toggle: false
               - type: entities
                 entities:
@@ -1148,7 +1144,7 @@ views:
                   - entity: sensor.b2500_03_bc
                   - entity: sensor.b2500_03_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_03_l0_bit1
@@ -1165,12 +1161,12 @@ views:
                   - entity: sensor.b2500_03_lmo
                   - entity: sensor.b2500_03_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_03_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1186,7 +1182,7 @@ views:
                   - entity: sensor.b2500_04_id
                   - entity: sensor.b2500_04_fc
                   - entity: sensor.b2500_04_am
-                title: Infos
+                title: Info
                 show_header_toggle: false
               - type: entities
                 entities:
@@ -1204,7 +1200,7 @@ views:
                   - entity: sensor.b2500_04_bc
                   - entity: sensor.b2500_04_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_04_l0_bit1
@@ -1221,12 +1217,12 @@ views:
                   - entity: sensor.b2500_04_lmo
                   - entity: sensor.b2500_04_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_04_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1242,7 +1238,7 @@ views:
                   - entity: sensor.b2500_05_id
                   - entity: sensor.b2500_05_fc
                   - entity: sensor.b2500_05_am
-                title: Infos
+                title: Info
                 show_header_toggle: false
               - type: entities
                 entities:
@@ -1260,7 +1256,7 @@ views:
                   - entity: sensor.b2500_05_bc
                   - entity: sensor.b2500_05_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_05_l0_bit1
@@ -1277,12 +1273,12 @@ views:
                   - entity: sensor.b2500_05_lmo
                   - entity: sensor.b2500_05_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_05_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1298,7 +1294,7 @@ views:
                   - entity: sensor.b2500_06_id
                   - entity: sensor.b2500_06_fc
                   - entity: sensor.b2500_06_am
-                title: Infos
+                title: Info
                 show_header_toggle: false
               - type: entities
                 entities:
@@ -1316,7 +1312,7 @@ views:
                   - entity: sensor.b2500_06_bc
                   - entity: sensor.b2500_06_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_06_l0_bit1
@@ -1333,12 +1329,12 @@ views:
                   - entity: sensor.b2500_06_lmo
                   - entity: sensor.b2500_06_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_06_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1354,7 +1350,7 @@ views:
                   - entity: sensor.b2500_07_id
                   - entity: sensor.b2500_07_fc
                   - entity: sensor.b2500_07_am
-                title: Infos
+                title: Info
                 show_header_toggle: false
               - type: entities
                 entities:
@@ -1372,7 +1368,7 @@ views:
                   - entity: sensor.b2500_07_bc
                   - entity: sensor.b2500_07_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_07_l0_bit1
@@ -1389,12 +1385,12 @@ views:
                   - entity: sensor.b2500_07_lmo
                   - entity: sensor.b2500_07_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_07_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1410,7 +1406,7 @@ views:
                   - entity: sensor.b2500_08_id
                   - entity: sensor.b2500_08_fc
                   - entity: sensor.b2500_08_am
-                title: Infos
+                title: Info
                 show_header_toggle: false
               - type: entities
                 entities:
@@ -1428,7 +1424,7 @@ views:
                   - entity: sensor.b2500_08_bc
                   - entity: sensor.b2500_08_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_08_l0_bit1
@@ -1445,12 +1441,12 @@ views:
                   - entity: sensor.b2500_08_lmo
                   - entity: sensor.b2500_08_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_08_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1466,7 +1462,7 @@ views:
                   - entity: sensor.b2500_09_id
                   - entity: sensor.b2500_09_fc
                   - entity: sensor.b2500_09_am
-                title: Infos
+                title: Info
                 show_header_toggle: false
               - type: entities
                 entities:
@@ -1484,7 +1480,7 @@ views:
                   - entity: sensor.b2500_09_bc
                   - entity: sensor.b2500_09_bs
                 show_header_toggle: false
-                title: Statistikdaten
+                title: Dati statistici
               - type: entities
                 entities:
                   - entity: binary_sensor.b2500_09_l0_bit1
@@ -1501,12 +1497,12 @@ views:
                   - entity: sensor.b2500_09_lmo
                   - entity: sensor.b2500_09_lmf
                 show_header_toggle: false
-                title: Statusanzeigen
+                title: Indicatori di stato
               - type: entities
                 entities:
                   - entity: sensor.b2500_09_cd
                 show_header_toggle: false
-                title: Entladeinstellung  - gilt nur für Speicherversion V1
+                title: Impostazione di scarica – vale solo per la versione batteria V1
             columns: 1
             visibility:
               - condition: state
@@ -1516,17 +1512,17 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Neuer Abschnitt
+            heading: Nuova sezione
     cards: []
   - type: sections
     max_columns: 4
-    title: ZeroPower Nulleinspeisung
+    title: Immissione zero ZeroPower
     path: zeropower-nulleinspeisung
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Statistiken
+            heading: Statistiche
             heading_style: title
           - type: markdown
             content: >-
@@ -1645,7 +1641,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: 'Powermeter Entität auswählen '
+            heading: 'Seleziona entità contatore di potenza'
             badges: []
           - type: gauge
             entity: sensor.zeropower_measure_load
@@ -1662,11 +1658,11 @@ views:
             entities:
               - entity: automation.b2500pkg_zeropower_trigger
                 secondary_info: last-triggered
-                name: Automatik Aus/Ein
+                name: Automatica Off/On
               - entity: script.b2500pkg_zeropower_main
-                name: Manuell ausführen
+                name: Esegui manualmente
             show_header_toggle: false
-            title: Nulleinspeisung
+            title: Immissione zero
           - type: entities
             entities:
               - entity: input_number.zeropower_target_value
@@ -1762,13 +1758,13 @@ views:
     cards: []
   - type: sections
     max_columns: 4
-    title: Unterspannungsschutz
+    title: Protezione da sottotensione
     path: unterspannungsschutz
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Neuer Abschnitt
+            heading: Nuova sezione
           - type: entities
             entities:
               - entity: sensor.b01_min_spannung
@@ -1803,13 +1799,13 @@ views:
             show_header_toggle: false
   - type: sections
     max_columns: 4
-    title: Überschusseinspeisung
+    title: Immissione dell’energia in eccesso
     path: uberschusseinspeisung
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Lademodus einstellen
+            heading: Imposta modalità di carica
             heading_style: title
           - type: entities
             entities:
@@ -1908,7 +1904,7 @@ views:
         cards:
           - type: heading
             heading_style: title
-            heading: Smartmeter auswählen
+            heading: Seleziona smart meter
           - type: entities
             entities:
               - entity: input_select.speicherauswahl
@@ -1922,66 +1918,46 @@ views:
             type: glance
             entities: []
             columns: 2
-            title: Smartmeter infos (Entitäten fehlen noch !)
+            title: Informazioni smart meter (entità mancanti!)
       - type: grid
         cards:
           - type: heading
-            heading: Neuer Abschnitt
+            heading: Nuova sezione
           - type: entities
             entities:
               - entity: sensor.b2500_01_c0
               - entity: sensor.b2500_02_c0
-              - entity: sensor.b2500_03_c0
-              - entity: sensor.b2500_04_c0
               - entity: sensor.b2500_01_c1
               - entity: sensor.b2500_02_c1
-              - entity: sensor.b2500_03_c1
-              - entity: sensor.b2500_04_c1
             show_header_toggle: false
           - type: entities
             entities:
               - entity: sensor.b2500_01_it
               - entity: sensor.b2500_02_it
-              - entity: sensor.b2500_03_it
-              - entity: sensor.b2500_04_it
               - entity: sensor.b2500_01_m0
               - entity: sensor.b2500_02_m0
-              - entity: sensor.b2500_03_m0
-              - entity: sensor.b2500_04_m0
               - entity: sensor.b2500_01_m1
               - entity: sensor.b2500_02_m1
-              - entity: sensor.b2500_03_m1
-              - entity: sensor.b2500_04_m1
               - entity: sensor.b2500_01_m2
               - entity: sensor.b2500_02_m2
-              - entity: sensor.b2500_03_m2
-              - entity: sensor.b2500_04_m2
               - entity: sensor.b2500_01_m3
               - entity: sensor.b2500_02_m3
-              - entity: sensor.b2500_03_m3
-              - entity: sensor.b2500_04_m3
               - entity: sensor.b2500_01_sg
               - entity: sensor.b2500_02_sg
-              - entity: sensor.b2500_03_sg
-              - entity: sensor.b2500_04_sg
               - entity: sensor.b2500_01_sp
               - entity: sensor.b2500_02_sp
-              - entity: sensor.b2500_03_sp
-              - entity: sensor.b2500_04_sp
               - entity: sensor.b2500_01_st
               - entity: sensor.b2500_02_st
-              - entity: sensor.b2500_03_st
-              - entity: sensor.b2500_04_st
             show_header_toggle: false
   - type: sections
     max_columns: 4
-    title: Restart
+    title: Riavvia
     path: reset
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Sende Restart Befehl an ausgewählten Speicher
+            heading: Invia comando di riavvio alla batteria selezionata
             heading_style: title
           - type: entities
             entities:
@@ -1990,7 +1966,7 @@ views:
               - entity: automation.b2500pkg_send_restart
                 secondary_info: none
                 icon: mdi:restart
-                name: Restart Funktion aus/einschalten
+                name: Attiva/disattiva funzione di riavvio
             show_header_toggle: false
     cards: []
   - type: sections
@@ -2001,7 +1977,7 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Infos
+            heading: Info
             heading_style: title
             tap_action:
               action: none
@@ -2012,11 +1988,9 @@ views:
             entities:
               - entity: sensor.b2500_01_pt
               - entity: sensor.b2500_02_pt
-              - entity: sensor.b2500_03_pt
-              - entity: sensor.b2500_04_pt
             state_color: true
-            title: 'Solarerzeugung '
-            columns: 4
+            title: 'Produzione solare'
+            columns: 2
           - show_name: true
             show_icon: true
             show_state: true
@@ -2026,11 +2000,7 @@ views:
               - entity: sensor.b2500_01_w2
               - entity: sensor.b2500_02_w1
               - entity: sensor.b2500_02_w2
-              - entity: sensor.b2500_03_w1
-              - entity: sensor.b2500_03_w2
-              - entity: sensor.b2500_04_w1
-              - entity: sensor.b2500_04_w2
-            title: Momentanleistung
+            title: Potenza istantanea
             columns: 2
             state_color: true
           - show_name: true
@@ -2042,14 +2012,10 @@ views:
               - entity: sensor.b2500_01_g2
               - entity: sensor.b2500_02_g1
               - entity: sensor.b2500_02_g2
-              - entity: sensor.b2500_03_g1
-              - entity: sensor.b2500_03_g2
-              - entity: sensor.b2500_04_g1
-              - entity: sensor.b2500_04_g2
             columns: 2
   - type: sections
     max_columns: 4
-    title: Spannungen
+    title: Tensione
     path: spannungen
     sections:
       - type: grid
@@ -2862,7 +2828,7 @@ views:
     title: Info CD16
   - type: sections
     max_columns: 4
-    title: Erweiterung 1
+    title: Batteria di estensione 1
     path: erw1
     sections:
       - type: grid
@@ -3354,7 +3320,7 @@ views:
     cards: []
   - type: sections
     max_columns: 4
-    title: Erweiterung 2
+    title: Batteria di espansione 2
     path: erw2
     sections:
       - type: grid
