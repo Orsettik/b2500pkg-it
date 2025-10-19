@@ -1,0 +1,3837 @@
+# Traduzione italiana del file originale tedesco
+# File originale: b2500pkg_dashboard.yaml
+# Tradotto da: Marco Orsini + ChatGPT (ottobre 2025)
+
+views:
+  - title: Grundeinstellungen
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: 'B2500 Package 2025-09-17 (Bugfix: Zeropower Skript)'
+            grid_options:
+              columns: 12
+              rows: 1
+          - type: picture
+            image: >-
+              https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+          - type: tile
+            entity: input_button.b2500pkg_update
+            features_position: bottom
+            vertical: false
+            grid_options:
+              columns: full
+              rows: 1
+            tap_action:
+              action: toggle
+          - type: entities
+            entities:
+              - entity: input_number.cd01_ratio
+              - entity: input_number.req_delay
+              - entity: input_number.req_delay2
+              - entity: input_boolean.req_cd16
+              - entity: input_boolean.req_start
+            show_header_toggle: false
+            title: Abfrageeinstellungen
+        column_span: 1
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_button.test_config
+            title: Konfiguration testen
+          - type: entities
+            entities:
+              - entity: input_text.b01_topic
+              - entity: input_text.b01_typ
+              - entity: input_text.b01_mac
+            show_header_toggle: false
+            title: B01 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b02_topic
+              - entity: input_text.b02_typ
+              - entity: input_text.b02_mac
+            show_header_toggle: false
+            title: B02 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b03_topic
+              - entity: input_text.b03_typ
+              - entity: input_text.b03_mac
+            show_header_toggle: false
+            title: B03 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b04_topic
+              - entity: input_text.b04_typ
+              - entity: input_text.b04_mac
+            show_header_toggle: false
+            title: B04 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b05_topic
+              - entity: input_text.b05_typ
+              - entity: input_text.b05_mac
+            show_header_toggle: false
+            title: B05 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b06_topic
+              - entity: input_text.b06_typ
+              - entity: input_text.b06_mac
+            show_header_toggle: false
+            title: B06 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b07_topic
+              - entity: input_text.b07_typ
+              - entity: input_text.b07_mac
+            show_header_toggle: false
+            title: B07 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b08_topic
+              - entity: input_text.b08_typ
+              - entity: input_text.b08_mac
+            show_header_toggle: false
+            title: B08 Impostazioni
+          - type: entities
+            entities:
+              - entity: input_text.b09_topic
+              - entity: input_text.b09_typ
+              - entity: input_text.b09_mac
+            show_header_toggle: false
+            title: B09 Impostazioni
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            badges: []
+            heading: MQTT Sensoren neu erstellen
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b01_sensor_discovery
+              - entity: automation.b2500pkg_b01_voltage_discovery
+              - entity: automation.b2500pkg_b01e1_voltage_discovery
+              - entity: automation.b2500pkg_b01e2_voltage_discovery
+              - entity: automation.b2500pkg_b01_cd16_sensor_discovery
+            title: B01_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b01_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b02_sensor_discovery
+              - entity: automation.b2500pkg_b02_voltage_discovery
+              - entity: automation.b2500pkg_b02e1_voltage_discovery
+              - entity: automation.b2500pkg_b02e2_voltage_discovery
+              - entity: automation.b2500pkg_b02_cd16_sensor_discovery
+            title: B02_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b02_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b03_sensor_discovery
+              - entity: automation.b2500pkg_b03_voltage_discovery
+              - entity: automation.b2500pkg_b03e1_voltage_discovery
+              - entity: automation.b2500pkg_b03e2_voltage_discovery
+              - entity: automation.b2500pkg_b03_cd16_sensor_discovery
+            title: B03_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b03_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b04_sensor_discovery
+              - entity: automation.b2500pkg_b04_voltage_discovery
+              - entity: automation.b2500pkg_b04e1_voltage_discovery
+              - entity: automation.b2500pkg_b04e2_voltage_discovery
+              - entity: automation.b2500pkg_b04_cd16_sensor_discovery
+            title: B04_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b04_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b05_sensor_discovery
+              - entity: automation.b2500pkg_b05_voltage_discovery
+              - entity: automation.b2500pkg_b05e1_voltage_discovery
+              - entity: automation.b2500pkg_b05e2_voltage_discovery
+              - entity: automation.b2500pkg_b05_cd16_sensor_discovery
+            title: B05_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b05_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b06_sensor_discovery
+              - entity: automation.b2500pkg_b06_voltage_discovery
+              - entity: automation.b2500pkg_b06e1_voltage_discovery
+              - entity: automation.b2500pkg_b06e2_voltage_discovery
+              - entity: automation.b2500pkg_b06_cd16_sensor_discovery
+            title: B06_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b06_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b07_sensor_discovery
+              - entity: automation.b2500pkg_b07_voltage_discovery
+              - entity: automation.b2500pkg_b07e1_voltage_discovery
+              - entity: automation.b2500pkg_b07e2_voltage_discovery
+              - entity: automation.b2500pkg_b07_cd16_sensor_discovery
+            title: B07_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b07_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b08_sensor_discovery
+              - entity: automation.b2500pkg_b08_voltage_discovery
+              - entity: automation.b2500pkg_b08e1_voltage_discovery
+              - entity: automation.b2500pkg_b08e2_voltage_discovery
+              - entity: automation.b2500pkg_b08_cd16_sensor_discovery
+            title: B08_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b08_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_b09_sensor_discovery
+              - entity: automation.b2500pkg_b09_voltage_discovery
+              - entity: automation.b2500pkg_b09e1_voltage_discovery
+              - entity: automation.b2500pkg_b09e2_voltage_discovery
+              - entity: automation.b2500pkg_b09_cd16_sensor_discovery
+            title: B09_Discovery
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b09_mac
+                state_not: '0'
+    type: sections
+    max_columns: 4
+    cards: []
+  - type: sections
+    path: timer
+    title: Timer
+    cards: []
+    sections:
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: input_button.b2500_selbstanpassung
+              - entity: input_select.speicherauswahl
+              - entity: input_select.timerslot
+              - entity: input_boolean.timer_aktiv
+              - entity: input_button.b2500_timer_status_setzen
+              - entity: input_datetime.timer_beginn
+              - entity: input_datetime.timer_ende
+              - entity: input_button.zeit_setzen
+              - entity: input_number.timer_leistung
+              - entity: input_button.b2500_leistung_setzen
+            show_header_toggle: false
+            title: Timer Impostazioni
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Timer Stato
+            badges: []
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_01_d1
+              - entity: sensor.b2500_01_h1
+              - entity: sensor.b2500_01_e1
+              - entity: sensor.b2500_01_f1
+              - entity: binary_sensor.b2500_01_d2
+              - entity: sensor.b2500_01_h2
+              - entity: sensor.b2500_01_e2
+              - entity: sensor.b2500_01_f2
+              - entity: binary_sensor.b2500_01_d3
+              - entity: sensor.b2500_01_h3
+              - entity: sensor.b2500_01_e3
+              - entity: sensor.b2500_01_f3
+              - entity: binary_sensor.b2500_01_d4
+              - entity: sensor.b2500_01_h4
+              - entity: sensor.b2500_01_e4
+              - entity: sensor.b2500_01_f4
+              - entity: binary_sensor.b2500_01_d5
+              - entity: sensor.b2500_01_h5
+              - entity: sensor.b2500_01_e5
+              - entity: sensor.b2500_01_f5
+            title: B2500_01 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b01_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_02_d1
+              - entity: sensor.b2500_02_h1
+              - entity: sensor.b2500_02_e1
+              - entity: sensor.b2500_02_f1
+              - entity: binary_sensor.b2500_02_d2
+              - entity: sensor.b2500_02_h2
+              - entity: sensor.b2500_02_e2
+              - entity: sensor.b2500_02_f2
+              - entity: binary_sensor.b2500_02_d3
+              - entity: sensor.b2500_02_h3
+              - entity: sensor.b2500_02_e3
+              - entity: sensor.b2500_02_f3
+              - entity: binary_sensor.b2500_02_d4
+              - entity: sensor.b2500_02_h4
+              - entity: sensor.b2500_02_e4
+              - entity: sensor.b2500_02_f4
+              - entity: binary_sensor.b2500_02_d5
+              - entity: sensor.b2500_02_h5
+              - entity: sensor.b2500_02_e5
+              - entity: sensor.b2500_02_f5
+            title: B2500_02 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b02_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_03_d1
+              - entity: sensor.b2500_03_h1
+              - entity: sensor.b2500_03_e1
+              - entity: sensor.b2500_03_f1
+              - entity: binary_sensor.b2500_03_d2
+              - entity: sensor.b2500_03_h2
+              - entity: sensor.b2500_03_e2
+              - entity: sensor.b2500_03_f2
+              - entity: binary_sensor.b2500_03_d3
+              - entity: sensor.b2500_03_h3
+              - entity: sensor.b2500_03_e3
+              - entity: sensor.b2500_03_f3
+              - entity: binary_sensor.b2500_03_d4
+              - entity: sensor.b2500_03_h4
+              - entity: sensor.b2500_03_e4
+              - entity: sensor.b2500_03_f4
+              - entity: binary_sensor.b2500_03_d5
+              - entity: sensor.b2500_03_h5
+              - entity: sensor.b2500_03_e5
+              - entity: sensor.b2500_03_f5
+            title: B2500_03 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b03_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_04_d1
+              - entity: sensor.b2500_04_h1
+              - entity: sensor.b2500_04_e1
+              - entity: sensor.b2500_04_f1
+              - entity: binary_sensor.b2500_04_d2
+              - entity: sensor.b2500_04_h2
+              - entity: sensor.b2500_04_e2
+              - entity: sensor.b2500_04_f2
+              - entity: binary_sensor.b2500_04_d3
+              - entity: sensor.b2500_04_h3
+              - entity: sensor.b2500_04_e3
+              - entity: sensor.b2500_04_f3
+              - entity: binary_sensor.b2500_04_d4
+              - entity: sensor.b2500_04_h4
+              - entity: sensor.b2500_04_e4
+              - entity: sensor.b2500_04_f4
+              - entity: binary_sensor.b2500_04_d5
+              - entity: sensor.b2500_04_h5
+              - entity: sensor.b2500_04_e5
+              - entity: sensor.b2500_04_f5
+            title: B2500_04 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b04_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_05_d1
+              - entity: sensor.b2500_05_h1
+              - entity: sensor.b2500_05_e1
+              - entity: sensor.b2500_05_f1
+              - entity: binary_sensor.b2500_05_d2
+              - entity: sensor.b2500_05_h2
+              - entity: sensor.b2500_05_e2
+              - entity: sensor.b2500_05_f2
+              - entity: binary_sensor.b2500_05_d3
+              - entity: sensor.b2500_05_h3
+              - entity: sensor.b2500_05_e3
+              - entity: sensor.b2500_05_f3
+              - entity: binary_sensor.b2500_05_d4
+              - entity: sensor.b2500_05_h4
+              - entity: sensor.b2500_05_e4
+              - entity: sensor.b2500_05_f4
+              - entity: binary_sensor.b2500_05_d5
+              - entity: sensor.b2500_05_h5
+              - entity: sensor.b2500_05_e5
+              - entity: sensor.b2500_05_f5
+            title: B2500_05 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b05_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_06_d1
+              - entity: sensor.b2500_06_h1
+              - entity: sensor.b2500_06_e1
+              - entity: sensor.b2500_06_f1
+              - entity: binary_sensor.b2500_06_d2
+              - entity: sensor.b2500_06_h2
+              - entity: sensor.b2500_06_e2
+              - entity: sensor.b2500_06_f2
+              - entity: binary_sensor.b2500_06_d3
+              - entity: sensor.b2500_06_h3
+              - entity: sensor.b2500_06_e3
+              - entity: sensor.b2500_06_f3
+              - entity: binary_sensor.b2500_06_d4
+              - entity: sensor.b2500_06_h4
+              - entity: sensor.b2500_06_e4
+              - entity: sensor.b2500_06_f4
+              - entity: binary_sensor.b2500_06_d5
+              - entity: sensor.b2500_06_h5
+              - entity: sensor.b2500_06_e5
+              - entity: sensor.b2500_06_f5
+            title: B2500_06 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b06_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_07_d1
+              - entity: sensor.b2500_07_h1
+              - entity: sensor.b2500_07_e1
+              - entity: sensor.b2500_07_f1
+              - entity: binary_sensor.b2500_07_d2
+              - entity: sensor.b2500_07_h2
+              - entity: sensor.b2500_07_e2
+              - entity: sensor.b2500_07_f2
+              - entity: binary_sensor.b2500_07_d3
+              - entity: sensor.b2500_07_h3
+              - entity: sensor.b2500_07_e3
+              - entity: sensor.b2500_07_f3
+              - entity: binary_sensor.b2500_07_d4
+              - entity: sensor.b2500_07_h4
+              - entity: sensor.b2500_07_e4
+              - entity: sensor.b2500_07_f4
+              - entity: binary_sensor.b2500_07_d5
+              - entity: sensor.b2500_07_h5
+              - entity: sensor.b2500_07_e5
+              - entity: sensor.b2500_07_f5
+            title: B2500_07 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b07_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_08_d1
+              - entity: sensor.b2500_08_h1
+              - entity: sensor.b2500_08_e1
+              - entity: sensor.b2500_08_f1
+              - entity: binary_sensor.b2500_08_d2
+              - entity: sensor.b2500_08_h2
+              - entity: sensor.b2500_08_e2
+              - entity: sensor.b2500_08_f2
+              - entity: binary_sensor.b2500_08_d3
+              - entity: sensor.b2500_08_h3
+              - entity: sensor.b2500_08_e3
+              - entity: sensor.b2500_08_f3
+              - entity: binary_sensor.b2500_08_d4
+              - entity: sensor.b2500_08_h4
+              - entity: sensor.b2500_08_e4
+              - entity: sensor.b2500_08_f4
+              - entity: binary_sensor.b2500_08_d5
+              - entity: sensor.b2500_08_h5
+              - entity: sensor.b2500_08_e5
+              - entity: sensor.b2500_08_f5
+            title: B2500_08 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b08_mac
+                state_not: '0'
+          - show_name: false
+            show_icon: false
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.b2500_09_d1
+              - entity: sensor.b2500_09_h1
+              - entity: sensor.b2500_09_e1
+              - entity: sensor.b2500_09_f1
+              - entity: binary_sensor.b2500_09_d2
+              - entity: sensor.b2500_09_h2
+              - entity: sensor.b2500_09_e2
+              - entity: sensor.b2500_09_f2
+              - entity: binary_sensor.b2500_09_d3
+              - entity: sensor.b2500_09_h3
+              - entity: sensor.b2500_09_e3
+              - entity: sensor.b2500_09_f3
+              - entity: binary_sensor.b2500_09_d4
+              - entity: sensor.b2500_09_h4
+              - entity: sensor.b2500_09_e4
+              - entity: sensor.b2500_09_f4
+              - entity: binary_sensor.b2500_09_d5
+              - entity: sensor.b2500_09_h5
+              - entity: sensor.b2500_09_e5
+              - entity: sensor.b2500_09_f5
+            title: B2500_09 Timer 1 bis 5
+            columns: 4
+            visibility:
+              - condition: state
+                entity: input_text.b09_mac
+                state_not: '0'
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b01_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_01_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b02_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_02_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b03_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_03_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b04_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_04_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b05_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_05_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b06_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_06_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b07_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_07_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b08_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_08_md
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b09_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_09_md
+                  show_header_toggle: false
+        column_span: 2
+    max_columns: 2
+  - type: sections
+    max_columns: 4
+    path: ''
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Entladetiefe einstellen
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_number.b2500_dod
+              - entity: input_button.b2500_dod_setzen
+            title: B2500_ DOD setzen
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b01_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_01_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b02_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_02_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b03_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_03_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b04_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_04_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b05_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_05_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b06_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_06_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b07_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_07_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b08_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_08_do
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b09_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_09_do
+                  show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b01_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_01_pe
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+                  needle: true
+                  max: 100
+                  min: 0
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b02_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_02_pe
+                  min: 0
+                  max: 100
+                  needle: true
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b03_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_03_pe
+                  needle: true
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+                  min: 0
+                  max: 100
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b04_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_04_pe
+                  min: 0
+                  max: 100
+                  needle: true
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+            grid_options:
+              columns: 12
+              rows: 2
+          - type: horizontal-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b05_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_05_pe
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+                  needle: true
+                  max: 100
+                  min: 0
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b06_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_06_pe
+                  min: 0
+                  max: 100
+                  needle: true
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b07_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_07_pe
+                  needle: true
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+                  min: 0
+                  max: 100
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b08_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_08_pe
+                  min: 0
+                  max: 100
+                  needle: true
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+            grid_options:
+              columns: 12
+              rows: 2
+          - type: horizontal-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b09_mac
+                    state_not: '0'
+                card:
+                  type: gauge
+                  entity: sensor.b2500_09_pe
+                  severity:
+                    green: 35
+                    yellow: 15
+                    red: 0
+                  needle: true
+                  max: 100
+                  min: 0
+            grid_options:
+              columns: 12
+              rows: 2
+    title: DOD
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: Lademodus
+    path: entlademodus-einstellen
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Lademodus einstellen
+            heading_style: title
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_select.lademodus
+              - entity: input_button.b2500_lademodus_setzen
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b01_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_01_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b02_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_02_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b03_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_03_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b04_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_04_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b05_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_05_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b06_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_06_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b07_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_07_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b08_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_08_cs
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b09_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities:
+                    - entity: sensor.b2500_09_cs
+                  show_header_toggle: false
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: Informationen
+    path: sensoren
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Informationen
+            heading_style: title
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_vv
+                  - entity: sensor.b2500_01_sv
+                  - entity: sensor.b2500_01_id
+                  - entity: sensor.b2500_01_fc
+                  - entity: sensor.b2500_01_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_tl
+                  - entity: sensor.b2500_01_th
+                  - entity: sensor.b2500_01_tc
+                  - entity: sensor.b2500_01_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_kn
+                  - entity: sensor.b2500_01_a0
+                  - entity: sensor.b2500_01_pt
+                  - entity: sensor.b2500_01_bc
+                  - entity: sensor.b2500_01_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_01_l0_bit1
+                  - entity: binary_sensor.b2500_01_l0_bit0
+                  - entity: binary_sensor.b2500_01_l0_bit2
+                  - entity: binary_sensor.b2500_01_l0_bit3
+                  - entity: sensor.b2500_01_p1
+                  - entity: sensor.b2500_01_p2
+                  - entity: sensor.b2500_01_o1
+                  - entity: sensor.b2500_01_o2
+                  - entity: sensor.b2500_01_cj
+                  - entity: sensor.b2500_01_lv
+                  - entity: sensor.b2500_01_lmi
+                  - entity: sensor.b2500_01_lmo
+                  - entity: sensor.b2500_01_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b01_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_vv
+                  - entity: sensor.b2500_02_sv
+                  - entity: sensor.b2500_02_id
+                  - entity: sensor.b2500_02_fc
+                  - entity: sensor.b2500_02_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_tl
+                  - entity: sensor.b2500_02_th
+                  - entity: sensor.b2500_02_tc
+                  - entity: sensor.b2500_02_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_kn
+                  - entity: sensor.b2500_02_a0
+                  - entity: sensor.b2500_02_pt
+                  - entity: sensor.b2500_02_bc
+                  - entity: sensor.b2500_02_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_02_l0_bit1
+                  - entity: binary_sensor.b2500_02_l0_bit0
+                  - entity: binary_sensor.b2500_02_l0_bit2
+                  - entity: binary_sensor.b2500_02_l0_bit3
+                  - entity: sensor.b2500_02_p1
+                  - entity: sensor.b2500_02_p2
+                  - entity: sensor.b2500_02_o1
+                  - entity: sensor.b2500_02_o2
+                  - entity: sensor.b2500_02_cj
+                  - entity: sensor.b2500_02_lv
+                  - entity: sensor.b2500_02_lmi
+                  - entity: sensor.b2500_02_lmo
+                  - entity: sensor.b2500_02_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b02_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_vv
+                  - entity: sensor.b2500_03_sv
+                  - entity: sensor.b2500_03_id
+                  - entity: sensor.b2500_03_fc
+                  - entity: sensor.b2500_03_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_tl
+                  - entity: sensor.b2500_03_th
+                  - entity: sensor.b2500_03_tc
+                  - entity: sensor.b2500_03_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_kn
+                  - entity: sensor.b2500_03_a0
+                  - entity: sensor.b2500_03_pt
+                  - entity: sensor.b2500_03_bc
+                  - entity: sensor.b2500_03_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_03_l0_bit1
+                  - entity: binary_sensor.b2500_03_l0_bit0
+                  - entity: binary_sensor.b2500_03_l0_bit2
+                  - entity: binary_sensor.b2500_03_l0_bit3
+                  - entity: sensor.b2500_03_p1
+                  - entity: sensor.b2500_03_p2
+                  - entity: sensor.b2500_03_o1
+                  - entity: sensor.b2500_03_o2
+                  - entity: sensor.b2500_03_cj
+                  - entity: sensor.b2500_03_lv
+                  - entity: sensor.b2500_03_lmi
+                  - entity: sensor.b2500_03_lmo
+                  - entity: sensor.b2500_03_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b03_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_vv
+                  - entity: sensor.b2500_04_sv
+                  - entity: sensor.b2500_04_id
+                  - entity: sensor.b2500_04_fc
+                  - entity: sensor.b2500_04_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_tl
+                  - entity: sensor.b2500_04_th
+                  - entity: sensor.b2500_04_tc
+                  - entity: sensor.b2500_04_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_kn
+                  - entity: sensor.b2500_04_a0
+                  - entity: sensor.b2500_04_pt
+                  - entity: sensor.b2500_04_bc
+                  - entity: sensor.b2500_04_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_04_l0_bit1
+                  - entity: binary_sensor.b2500_04_l0_bit0
+                  - entity: binary_sensor.b2500_04_l0_bit2
+                  - entity: binary_sensor.b2500_04_l0_bit3
+                  - entity: sensor.b2500_04_p1
+                  - entity: sensor.b2500_04_p2
+                  - entity: sensor.b2500_04_o1
+                  - entity: sensor.b2500_04_o2
+                  - entity: sensor.b2500_04_cj
+                  - entity: sensor.b2500_04_lv
+                  - entity: sensor.b2500_04_lmi
+                  - entity: sensor.b2500_04_lmo
+                  - entity: sensor.b2500_04_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b04_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_vv
+                  - entity: sensor.b2500_05_sv
+                  - entity: sensor.b2500_05_id
+                  - entity: sensor.b2500_05_fc
+                  - entity: sensor.b2500_05_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_tl
+                  - entity: sensor.b2500_05_th
+                  - entity: sensor.b2500_05_tc
+                  - entity: sensor.b2500_05_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_kn
+                  - entity: sensor.b2500_05_a0
+                  - entity: sensor.b2500_05_pt
+                  - entity: sensor.b2500_05_bc
+                  - entity: sensor.b2500_05_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_05_l0_bit1
+                  - entity: binary_sensor.b2500_05_l0_bit0
+                  - entity: binary_sensor.b2500_05_l0_bit2
+                  - entity: binary_sensor.b2500_05_l0_bit3
+                  - entity: sensor.b2500_05_p1
+                  - entity: sensor.b2500_05_p2
+                  - entity: sensor.b2500_05_o1
+                  - entity: sensor.b2500_05_o2
+                  - entity: sensor.b2500_05_cj
+                  - entity: sensor.b2500_05_lv
+                  - entity: sensor.b2500_05_lmi
+                  - entity: sensor.b2500_05_lmo
+                  - entity: sensor.b2500_05_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b05_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_vv
+                  - entity: sensor.b2500_06_sv
+                  - entity: sensor.b2500_06_id
+                  - entity: sensor.b2500_06_fc
+                  - entity: sensor.b2500_06_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_tl
+                  - entity: sensor.b2500_06_th
+                  - entity: sensor.b2500_06_tc
+                  - entity: sensor.b2500_06_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_kn
+                  - entity: sensor.b2500_06_a0
+                  - entity: sensor.b2500_06_pt
+                  - entity: sensor.b2500_06_bc
+                  - entity: sensor.b2500_06_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_06_l0_bit1
+                  - entity: binary_sensor.b2500_06_l0_bit0
+                  - entity: binary_sensor.b2500_06_l0_bit2
+                  - entity: binary_sensor.b2500_06_l0_bit3
+                  - entity: sensor.b2500_06_p1
+                  - entity: sensor.b2500_06_p2
+                  - entity: sensor.b2500_06_o1
+                  - entity: sensor.b2500_06_o2
+                  - entity: sensor.b2500_06_cj
+                  - entity: sensor.b2500_06_lv
+                  - entity: sensor.b2500_06_lmi
+                  - entity: sensor.b2500_06_lmo
+                  - entity: sensor.b2500_06_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b06_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_vv
+                  - entity: sensor.b2500_07_sv
+                  - entity: sensor.b2500_07_id
+                  - entity: sensor.b2500_07_fc
+                  - entity: sensor.b2500_07_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_tl
+                  - entity: sensor.b2500_07_th
+                  - entity: sensor.b2500_07_tc
+                  - entity: sensor.b2500_07_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_kn
+                  - entity: sensor.b2500_07_a0
+                  - entity: sensor.b2500_07_pt
+                  - entity: sensor.b2500_07_bc
+                  - entity: sensor.b2500_07_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_07_l0_bit1
+                  - entity: binary_sensor.b2500_07_l0_bit0
+                  - entity: binary_sensor.b2500_07_l0_bit2
+                  - entity: binary_sensor.b2500_07_l0_bit3
+                  - entity: sensor.b2500_07_p1
+                  - entity: sensor.b2500_07_p2
+                  - entity: sensor.b2500_07_o1
+                  - entity: sensor.b2500_07_o2
+                  - entity: sensor.b2500_07_cj
+                  - entity: sensor.b2500_07_lv
+                  - entity: sensor.b2500_07_lmi
+                  - entity: sensor.b2500_07_lmo
+                  - entity: sensor.b2500_07_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b07_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_vv
+                  - entity: sensor.b2500_08_sv
+                  - entity: sensor.b2500_08_id
+                  - entity: sensor.b2500_08_fc
+                  - entity: sensor.b2500_08_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_tl
+                  - entity: sensor.b2500_08_th
+                  - entity: sensor.b2500_08_tc
+                  - entity: sensor.b2500_08_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_kn
+                  - entity: sensor.b2500_08_a0
+                  - entity: sensor.b2500_08_pt
+                  - entity: sensor.b2500_08_bc
+                  - entity: sensor.b2500_08_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_08_l0_bit1
+                  - entity: binary_sensor.b2500_08_l0_bit0
+                  - entity: binary_sensor.b2500_08_l0_bit2
+                  - entity: binary_sensor.b2500_08_l0_bit3
+                  - entity: sensor.b2500_08_p1
+                  - entity: sensor.b2500_08_p2
+                  - entity: sensor.b2500_08_o1
+                  - entity: sensor.b2500_08_o2
+                  - entity: sensor.b2500_08_cj
+                  - entity: sensor.b2500_08_lv
+                  - entity: sensor.b2500_08_lmi
+                  - entity: sensor.b2500_08_lmo
+                  - entity: sensor.b2500_08_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b08_mac
+                state_not: '0'
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_vv
+                  - entity: sensor.b2500_09_sv
+                  - entity: sensor.b2500_09_id
+                  - entity: sensor.b2500_09_fc
+                  - entity: sensor.b2500_09_am
+                title: Infos
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_tl
+                  - entity: sensor.b2500_09_th
+                  - entity: sensor.b2500_09_tc
+                  - entity: sensor.b2500_09_tf
+                title: Temperatura
+                show_header_toggle: false
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_kn
+                  - entity: sensor.b2500_09_a0
+                  - entity: sensor.b2500_09_pt
+                  - entity: sensor.b2500_09_bc
+                  - entity: sensor.b2500_09_bs
+                show_header_toggle: false
+                title: Statistikdaten
+              - type: entities
+                entities:
+                  - entity: binary_sensor.b2500_09_l0_bit1
+                  - entity: binary_sensor.b2500_09_l0_bit0
+                  - entity: binary_sensor.b2500_09_l0_bit2
+                  - entity: binary_sensor.b2500_09_l0_bit3
+                  - entity: sensor.b2500_09_p1
+                  - entity: sensor.b2500_09_p2
+                  - entity: sensor.b2500_09_o1
+                  - entity: sensor.b2500_09_o2
+                  - entity: sensor.b2500_09_cj
+                  - entity: sensor.b2500_09_lv
+                  - entity: sensor.b2500_09_lmi
+                  - entity: sensor.b2500_09_lmo
+                  - entity: sensor.b2500_09_lmf
+                show_header_toggle: false
+                title: Statusanzeigen
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd
+                show_header_toggle: false
+                title: Entladeinstellung  - gilt nur für Speicherversion V1
+            columns: 1
+            visibility:
+              - condition: state
+                entity: input_text.b09_mac
+                state_not: '0'
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Neuer Abschnitt
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: ZeroPower Nulleinspeisung
+    path: zeropower-nulleinspeisung
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Statistiken
+            heading_style: title
+          - type: markdown
+            content: >-
+              {% set v2 = states('input_text.zeropower_variables2') | from_json
+              %}
+
+              {% set m_id, e1_id, e2_id, e3_id, e4_id, e5_id, e6_id, e7_id,
+              e8_id = v2.ID.split('|') %}
+
+              {% set sp_master, e1sp, e2sp, e3sp, e4sp, e5sp, e6sp, e7sp, e8sp =
+              v2.SP.split('|') %}
+
+
+
+              {% set mp = (states('input_text.zeropower_variables') | from_json
+              | default({})).mp |
+                  float(0) | int %}
+              {% set e1p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e1p
+                  | float(0) | int %}
+              {% set e2p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e2p
+                  | float(0) | int %}
+              {% set e3p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e3p
+                  | float(0) | int %}
+              {% set e4p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e4p
+                  | float(0) | int %}
+              {% set e5p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e5p
+                  | float(0) | int %}
+              {% set e6p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e6p
+                  | float(0) | int %}
+              {% set e7p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e7p
+                  | float(0) | int %}
+              {% set e8p = (states('input_text.zeropower_variables') | from_json
+              | default({})).e8p
+                  | float(0) | int %}
+              {% set msoc = states('sensor.b2500_0' ~ m_id ~ '_pe') | int(0) %}
+
+              {% set e1soc = states('sensor.b2500_0' ~ e1_id ~ '_pe') | int(0)
+              %}
+
+              {% set e2soc = states('sensor.b2500_0' ~ e2_id ~ '_pe') | int(0)
+              %}
+
+              {% set e3soc = states('sensor.b2500_0' ~ e3_id ~ '_pe') | int(0)
+              %}
+
+              {% set e4soc = states('sensor.b2500_0' ~ e4_id ~ '_pe') | int(0)
+              %}
+
+              {% set e5soc = states('sensor.b2500_0' ~ e5_id ~ '_pe') | int(0)
+              %}
+
+              {% set e6soc = states('sensor.b2500_0' ~ e6_id ~ '_pe') | int(0)
+              %}
+
+              {% set e7soc = states('sensor.b2500_0' ~ e7_id ~ '_pe') | int(0)
+              %}
+
+              {% set e8soc = states('sensor.b2500_0' ~ e8_id ~ '_pe') | int(0)
+              %}
+
+
+              {% set t = states.input_text.zeropower_variables.last_updated %}
+
+              {% if t %}
+
+              Letzte Änderung: {{ t.astimezone().strftime('%H:%M:%S') }}
+
+              {% else %}
+
+              Letzte Änderung: noch nie
+
+              {% endif %}
+
+               
+
+              <pre>
+                                Einspeisung
+              ID Name    SOC   Null/Überschuss  
+                                    
+              {{ m_id }} Master  ({{ "%3s"|format(msoc) }}):{{ "%5s"|format(mp)
+              }}/{{ "%-5s"|format(sp_master) }} W
+
+              {{ e1_id }} Extra_1 ({{ "%3s"|format(e1soc) }}):{{
+              "%5s"|format(e1p) }}/{{ "%-5s"|format(e1sp) }} W
+
+              {{ e2_id }} Extra_2 ({{ "%3s"|format(e2soc) }}):{{
+              "%5s"|format(e2p) }}/{{ "%-5s"|format(e2sp) }} W
+
+              {{ e3_id }} Extra_3 ({{ "%3s"|format(e3soc) }}):{{
+              "%5s"|format(e3p) }}/{{ "%-5s"|format(e3sp) }} W
+
+              {{ e4_id }} Extra_4 ({{ "%3s"|format(e4soc) }}):{{
+              "%5s"|format(e4p) }}/{{ "%-5s"|format(e4sp) }} W
+
+              {{ e5_id }} Extra_5 ({{ "%3s"|format(e5soc) }}):{{
+              "%5s"|format(e5p) }}/{{ "%-5s"|format(e5sp) }} W
+
+              {{ e6_id }} Extra_6 ({{ "%3s"|format(e6soc) }}):{{
+              "%5s"|format(e6p) }}/{{ "%-5s"|format(e6sp) }} W
+
+              {{ e7_id }} Extra_7 ({{ "%3s"|format(e7soc) }}):{{
+              "%5s"|format(e7p) }}/{{ "%-5s"|format(e7sp) }} W
+
+              {{ e8_id }} Extra_8 ({{ "%3s"|format(e8soc) }}):{{
+              "%5s"|format(e8p) }}/{{ "%-5s"|format(e8sp) }} W
+
+              </pre>
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: 'Powermeter Entität auswählen '
+            badges: []
+          - type: gauge
+            entity: sensor.zeropower_measure_load
+            min: -80
+            max: 80
+            needle: true
+            severity:
+              green: -15
+              yellow: -80
+              red: 0
+            tap_action:
+              action: none
+          - type: entities
+            entities:
+              - entity: automation.b2500pkg_zeropower_trigger
+                secondary_info: last-triggered
+                name: Automatik Aus/Ein
+              - entity: script.b2500pkg_zeropower_main
+                name: Manuell ausführen
+            show_header_toggle: false
+            title: Nulleinspeisung
+          - type: entities
+            entities:
+              - entity: input_number.zeropower_target_value
+              - entity: input_number.zeropower_target_deviation
+              - entity: input_number.zeropower_min_limit
+              - entity: input_number.zeropower_max_limit
+              - entity: input_boolean.zeropower_surplus_enabled
+              - entity: input_number.zeropower_surplus_bypass
+              - entity: input_number.zeropower_surplus_level
+              - entity: input_number.zeropower_passthrough_value
+            show_header_toggle: false
+            grid_options:
+              columns: 18
+              rows: auto
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b01
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b01_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b02
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b02_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b03
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b03_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b04
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b04_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b05
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b05_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b06
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b06_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b07
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b07_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b08
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b08_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_select.zeropower_use_b09
+            show_header_toggle: false
+            visibility:
+              - condition: state
+                entity: input_text.b09_mac
+                state_not: '0'
+          - type: entities
+            entities:
+              - entity: input_text.zeropower_measure
+            show_header_toggle: false
+        column_span: 2
+    subview: false
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: Unterspannungsschutz
+    path: unterspannungsschutz
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Neuer Abschnitt
+          - type: entities
+            entities:
+              - entity: sensor.b01_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_01_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b02_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_02_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b03_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_03_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b04_min_spannung
+                secondary_info: last-updated
+              - entity: sensor.b2500_04_do
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: input_number.lvp_voltage_cutoff
+              - entity: input_number.lvp_voltage_normal
+              - entity: input_number.lvp_dod_normal
+              - entity: automation.b2500pkg_unterspannungsschutz
+                secondary_info: last-triggered
+            show_header_toggle: false
+  - type: sections
+    max_columns: 4
+    title: Überschusseinspeisung
+    path: uberschusseinspeisung
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Lademodus einstellen
+            heading_style: title
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_select.surplus
+              - entity: input_button.surplus_set
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b01_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b02_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b03_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b04_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b05_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b06_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b07_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b08_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.b09_mac
+                    state_not: '0'
+                card:
+                  type: entities
+                  entities: []
+                  show_header_toggle: false
+  - type: sections
+    max_columns: 4
+    title: Smartmeter
+    path: smartmeter
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Smartmeter auswählen
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_select.smartmeter
+              - entity: input_button.b2500_smartmeter_setzen
+            title: Smartmeter
+            show_header_toggle: false
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities: []
+            columns: 2
+            title: Smartmeter infos (Entitäten fehlen noch !)
+      - type: grid
+        cards:
+          - type: heading
+            heading: Neuer Abschnitt
+          - type: entities
+            entities:
+              - entity: sensor.b2500_01_c0
+              - entity: sensor.b2500_02_c0
+              - entity: sensor.b2500_03_c0
+              - entity: sensor.b2500_04_c0
+              - entity: sensor.b2500_01_c1
+              - entity: sensor.b2500_02_c1
+              - entity: sensor.b2500_03_c1
+              - entity: sensor.b2500_04_c1
+            show_header_toggle: false
+          - type: entities
+            entities:
+              - entity: sensor.b2500_01_it
+              - entity: sensor.b2500_02_it
+              - entity: sensor.b2500_03_it
+              - entity: sensor.b2500_04_it
+              - entity: sensor.b2500_01_m0
+              - entity: sensor.b2500_02_m0
+              - entity: sensor.b2500_03_m0
+              - entity: sensor.b2500_04_m0
+              - entity: sensor.b2500_01_m1
+              - entity: sensor.b2500_02_m1
+              - entity: sensor.b2500_03_m1
+              - entity: sensor.b2500_04_m1
+              - entity: sensor.b2500_01_m2
+              - entity: sensor.b2500_02_m2
+              - entity: sensor.b2500_03_m2
+              - entity: sensor.b2500_04_m2
+              - entity: sensor.b2500_01_m3
+              - entity: sensor.b2500_02_m3
+              - entity: sensor.b2500_03_m3
+              - entity: sensor.b2500_04_m3
+              - entity: sensor.b2500_01_sg
+              - entity: sensor.b2500_02_sg
+              - entity: sensor.b2500_03_sg
+              - entity: sensor.b2500_04_sg
+              - entity: sensor.b2500_01_sp
+              - entity: sensor.b2500_02_sp
+              - entity: sensor.b2500_03_sp
+              - entity: sensor.b2500_04_sp
+              - entity: sensor.b2500_01_st
+              - entity: sensor.b2500_02_st
+              - entity: sensor.b2500_03_st
+              - entity: sensor.b2500_04_st
+            show_header_toggle: false
+  - type: sections
+    max_columns: 4
+    title: Restart
+    path: reset
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Sende Restart Befehl an ausgewählten Speicher
+            heading_style: title
+          - type: entities
+            entities:
+              - entity: input_select.speicherauswahl
+              - entity: input_button.b2500_restart
+              - entity: automation.b2500pkg_send_restart
+                secondary_info: none
+                icon: mdi:restart
+                name: Restart Funktion aus/einschalten
+            show_header_toggle: false
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: Potenza
+    path: leistung
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Infos
+            heading_style: title
+            tap_action:
+              action: none
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.b2500_01_pt
+              - entity: sensor.b2500_02_pt
+              - entity: sensor.b2500_03_pt
+              - entity: sensor.b2500_04_pt
+            state_color: true
+            title: 'Solarerzeugung '
+            columns: 4
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.b2500_01_w1
+              - entity: sensor.b2500_01_w2
+              - entity: sensor.b2500_02_w1
+              - entity: sensor.b2500_02_w2
+              - entity: sensor.b2500_03_w1
+              - entity: sensor.b2500_03_w2
+              - entity: sensor.b2500_04_w1
+              - entity: sensor.b2500_04_w2
+            title: Momentanleistung
+            columns: 2
+            state_color: true
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.b2500_01_g1
+              - entity: sensor.b2500_01_g2
+              - entity: sensor.b2500_02_g1
+              - entity: sensor.b2500_02_g2
+              - entity: sensor.b2500_03_g1
+              - entity: sensor.b2500_03_g2
+              - entity: sensor.b2500_04_g1
+              - entity: sensor.b2500_04_g2
+            columns: 2
+  - type: sections
+    max_columns: 4
+    title: Spannungen
+    path: spannungen
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: B01
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_01_zelle01
+              - entity: sensor.b2500_01_zelle02
+              - entity: sensor.b2500_01_zelle03
+              - entity: sensor.b2500_01_zelle04
+              - entity: sensor.b2500_01_zelle05
+              - entity: sensor.b2500_01_zelle06
+              - entity: sensor.b2500_01_zelle07
+              - entity: sensor.b2500_01_zelle08
+              - entity: sensor.b2500_01_zelle09
+              - entity: sensor.b2500_01_zelle10
+              - entity: sensor.b2500_01_zelle11
+              - entity: sensor.b2500_01_zelle12
+              - entity: sensor.b2500_01_zelle13
+              - entity: sensor.b2500_01_zelle14
+            fit_y_data: false
+            title: B2500_01
+            max_y_axis: 3600
+            min_y_axis: 2600
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_01_pe
+            min_y_axis: 0
+            max_y_axis: 100
+          - type: history-graph
+            entities:
+              - entity: sensor.b01_spannungsdifferenz
+            min_y_axis: 0
+            max_y_axis: 100
+        column_span: 1
+      - type: grid
+        cards:
+          - type: heading
+            heading: B02
+            heading_style: title
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_02_zelle01
+              - entity: sensor.b2500_02_zelle02
+              - entity: sensor.b2500_02_zelle03
+              - entity: sensor.b2500_02_zelle04
+              - entity: sensor.b2500_02_zelle05
+              - entity: sensor.b2500_02_zelle06
+              - entity: sensor.b2500_02_zelle07
+              - entity: sensor.b2500_02_zelle08
+              - entity: sensor.b2500_02_zelle09
+              - entity: sensor.b2500_02_zelle10
+              - entity: sensor.b2500_02_zelle11
+              - entity: sensor.b2500_02_zelle12
+              - entity: sensor.b2500_02_zelle13
+              - entity: sensor.b2500_02_zelle14
+            title: B2500_02
+            max_y_axis: 3600
+            fit_y_data: false
+            min_y_axis: 2600
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_02_pe
+            min_y_axis: 0
+            max_y_axis: 100
+          - type: history-graph
+            entities:
+              - entity: sensor.b02_spannungsdifferenz
+            min_y_axis: 0
+            max_y_axis: 100
+      - type: grid
+        cards:
+          - type: heading
+            heading: B03
+            heading_style: title
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_03_zelle01
+              - entity: sensor.b2500_03_zelle02
+              - entity: sensor.b2500_03_zelle03
+              - entity: sensor.b2500_03_zelle04
+              - entity: sensor.b2500_03_zelle05
+              - entity: sensor.b2500_03_zelle06
+              - entity: sensor.b2500_03_zelle07
+              - entity: sensor.b2500_03_zelle08
+              - entity: sensor.b2500_03_zelle09
+              - entity: sensor.b2500_03_zelle10
+              - entity: sensor.b2500_03_zelle11
+              - entity: sensor.b2500_03_zelle12
+              - entity: sensor.b2500_03_zelle13
+              - entity: sensor.b2500_03_zelle14
+            title: B2500_03
+            fit_y_data: false
+            max_y_axis: 3600
+            min_y_axis: 2600
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_03_pe
+            min_y_axis: 0
+            max_y_axis: 100
+          - type: history-graph
+            entities:
+              - entity: sensor.b03_spannungsdifferenz
+            min_y_axis: 0
+            max_y_axis: 100
+      - type: grid
+        cards:
+          - type: heading
+            heading: B04
+            heading_style: title
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_04_zelle01
+              - entity: sensor.b2500_04_zelle02
+              - entity: sensor.b2500_04_zelle03
+              - entity: sensor.b2500_04_zelle04
+              - entity: sensor.b2500_04_zelle05
+              - entity: sensor.b2500_04_zelle06
+              - entity: sensor.b2500_04_zelle07
+              - entity: sensor.b2500_04_zelle08
+              - entity: sensor.b2500_04_zelle09
+              - entity: sensor.b2500_04_zelle10
+              - entity: sensor.b2500_04_zelle11
+              - entity: sensor.b2500_04_zelle12
+              - entity: sensor.b2500_04_zelle13
+              - entity: sensor.b2500_04_zelle14
+            title: B2500_04
+            max_y_axis: 3600
+            fit_y_data: false
+            min_y_axis: 2600
+          - type: history-graph
+            entities:
+              - entity: sensor.b2500_04_pe
+            min_y_axis: 0
+            max_y_axis: 100
+          - type: history-graph
+            entities:
+              - entity: sensor.b04_spannungsdifferenz
+            min_y_axis: 0
+            max_y_axis: 100
+  - grid:
+      columns: 5
+      rows: 5
+      gap: 4
+      items:
+        - id: entitaet_oben_links
+          content: Entität 1
+          col_start: 1
+          col_span: 2
+          row_start: 1
+          row_span: 1
+        - id: entitaet_oben_rechts
+          content: Entität 2
+          col_start: 4
+          col_span: 2
+          row_start: 1
+          row_span: 1
+        - id: bild_mitte
+          type: image
+          src: https://via.placeholder.com/300
+          col_start: 2
+          col_span: 3
+          row_start: 2
+          row_span: 3
+        - id: entitaet_unten_links
+          content: Entität 3
+          col_start: 1
+          col_span: 2
+          row_start: 5
+          row_span: 1
+        - id: entitaet_unten_rechts
+          content: Entität 4
+          col_start: 4
+          col_span: 2
+          row_start: 5
+          row_span: 1
+        - id: entitaet_rechts
+          content: Entität 5
+          col_start: 5
+          col_span: 1
+          row_start: 3
+          row_span: 1
+    cards:
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_01_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_01_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_01_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_01_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_01_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_01_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b01_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd16bv
+                  - entity: sensor.b2500_01_cd16bc
+                  - entity: sensor.b2500_01_cd16bb
+          - type: gauge
+            entity: sensor.b01_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_01_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_01_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_01_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_01_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_01_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b01_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_02_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_02_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_02_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_02_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_02_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_02_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b02_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd16bv
+                  - entity: sensor.b2500_02_cd16bc
+                  - entity: sensor.b2500_02_cd16bb
+          - type: gauge
+            entity: sensor.b02_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_02_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_02_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_02_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_02_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_02_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b02_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_03_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_03_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_03_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_03_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_03_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_03_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b03_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd16bv
+                  - entity: sensor.b2500_03_cd16bc
+                  - entity: sensor.b2500_03_cd16bb
+          - type: gauge
+            entity: sensor.b03_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_03_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_03_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_03_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_03_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_03_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b03_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_04_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_04_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_04_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_04_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_04_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_04_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b04_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd16bv
+                  - entity: sensor.b2500_04_cd16bc
+                  - entity: sensor.b2500_04_cd16bb
+          - type: gauge
+            entity: sensor.b04_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_04_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_04_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_04_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_04_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_04_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b04_mac_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_05_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_05_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_05_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_05_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_05_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_05_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b05_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd16bv
+                  - entity: sensor.b2500_05_cd16bc
+                  - entity: sensor.b2500_05_cd16bb
+          - type: gauge
+            entity: sensor.b05_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_05_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_05_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_05_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_05_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_05_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b05_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_06_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_06_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_06_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_06_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_06_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_06_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b06_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd16bv
+                  - entity: sensor.b2500_06_cd16bc
+                  - entity: sensor.b2500_06_cd16bb
+          - type: gauge
+            entity: sensor.b06_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_06_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_06_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_06_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_06_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_06_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b06_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_07_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_07_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_07_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_07_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_07_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_07_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b07_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd16bv
+                  - entity: sensor.b2500_07_cd16bc
+                  - entity: sensor.b2500_07_cd16bb
+          - type: gauge
+            entity: sensor.b07_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_07_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_07_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_07_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_07_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_07_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b07_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_08_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_08_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_08_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_08_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_08_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_08_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b08_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd16bv
+                  - entity: sensor.b2500_08_cd16bc
+                  - entity: sensor.b2500_08_cd16bb
+          - type: gauge
+            entity: sensor.b08_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_08_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_08_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_08_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_08_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_08_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b08_mac
+            state_not: '0'
+      - square: false
+        type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_09_cd16m1
+                        name: PV1
+                      - entity: sensor.b2500_09_cd16c1
+                        name: PV1
+                      - entity: sensor.b2500_09_w1
+                        name: PV1
+                    show_header_toggle: false
+                  - type: entities
+                    entities:
+                      - entity: sensor.b2500_09_cd16m2
+                        name: ' PV2'
+                      - entity: sensor.b2500_09_cd16c2
+                        name: ' PV2'
+                      - entity: sensor.b2500_09_w2
+                        name: PV2
+                    show_header_toggle: false
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.b09_pv_gesamt
+                max: 900
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: >-
+                  https://raw.githubusercontent.com/Martin0475/b2500pkg/refs/heads/main/B2500PKG_Logo.jpg
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd16bv
+                  - entity: sensor.b2500_09_cd16bc
+                  - entity: sensor.b2500_09_cd16bb
+          - type: gauge
+            entity: sensor.b09_output_gesamt
+            max: 800
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd16i1
+                    name: OUT1
+                  - entity: sensor.b2500_09_cd16c3
+                    name: OUT1
+                  - entity: sensor.b2500_09_g1
+                    name: OUT1
+              - type: entities
+                entities:
+                  - entity: sensor.b2500_09_cd26i2
+                    name: OUT2
+                  - entity: sensor.b2500_09_cd16c4
+                    name: OUT2
+                  - entity: sensor.b2500_09_g2
+                    name: OUT2
+        columns: 1
+        visibility:
+          - condition: state
+            entity: input_boolean.req_cd16
+            state: 'on'
+          - condition: state
+            entity: input_text.b09_mac
+            state_not: '0'
+    type: masonry
+    sections: []
+    title: Info CD16
+  - type: sections
+    max_columns: 4
+    title: Erweiterung 1
+    path: erw1
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: B01_E1
+          - type: tile
+            entity: binary_sensor.b2500_01_b1
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit7
+          - type: tile
+            entity: sensor.b2500_01_a1
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_01_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_01_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B02_E1
+          - type: tile
+            entity: binary_sensor.b2500_02_b1
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit7
+          - type: tile
+            entity: sensor.b2500_02_a1
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_02_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_02_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B03_E1
+          - type: tile
+            entity: binary_sensor.b2500_03_b1
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit7
+          - type: tile
+            entity: sensor.b2500_03_a1
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_03_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_03_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B04_E1
+          - type: tile
+            entity: binary_sensor.b2500_04_b1
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit7
+          - type: tile
+            entity: sensor.b2500_04_a1
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_04_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_04_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B05_E1
+          - type: tile
+            entity: binary_sensor.b2500_05_b1
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit7
+          - type: tile
+            entity: sensor.b2500_05_a1
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_05_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_05_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B06_E1
+          - type: tile
+            entity: binary_sensor.b2500_06_b1
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit7
+          - type: tile
+            entity: sensor.b2500_06_a1
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_06_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_06_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B07_E1
+          - type: tile
+            entity: binary_sensor.b2500_07_b1
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit7
+          - type: tile
+            entity: sensor.b2500_07_a1
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_07_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_07_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B08_E1
+          - type: tile
+            entity: binary_sensor.b2500_08_b1
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit7
+          - type: tile
+            entity: sensor.b2500_08_a1
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_08_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_08_b1
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B09_E1
+          - type: tile
+            entity: binary_sensor.b2500_09_b1
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit6
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit4
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit5
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit7
+          - type: tile
+            entity: sensor.b2500_09_a1
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle01
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle02
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle03
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle04
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle05
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle06
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle07
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle08
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle09
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle10
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle11
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle12
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle13
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle14
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle15
+          - type: tile
+            entity: sensor.b2500_09_extern1_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_09_b1
+            state: 'on'
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: Erweiterung 2
+    path: erw2
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: B01_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_01_b2
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_01_l1_bit3
+          - type: tile
+            entity: sensor.b2500_01_a2
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_01_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_01_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B02_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_02_b2
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_02_l1_bit3
+          - type: tile
+            entity: sensor.b2500_02_a2
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_02_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_02_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B03_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_03_b2
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_03_l1_bit3
+          - type: tile
+            entity: sensor.b2500_03_a2
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_03_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_03_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B04_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_04_b2
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_04_l1_bit3
+          - type: tile
+            entity: sensor.b2500_04_a2
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_04_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_04_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B05_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_05_b2
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_05_l1_bit3
+          - type: tile
+            entity: sensor.b2500_05_a2
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_05_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_05_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B06_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_06_b2
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_06_l1_bit3
+          - type: tile
+            entity: sensor.b2500_06_a2
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_06_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_06_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B07_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_07_b2
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_07_l1_bit3
+          - type: tile
+            entity: sensor.b2500_07_a2
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_07_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_07_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B08_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_08_b2
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_08_l1_bit3
+          - type: tile
+            entity: sensor.b2500_08_a2
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_08_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_08_b2
+            state: 'on'
+      - type: grid
+        cards:
+          - type: heading
+            heading: B09_E2
+            heading_style: title
+          - type: tile
+            entity: binary_sensor.b2500_09_b2
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit2
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit0
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit1
+          - type: tile
+            entity: binary_sensor.b2500_09_l1_bit3
+          - type: tile
+            entity: sensor.b2500_09_a2
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle01
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle02
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle03
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle04
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle05
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle06
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle07
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle08
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle09
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle10
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle11
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle12
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle13
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle14
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle15
+          - type: tile
+            entity: sensor.b2500_09_extern2_zelle16
+        visibility:
+          - condition: state
+            entity: binary_sensor.b2500_09_b2
+            state: 'on'
+    cards: []
